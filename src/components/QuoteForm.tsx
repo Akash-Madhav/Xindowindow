@@ -30,7 +30,7 @@ export default function QuoteForm() {
   }
 
   return (
-    <section id="quote" className="relative bg-[var(--color-black-mid)] py-[64px] md:py-[120px] px-6 md:px-12 w-full overflow-hidden" data-section-id="08">
+    <section id="quote" className="relative bg-[var(--color-black-mid)] py-12 sm:py-16 md:py-[120px] px-5 sm:px-8 md:px-12 w-full overflow-hidden" data-section-id="08">
       {/* Decorative Grid BG */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
@@ -40,7 +40,7 @@ export default function QuoteForm() {
         }}
       />
 
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 relative z-10">
+      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative z-10">
         
         {/* Left Column: Form */}
         <div className="flex flex-col">
@@ -49,7 +49,7 @@ export default function QuoteForm() {
             <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.18em]">Request Quote</span>
           </div>
 
-          <h2 className="font-display text-[42px] font-normal text-[var(--color-white)] mb-10 leading-[1.1]">
+          <h2 className="font-display text-[30px] sm:text-[36px] md:text-[42px] 2xl:text-[52px] font-normal text-[var(--color-white)] mb-8 md:mb-10 leading-[1.1]">
             Build Your Vision With Us
           </h2>
 

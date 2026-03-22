@@ -62,14 +62,14 @@ export default function Testimonials() {
   const splitWords = (text: string) => text.split(' ')
 
   return (
-    <section className="relative w-full h-[100svh] bg-[var(--color-black)] overflow-hidden flex items-center justify-center px-6 md:px-12" data-section-id="06">
+    <section className="relative w-full h-[100svh] bg-[var(--color-black)] overflow-hidden flex items-center justify-center px-5 sm:px-8 md:px-12" data-section-id="06">
       
       {/* Ambient Quote Mark */}
       <div 
         className="absolute top-0 left-[-40px] md:left-[5%] text-[var(--color-white)] opacity-[0.03] select-none pointer-events-none"
       >
         <span 
-          className="font-display font-light text-[300px] md:text-[400px] leading-none block"
+          className="font-display font-light text-[180px] sm:text-[250px] md:text-[400px] leading-none block"
           style={{ animation: 'ambientRotate 8s ease-in-out infinite alternate' }}
         >
           &quot;
@@ -83,7 +83,7 @@ export default function Testimonials() {
         }
       `}} />
 
-      <div className="max-w-[1000px] w-full relative z-10 flex flex-col items-center">
+      <div className="max-w-[900px] 2xl:max-w-[1200px] w-full relative z-10 flex flex-col items-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -91,7 +91,7 @@ export default function Testimonials() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} 
-            className="flex flex-col items-center text-center w-full min-h-[300px] justify-center"
+            className="flex flex-col items-center text-center w-full min-h-[200px] sm:min-h-[280px] md:min-h-[300px] justify-center"
             // Swipe gesture handling
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -101,7 +101,7 @@ export default function Testimonials() {
             }}
           >
             {/* Word by word quote */}
-            <h3 className="font-display text-[28px] md:text-[42px] font-normal leading-[1.3] text-[var(--color-white)] tracking-[-0.01em] mb-12 flex flex-wrap justify-center gap-x-2 md:gap-x-3">
+            <h3 className="font-display text-[22px] sm:text-[30px] md:text-[42px] 2xl:text-[52px] font-normal leading-[1.3] text-[var(--color-white)] tracking-[-0.01em] mb-10 sm:mb-12 flex flex-wrap justify-center gap-x-2 md:gap-x-3">
               {splitWords(TESTIMONIALS[current].text).map((word, i) => (
                 <motion.span
                   key={i}

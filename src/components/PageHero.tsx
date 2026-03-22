@@ -45,7 +45,7 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
       {/* Background Cinematic Text */}
       {bgText && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
-          <span className="font-display text-[20vw] md:text-[14vw] uppercase tracking-[0.2em] text-white whitespace-nowrap">
+          <span className="font-display text-[18vw] sm:text-[16vw] md:text-[12vw] 2xl:text-[10vw] uppercase tracking-[0.2em] text-white whitespace-nowrap">
             {bgText}
           </span>
         </div>
@@ -55,7 +55,7 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
       <div className="absolute inset-x-0 bottom-0 h-1/2 z-10 pointer-events-none bg-gradient-to-t from-[var(--color-black)] to-transparent" />
       <div className="absolute inset-x-0 top-0 h-1/3 z-10 pointer-events-none bg-gradient-to-b from-[var(--color-black)] to-transparent" />
 
-      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-6 md:px-16 flex flex-col items-center">
+      <div className="relative z-20 w-full max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-5 sm:px-8 md:px-16 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
         
         <h1 
           ref={titleRef}
-          className="font-display font-light text-[56px] md:text-[110px] text-white tracking-tight leading-[1.05] flex flex-col items-center"
+          className="font-display font-light text-[44px] sm:text-[64px] md:text-[110px] 2xl:text-[140px] text-white tracking-tight leading-[1.05] flex flex-col items-center"
         >
           {title}
         </h1>
@@ -85,7 +85,7 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="max-w-[600px] font-sans font-light text-[17px] md:text-[20px] text-[var(--color-silver)] leading-relaxed"
+          className="max-w-[600px] 2xl:max-w-[780px] font-sans font-light text-[14px] sm:text-[16px] md:text-[19px] 2xl:text-[22px] text-[var(--color-silver)] leading-relaxed"
         >
           {subtitle}
         </motion.p>

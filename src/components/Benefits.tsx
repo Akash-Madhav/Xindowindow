@@ -120,7 +120,7 @@ export default function Benefits({
   return (
     <section 
       ref={containerRef}
-      className={`relative bg-[var(--color-black)] py-24 md:py-32 px-6 md:px-12 w-full overflow-hidden min-h-screen flex items-center z-10`}
+      className={`relative bg-[var(--color-black)] py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-12 w-full overflow-hidden min-h-screen flex items-center z-10`}
       data-section-id={id}
     >
       {/* Blueprint SVG Background (Cinematic overlay) */}
@@ -135,7 +135,7 @@ export default function Benefits({
         </svg>
       </div>
 
-      <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col items-center w-full">
+      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto relative z-10 flex flex-col items-center w-full">
         
         <div className="flex items-center gap-4 mb-8">
           <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
@@ -143,7 +143,7 @@ export default function Benefits({
           <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
         </div>
 
-        <h2 ref={headerRef} className="font-display font-light text-[32px] md:text-[48px] tracking-tight text-[var(--color-white)] text-center mb-20 min-h-[60px] max-w-[800px]">
+        <h2 ref={headerRef} className="font-display font-light text-[28px] sm:text-[36px] md:text-[48px] 2xl:text-[60px] tracking-tight text-[var(--color-white)] text-center mb-12 sm:mb-16 md:mb-20 min-h-[60px] max-w-[800px] 2xl:max-w-[1100px]">
           {scrambledText}
         </h2>
 
@@ -151,16 +151,16 @@ export default function Benefits({
         <div 
           ref={gridRef}
           style={{ perspective: isTouch ? 'none' : '1200px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-[2px] w-full"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] sm:gap-[2px] w-full"
         >
           {items.map((benefit, i) => (
             <div 
               key={i} 
-              className="benefit-card group relative bg-[rgba(255,255,255,0.02)] p-10 md:p-12 flex flex-col gap-6 md:hover:bg-[rgba(255,255,255,0.03)] border border-transparent md:hover:border-[rgba(255,255,255,0.05)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform-style-3d origin-center"
+              className="benefit-card group relative bg-[rgba(255,255,255,0.02)] p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col gap-4 sm:gap-6 md:hover:bg-[rgba(255,255,255,0.03)] border border-transparent md:hover:border-[rgba(255,255,255,0.05)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform-style-3d origin-center"
             >
               <div className="font-mono text-[24px] text-[var(--color-red)] opacity-40 group-hover:opacity-100 transition-opacity">0{i+1}</div>
               <div className="flex flex-col gap-3">
-                <h3 className="font-display text-[24px] md:text-[28px] text-[var(--color-white)] leading-tight">{benefit.title}</h3>
+                <h3 className="font-display text-[20px] sm:text-[22px] md:text-[28px] 2xl:text-[32px] text-[var(--color-white)] leading-tight">{benefit.title}</h3>
                 <p className="font-sans text-[13px] md:text-[14px] text-[var(--color-silver)] uppercase tracking-[0.15em] leading-relaxed">{benefit.desc}</p>
               </div>
               <div className="absolute top-10 right-10 flex items-center justify-center">

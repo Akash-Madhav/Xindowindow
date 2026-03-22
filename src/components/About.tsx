@@ -58,10 +58,10 @@ export default function About({
   return (
     <section 
       ref={containerRef}
-      className={`relative w-full min-h-screen bg-[var(--color-black)] py-20 px-6 md:px-12 flex items-center overflow-hidden`}
+      className={`relative w-full min-h-screen bg-[var(--color-black)] py-16 sm:py-20 px-5 sm:px-8 md:px-12 flex items-center overflow-hidden`}
       data-section-id={id}
     >
-      <div className={`max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-center ${reverse ? 'md:flex-row-reverse' : ''}`}>
+      <div className={`max-w-[1400px] 2xl:max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-16 md:gap-32 2xl:gap-40 items-center ${reverse ? 'md:flex-row-reverse' : ''}`}>
         
         {/* Content Column */}
         <div ref={leftColRef} className={`flex flex-col opacity-0 ${reverse ? 'md:order-2' : ''}`}>
@@ -70,16 +70,16 @@ export default function About({
             <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.25em]">{tag}</span>
           </div>
 
-          <h2 className="font-display font-light text-[36px] md:text-[52px] leading-[1.15] tracking-tight text-[var(--color-white)] mb-10 max-w-[620px]">
+          <h2 className="font-display font-light text-[30px] sm:text-[38px] md:text-[52px] 2xl:text-[66px] leading-[1.15] tracking-tight text-[var(--color-white)] mb-8 max-w-[620px]">
             {title}
           </h2>
 
           <div className="space-y-6 mb-12">
-            <p className="font-sans font-light text-[17px] md:text-[18px] leading-[1.7] text-[var(--color-silver)] max-w-[560px]">
+            <p className="font-sans font-light text-[15px] sm:text-[16px] md:text-[18px] 2xl:text-[20px] leading-[1.7] text-[var(--color-silver)] max-w-[560px]">
               {description1}
             </p>
             {description2 && (
-              <p className="font-sans font-light text-[17px] md:text-[18px] leading-[1.7] text-[var(--color-silver)] max-w-[560px]">
+              <p className="font-sans font-light text-[15px] sm:text-[16px] md:text-[18px] 2xl:text-[20px] leading-[1.7] text-[var(--color-silver)] max-w-[560px]">
                 {description2}
               </p>
             )}
@@ -113,8 +113,8 @@ export default function About({
           </div>
 
           {/* Floating Cinematic Badge */}
-          <div className="absolute -left-6 md:-left-12 -bottom-8 md:-bottom-12 z-30 bg-[#0A0A0B] border border-[rgba(200,16,46,0.2)] p-8 md:p-10 shadow-2xl flex items-center gap-6 backdrop-blur-xl">
-            <span className="font-display text-[48px] md:text-[64px] text-[var(--color-red)] leading-none font-light">{badgeNumber}</span>
+          <div className="absolute -left-3 sm:-left-6 md:-left-12 -bottom-6 sm:-bottom-8 md:-bottom-12 z-30 bg-[#0A0A0B] border border-[rgba(200,16,46,0.2)] p-5 sm:p-8 md:p-10 shadow-2xl flex items-center gap-4 sm:gap-6 backdrop-blur-xl">
+            <span className="font-display text-[40px] sm:text-[48px] md:text-[64px] 2xl:text-[80px] text-[var(--color-red)] leading-none font-light">{badgeNumber}</span>
             <span className="font-sans uppercase text-[11px] tracking-[0.2em] text-[var(--color-silver)] leading-relaxed max-w-[100px]">
               {badgeText}
             </span>

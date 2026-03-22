@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#070707] border-t border-[rgba(200,16,46,0.15)] pt-20 pb-10 w-full overflow-hidden z-20" data-section-id="09">
+    <footer className="relative bg-[#070707] border-t border-[rgba(200,16,46,0.15)] pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 w-full overflow-hidden z-20" data-section-id="09">
       
       {/* Background XINDO text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none z-0">
@@ -16,7 +16,7 @@ export default function Footer() {
         </span>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10 flex flex-col">
+      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-5 sm:px-8 md:px-12 relative z-10 flex flex-col">
         
         {/* 4-Column Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-24">

@@ -95,7 +95,7 @@ export default function Gallery({
   return (
     <section 
       ref={containerRef}
-      className={`relative bg-[var(--color-black)] py-24 md:py-32 px-6 md:px-12 min-h-screen flex items-center overflow-hidden z-10`}
+      className={`relative bg-[var(--color-black)] py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-12 min-h-screen flex items-center overflow-hidden z-10`}
       data-section-id={id}
     >
       {/* Background Cinematic Text */}
@@ -111,7 +111,7 @@ export default function Gallery({
         </span>
       </div>
 
-      <div className="max-w-[1400px] mx-auto relative z-10 w-full flex flex-col items-center">
+      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto relative z-10 w-full flex flex-col items-center">
         
         <div className="flex items-center gap-4 mb-16 md:mb-24">
           <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
@@ -120,7 +120,7 @@ export default function Gallery({
         </div>
         
         {/* Masonry Layout Grid */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-[4px] w-full">
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-[4px] w-full">
           {projects.map((project) => (
             <motion.div
               key={project.id}
@@ -134,7 +134,7 @@ export default function Gallery({
               {/* Red overlay hover */}
               <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.8)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
               
-              <div className="absolute bottom-8 left-8 z-20 translate-y-[20px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+              <div className="absolute bottom-5 sm:bottom-8 left-5 sm:left-8 z-20 translate-y-[20px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
                 <span className="font-display text-[20px] md:text-[24px] text-white tracking-wide block mb-1">{project.name}</span>
                 <span className="font-sans text-[10px] text-[var(--color-silver)] uppercase tracking-[0.25em]">Exclusive Collection</span>
               </div>

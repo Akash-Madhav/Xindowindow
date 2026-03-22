@@ -45,7 +45,7 @@ export default function Hero() {
       className="relative w-full h-[100svh] bg-[var(--color-black)] overflow-hidden flex items-center justify-center text-center"
       data-section-id="01"
     >
-      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-16 z-20 relative flex flex-col items-center">
+      <div className="w-full max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-5 sm:px-8 md:px-16 z-20 relative flex flex-col items-center">
         
         {/* Label Chip */}
         <motion.div 
@@ -62,7 +62,7 @@ export default function Hero() {
 
         {/* Text Group */}
         <div className="flex flex-col items-center">
-          <h1 className="font-display font-light text-[56px] md:text-[110px] tracking-[-0.04em] text-[var(--color-white)] leading-[1.05] flex flex-col items-center">
+          <h1 className="font-display font-light text-[44px] sm:text-[64px] md:text-[110px] 2xl:text-[140px] tracking-[-0.04em] text-[var(--color-white)] leading-[1.05] flex flex-col items-center">
             <div ref={line1Ref}>The Window &</div>
             <div ref={line2Ref}>Door Experts</div>
           </h1>
@@ -75,7 +75,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 1.2 }} 
-            className="mt-10 max-w-[580px] font-sans font-light text-[17px] md:text-[19px] leading-[1.7] text-[var(--color-silver)]"
+            className="mt-8 sm:mt-10 max-w-[580px] 2xl:max-w-[720px] font-sans font-light text-[15px] sm:text-[17px] md:text-[19px] 2xl:text-[22px] leading-[1.7] text-[var(--color-silver)]"
           >
             Premium uPVC Windows & Doors — engineered with German precision, crafted for India's finest homes and architectural developments.
           </motion.p>
@@ -85,7 +85,7 @@ export default function Hero() {
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
             transition={{ duration: 1, delay: 1.5 }}
-            className="mt-12 flex flex-col sm:flex-row items-center gap-8"
+            className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center gap-5 sm:gap-8 w-full sm:w-auto"
           >
             <button 
               className="group relative overflow-hidden px-12 py-4 bg-[var(--color-red)] text-[var(--color-white)] transition-all duration-300 w-full sm:w-auto rounded-full hover:scale-105 shadow-[0_12px_32px_rgba(200,16,46,0.4)]"
@@ -106,7 +106,7 @@ export default function Hero() {
       </div>
 
       {/* Stats Strip */}
-      <div className="absolute bottom-12 left-0 w-full px-6 md:px-12 z-20 flex justify-center overflow-x-auto gap-4 md:gap-8 no-scrollbar">
+      <div className="absolute bottom-8 sm:bottom-12 left-0 w-full px-5 sm:px-8 md:px-12 z-20 flex justify-center overflow-x-auto gap-4 md:gap-8 no-scrollbar">
         {[
           { num: '500+', label: 'Projects' },
           { num: '10yr', label: 'Warranty' },
@@ -119,7 +119,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 2.0 + (i * 0.15) }}
             className="flex flex-col items-center min-w-[120px]"
           >
-            <div className="font-mono text-[24px] md:text-[32px] text-[var(--color-red)] tracking-[-0.02em] leading-none mb-2">{stat.num}</div>
+            <div className="font-mono text-[20px] sm:text-[24px] md:text-[32px] 2xl:text-[40px] text-[var(--color-red)] tracking-[-0.02em] leading-none mb-2">{stat.num}</div>
             <div className="font-sans text-[10px] uppercase text-[var(--color-silver)] tracking-widest">{stat.label}</div>
           </motion.div>
         ))}

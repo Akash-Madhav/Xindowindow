@@ -58,10 +58,10 @@ export default function Process({
   return (
     <section 
       ref={containerRef}
-      className={`relative bg-[var(--color-black)] py-24 md:py-32 px-6 md:px-12 w-full min-h-screen flex items-center overflow-hidden z-10`}
+      className={`relative bg-[var(--color-black)] py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-12 w-full min-h-screen flex items-center overflow-hidden z-10`}
       data-section-id={id}
     >
-      <div className="max-w-[1400px] mx-auto flex flex-col items-center w-full">
+      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto flex flex-col items-center w-full">
         
         <div className="flex items-center gap-4 mb-24 md:mb-40">
           <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
@@ -84,11 +84,11 @@ export default function Process({
                 {step.num}
               </div>
               
-              <h3 className="font-display text-[26px] md:text-[32px] font-light text-[var(--color-white)] mb-4 text-center tracking-tight">
+              <h3 className="font-display text-[22px] sm:text-[26px] md:text-[32px] 2xl:text-[38px] font-light text-[var(--color-white)] mb-4 text-center tracking-tight">
                 {step.title}
               </h3>
               
-              <p className="font-sans text-[15px] md:text-[16px] font-light text-[var(--color-silver)] text-center px-6 leading-[1.65]">
+              <p className="font-sans text-[13px] sm:text-[14px] md:text-[16px] font-light text-[var(--color-silver)] text-center px-4 leading-[1.65]">
                 {step.desc}
               </p>
             </div>
