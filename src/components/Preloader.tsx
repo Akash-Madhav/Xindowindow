@@ -7,12 +7,19 @@ export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    const hasLoaded = sessionStorage.getItem('xindo-preloader-done')
+    if (hasLoaded) {
+      setIsLoading(false)
+      return
+    }
+
     // Mobile loader is faster
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const speedMultiplier = isMobile ? 0.7 : 1;
 
     const timer = setTimeout(() => {
       setIsLoading(false)
+      sessionStorage.setItem('xindo-preloader-done', 'true')
     }, 1100 * speedMultiplier) // 800ms draw + 300ms pause
 
     return () => clearTimeout(timer)

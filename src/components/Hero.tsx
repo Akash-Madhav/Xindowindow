@@ -55,78 +55,9 @@ export default function Hero() {
     }
   }, [])
 
-  // Mouse Parallax & Gyroscope
   useEffect(() => {
-    let requestRef: number
-    let targetX = 0
-    let targetY = 0
-    let currentX = 0
-    let currentY = 0
-
-    const updateParallax = () => {
-      currentX += (targetX - currentX) * 0.08
-      currentY += (targetY - currentY) * 0.08
-
-      if (textGroupRef.current) {
-        textGroupRef.current.style.transform = `translate3d(${currentX * 0.008}vw, ${currentY * 0.008}vh, 0)`
-      }
-      if (imageWrapperRef.current) {
-        imageWrapperRef.current.style.transform = `translate3d(${currentX * -0.004}vw, ${currentY * -0.004}vh, 0)`
-      }
-
-      requestRef = requestAnimationFrame(updateParallax)
-    }
-
-    if (!isTouch) {
-      const handleMouseMove = (e: MouseEvent) => {
-        targetX = e.clientX - window.innerWidth / 2
-        targetY = e.clientY - window.innerHeight / 2
-      }
-      window.addEventListener('mousemove', handleMouseMove)
-      requestRef = requestAnimationFrame(updateParallax)
-      
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove)
-        cancelAnimationFrame(requestRef)
-      }
-    } else {
-      // Gyroscope tilt
-      const handleOrientation = (e: DeviceOrientationEvent) => {
-        if (e.gamma !== null && e.beta !== null) {
-          // Limit rotation to [-30, 30] degrees mapping to [-4px, 4px] roughly
-          targetX = Math.max(-30, Math.min(30, e.gamma)) * (4 / 30)
-          targetY = Math.max(-30, Math.min(30, e.beta - 45)) * (4 / 30) // Assuming user holds phone at 45deg
-        }
-      }
-
-      // Request permission for iOS 13+
-      if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
-        // Must be triggered by user action, so we fallback gracefully if not active yet
-        // A click anywhere could request this, but we'll just listen if it's already granted
-      }
-      
-      window.addEventListener('deviceorientation', handleOrientation)
-      
-      const updateGyro = () => {
-        currentX += (targetX - currentX) * 0.06
-        currentY += (targetY - currentY) * 0.06
-        
-        if (textGroupRef.current) {
-          textGroupRef.current.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`
-        }
-        if (imageWrapperRef.current) {
-          imageWrapperRef.current.style.transform = `translate3d(${-currentX}px, ${-currentY}px, 0)`
-        }
-        requestRef = requestAnimationFrame(updateGyro)
-      }
-      requestRef = requestAnimationFrame(updateGyro)
-
-      return () => {
-        window.removeEventListener('deviceorientation', handleOrientation)
-        cancelAnimationFrame(requestRef)
-      }
-    }
-  }, [isTouch])
+    // No-op for shake removal
+  }, [])
 
   return (
     <section 

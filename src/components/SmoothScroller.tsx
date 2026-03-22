@@ -1,13 +1,23 @@
 'use client'
 
-import { ReactLenis } from '@studio-freight/react-lenis'
+import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 import { ReactNode, useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function SmoothScroller({ children }: { children: ReactNode }) {
   const [isTouch, setIsTouch] = useState(false)
 
+  const pathname = usePathname()
+  const lenis = useLenis()
+
   useEffect(() => {
-    if (window.matchMedia('(pointer: coarse)').matches) {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true })
+    }
+  }, [pathname, lenis])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
       setIsTouch(true)
     }
   }, [])

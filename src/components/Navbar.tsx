@@ -5,12 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 
 const NAV_LINKS = [
-  { name: 'About', href: '#about' },
-  { name: 'Products', href: '#products', hasDropdown: true },
-  { name: 'Infrastructure', href: '#infrastructure' },
-  { name: 'Gallery', href: '#gallery' },
-  { name: 'Clients', href: '#clients' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'About', href: '/about' },
+  { name: 'Products', href: '/products', hasDropdown: true },
+  { name: 'Infrastructure', href: '/infrastructure' },
+  { name: 'Gallery', href: '/gallery' },
+  { name: 'Clients', href: '/clients' },
+  { name: 'Contact', href: '/contact' },
 ]
 
 export default function Navbar() {
@@ -37,10 +37,10 @@ export default function Navbar() {
         <div 
           className={`mx-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto
             ${scrolled 
-              ? 'w-[92%] max-w-[1200px] h-[64px] rounded-full bg-[rgba(10,10,11,0.75)] backdrop-blur-[24px] border border-[rgba(255,255,255,0.08)] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
-              : 'w-[96%] max-w-[1400px] h-[80px] rounded-2xl bg-[rgba(255,255,255,0.02)] backdrop-blur-[8px] border border-[rgba(255,255,255,0.05)]'
+              ? 'w-[92%] max-w-[1200px] h-[64px] rounded-full bg-[rgba(10,10,11,0.85)] backdrop-blur-[24px] border border-[rgba(255,255,255,0.1)] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
+              : 'w-[96%] max-w-[1400px] h-[80px] rounded-full bg-[rgba(255,255,255,0.03)] backdrop-blur-[12px] border border-[rgba(255,255,255,0.08)]'
             }
-            px-6 md:px-10 flex items-center justify-between
+            px-8 md:px-12 flex items-center justify-between
           `}
         >
           

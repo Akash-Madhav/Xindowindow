@@ -4,10 +4,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import MobileBottomBar from "@/components/MobileBottomBar";
-import SectionCounter from "@/components/SectionCounter";
 import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroller from "@/components/SmoothScroller";
+import Footer from "@/components/Footer";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -54,11 +54,11 @@ export default function RootLayout({
           </svg>
         </div>
         <CustomCursor />
-        <SectionCounter />
         <SmoothScroller>
           <Preloader />
           <Navbar />
           {children}
+          <Footer />
           <WhatsAppFloat />
           <MobileBottomBar />
         </SmoothScroller>

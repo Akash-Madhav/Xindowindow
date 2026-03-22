@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import { SiWhatsapp } from '@icons-pack/react-simple-icons'
 
 export default function WhatsAppFloat() {
   const [visible, setVisible] = useState(false)
@@ -51,16 +52,14 @@ export default function WhatsAppFloat() {
 
             {/* Button */}
             <div 
-              className={`flex items-center justify-center w-[48px] h-[48px] md:w-[52px] md:h-[52px]
+              className={`flex items-center justify-center w-[48px] h-[48px] md:w-[52px] md:h-[52px] rounded-full
                 bg-[rgba(26,26,30,0.85)] border border-[rgba(255,255,255,0.1)] backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.4)]
                 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
-                md:hover:bg-[rgba(37,211,102,0.12)] md:hover:border-[rgba(37,211,102,0.3)] md:hover:shadow-[0_12px_32px_rgba(37,211,102,0.2)] md:hover:-translate-y-1
+                md:hover:bg-[rgba(37,211,102,0.15)] md:hover:border-[rgba(37,211,102,0.4)] md:hover:shadow-[0_12px_32px_rgba(37,211,102,0.3)] md:hover:-translate-y-1
                 ${pulse ? 'animate-pulse-whatsapp' : ''}
               `}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#25D366" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-              </svg>
+              <SiWhatsapp color="#25D366" size={24} />
             </div>
           </Link>
 

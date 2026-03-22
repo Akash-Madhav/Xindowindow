@@ -21,16 +21,7 @@ export default function Home() {
       <SectionDivider />
       <Benefits />
       <SectionDivider />
-      <Process />
-      <SectionDivider />
-      <Gallery />
-      <SectionDivider />
       <Testimonials />
-      <SectionDivider />
-      <ClientsMarquee />
-      <SectionDivider />
-      <QuoteForm />
-      <Footer />
     </main>
   )
 }
