@@ -22,6 +22,7 @@ export default function ClientsPage() {
         badgeNumber="Premium"
         badgeText="Developer Choice"
         reverse={true}
+        image="/images/about-clients.png"
       />
 
       <ClientsMarquee />

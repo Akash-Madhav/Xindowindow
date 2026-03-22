@@ -25,6 +25,7 @@ export default function ContactPage() {
         badgeNumber="Chennai"
         badgeText="Headquarters"
         reverse={false}
+        image="/images/about-office.png"
       />
 
       <div className="py-24 px-6 max-w-[800px] mx-auto text-center opacity-60">

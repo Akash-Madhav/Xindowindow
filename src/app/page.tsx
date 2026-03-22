@@ -19,6 +19,7 @@ export default function Home() {
         description2="Our strategic Indo-German partnership ensures every profile meets stringent global standards for thermal insulation, security, and durability."
         badgeNumber="10"
         badgeText="Year Warranty"
+        image="/images/about.png"
       />
 
       <ProductsClient 

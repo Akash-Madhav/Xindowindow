@@ -22,6 +22,7 @@ export default function AboutPage() {
         badgeNumber="Indo-German"
         badgeText="Core Partnership"
         reverse={true}
+        image="/images/about-vision.png"
       />
 
       <Process 

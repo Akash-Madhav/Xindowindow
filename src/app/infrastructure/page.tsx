@@ -20,6 +20,7 @@ export default function InfrastructurePage() {
         description2="From automatic PVC welding to CNC corner cleaning and EPDM gasket integration, our line is a masterclass in modern fenestration technology."
         badgeNumber="Automated"
         badgeText="Manufacturing Line"
+        image="/images/about-factory.png"
       />
 
       <Process 
