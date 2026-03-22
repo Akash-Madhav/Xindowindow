@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap-config'
-import Link from 'next/link'
 import Image from 'next/image'
+
 
 interface ProductItem {
   id: string

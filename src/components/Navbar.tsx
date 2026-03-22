@@ -131,14 +131,14 @@ export default function Navbar() {
             animate={{ opacity: 1, backdropFilter: 'blur(24px)' }}
             exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-[499] bg-[rgba(10,10,11,0.98)] md:hidden flex flex-col items-center justify-center p-8 pt-24"
+            className="fixed inset-0 z-[499] bg-[rgba(10,10,11,0.98)] md:hidden flex flex-col justify-between px-6 pt-28 pb-10"
           >
             {/* Background Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none select-none overflow-hidden">
                <span className="font-display text-[40vw] text-white rotate-90 leading-none">XINDO</span>
             </div>
 
-            <nav className="flex flex-col gap-4 w-full relative z-10 items-center text-center">
+            <nav className="flex flex-col gap-0 w-full relative z-10 items-center text-center">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -150,7 +150,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`font-display font-light text-[42px] tracking-tight block uppercase transition-colors 
+                    className={`font-display font-light text-[28px] sm:text-[34px] tracking-tight block uppercase transition-colors py-1
                       ${pathname === link.href ? 'text-[var(--color-red)]' : 'text-white hover:text-[var(--color-red)]'}
                     `}
                   >
@@ -164,7 +164,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="mt-16 flex flex-col gap-6 items-center w-full relative z-10 border-t border-[rgba(255,255,255,0.05)] pt-12"
+              className="flex flex-col gap-3 items-center w-full relative z-10 border-t border-[rgba(255,255,255,0.05)] pt-6"
             >
               <div className="flex flex-col items-center gap-2">
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-silver)] mb-2">Connect with us</span>
@@ -174,7 +174,7 @@ export default function Navbar() {
               <Link 
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-6 px-10 py-4 bg-[var(--color-red)] text-[12px] font-sans uppercase tracking-[0.2em] text-white rounded-full shadow-[0_12px_40px_rgba(200,16,46,0.3)]"
+                className="mt-2 px-8 py-3 bg-[var(--color-red)] text-[11px] font-sans uppercase tracking-[0.2em] text-white rounded-full shadow-[0_8px_24px_rgba(200,16,46,0.3)]"
               >
                 Request Quote
               </Link>
