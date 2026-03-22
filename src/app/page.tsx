@@ -7,7 +7,7 @@ import SectionDivider from '@/components/SectionDivider'
 
 export default function Home() {
   return (
-    <main className="flex min-h-[100svh] flex-col bg-[var(--color-black)] w-full overflow-hidden selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
+    <main className="min-h-[100svh] bg-[var(--color-black)] w-full overflow-hidden selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
       <Hero />
       
       <About 

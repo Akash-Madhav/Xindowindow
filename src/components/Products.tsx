@@ -46,20 +46,33 @@ export default function Products({
     if (trackRef.current && containerRef.current) {
       const trackWidth = trackRef.current.scrollWidth
       
-      const pinScroll = gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: "none",
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
+          pinSpacing: true,
+          start: "top top",
           scrub: 2.5,
           snap: 1 / (sections.length - 1),
-          end: "+=6000"
+          end: "+=6000",
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
         }
       })
 
+      tl.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: "none"
+      })
+
+      // Ensure layout is captured correctly after initial render
+      const refreshTimeout = setTimeout(() => {
+        ScrollTrigger.refresh()
+      }, 100)
+
       return () => {
-        pinScroll.kill()
+        clearTimeout(refreshTimeout)
+        tl.kill()
         ScrollTrigger.getAll().forEach(t => {
           if (t.vars.trigger === containerRef.current) t.kill()
         })
