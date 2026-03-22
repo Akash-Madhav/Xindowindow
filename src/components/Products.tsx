@@ -83,47 +83,40 @@ export default function Products({
   return (
     <section 
       ref={containerRef}
-      className={`relative bg-[var(--color-black)] w-full lg:h-screen min-h-screen overflow-hidden z-10`}
+      className="relative bg-[var(--color-black)] w-full lg:h-screen overflow-hidden z-10"
       data-section-id={id}
     >
+      {/* Track: stacked on mobile/tablet, horizontal row on lg+ */}
       <div 
         ref={trackRef} 
-        className={`flex ${isTouch ? 'flex-col w-full' : 'flex-row w-[400vw] h-full will-change-transform'}`}
+        className="flex flex-col lg:flex-row lg:w-[400vw] lg:h-full will-change-transform"
       >
         {products.map((prod, idx) => (
           <div 
             key={prod.id} 
-            className={`product-panel relative ${
-              isTouch 
-                ? 'w-full min-h-screen py-16 sm:py-24 md:py-28' 
-                : 'w-[100vw] h-full'
-            } flex items-center justify-center`}
+            className="product-panel relative w-full min-h-screen lg:min-h-0 lg:w-[100vw] lg:h-full py-16 sm:py-20 md:py-24 lg:py-0 flex items-center justify-center"
           >
             {/* Watermark Background */}
             <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none z-0 opacity-[0.03]">
               <span 
-                className={`font-display font-light text-transparent ${isTouch ? 'text-[18vw] sm:text-[15vw]' : 'text-[12vw] 2xl:text-[10vw]'} tracking-[0.2em] uppercase whitespace-nowrap`}
+                className="font-display font-light text-transparent text-[18vw] sm:text-[15vw] lg:text-[12vw] 2xl:text-[10vw] tracking-[0.2em] uppercase whitespace-nowrap"
                 style={{ WebkitTextStroke: '1.5px var(--color-white)' }}
               >
                 {prod.watermark}
               </span>
             </div>
 
-            {/* Content Container — stacked on phone, 2-col on tablet+ */}
-            <div className={`w-full mx-auto z-20 relative px-5 sm:px-10 md:px-14 xl:px-20 2xl:px-24
-              ${isTouch
-                ? 'flex flex-col gap-8 max-w-xl sm:max-w-2xl md:max-w-5xl'
-                : 'max-w-[1400px] 2xl:max-w-[1800px] grid grid-cols-2 gap-12 xl:gap-20 2xl:gap-32 h-full items-center'
-              }
-            `}>
+            {/* Content Container */}
+            <div className="w-full mx-auto z-20 relative px-5 sm:px-10 md:px-14 lg:px-16 xl:px-20 2xl:px-24
+              flex flex-col gap-6 max-w-lg sm:max-w-2xl md:max-w-3xl
+              lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-20 2xl:gap-32 lg:max-w-[1400px] 2xl:max-w-[1800px] lg:h-full lg:items-center
+            ">
               
-              {/* Image Column */}
-              <div className={`relative bg-[#0A0A0B] overflow-hidden group shadow-[0_32px_80px_rgba(0,0,0,0.55)]
-                ${isTouch
-                  ? 'aspect-[16/9] sm:aspect-[4/3] md:aspect-[16/9] w-full rounded-sm'
-                  : 'aspect-square 2xl:aspect-[4/5] rounded-sm'
-                }
-              `}>
+              {/* Image */}
+              <div className="relative bg-[#0A0A0B] overflow-hidden group shadow-[0_32px_80px_rgba(0,0,0,0.55)] rounded-sm
+                aspect-[16/9] sm:aspect-[4/3] md:aspect-[16/9] w-full
+                lg:aspect-square 2xl:aspect-[4/5]
+              ">
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] to-transparent opacity-25 z-10" />
                 {prod.image ? (
                   <Image src={prod.image} fill className="object-cover transition-transform duration-[2s] group-hover:scale-105" alt={prod.name} />
@@ -134,46 +127,35 @@ export default function Products({
                 )}
               </div>
 
-              {/* Text Column */}
+              {/* Text */}
               <div className="flex flex-col">
-                {/* Tag row */}
-                <div className="flex items-center gap-3 mb-5 sm:mb-7">
+                <div className="flex items-center gap-3 mb-4 sm:mb-6">
                   <span className="font-mono text-[11px] sm:text-[12px] text-[var(--color-red)] tracking-[0.3em]">0{idx + 1}</span>
                   <div className="w-6 h-px bg-[var(--color-red)] opacity-30" />
                   <span className="font-mono text-[10px] sm:text-[11px] text-[var(--color-silver)] uppercase tracking-[0.2em]">{prod.type}</span>
                 </div>
                 
-                {/* Title */}
-                <h2 className={`font-display font-light leading-[0.95] tracking-tight mb-6 sm:mb-8 text-[var(--color-white)]
-                  ${isTouch
-                    ? 'text-[48px] sm:text-[64px] md:text-[72px]'
-                    : 'text-[60px] xl:text-[76px] 2xl:text-[96px]'
-                  }
-                `}>
+                <h2 className="font-display font-light leading-[0.95] tracking-tight mb-5 sm:mb-7 text-[var(--color-white)]
+                  text-[40px] sm:text-[56px] md:text-[64px] lg:text-[60px] xl:text-[76px] 2xl:text-[96px]
+                ">
                   {prod.name}
                 </h2>
                 
-                {/* Description */}
-                <p className={`font-sans font-light text-[var(--color-silver)] leading-[1.75] mb-8 sm:mb-10
-                  ${isTouch
-                    ? 'text-[15px] sm:text-[17px] md:text-[18px]'
-                    : 'text-[16px] xl:text-[18px] 2xl:text-[22px]'
-                  }
-                `}>
+                <p className="font-sans font-light text-[var(--color-silver)] leading-[1.75] mb-7 sm:mb-9
+                  text-[14px] sm:text-[16px] md:text-[17px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px]
+                ">
                   {prod.desc}
                 </p>
 
-                {/* Feature links */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-3 mb-10 sm:mb-14">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-3 mb-8 sm:mb-12">
                   {prod.links.map(link => (
                     <div key={link} className="flex items-center gap-3 group cursor-pointer hover:translate-x-1 transition-transform">
                       <div className="w-1.5 h-1.5 bg-[var(--color-red)] rounded-full shrink-0 group-hover:scale-125 transition-transform" />
-                      <span className="font-sans text-[12px] sm:text-[13px] uppercase tracking-[0.15em] text-[var(--color-silver)] group-hover:text-white transition-colors">{link}</span>
+                      <span className="font-sans text-[11px] sm:text-[13px] uppercase tracking-[0.15em] text-[var(--color-silver)] group-hover:text-white transition-colors">{link}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* CTA */}
                 <button 
                   className="w-fit group flex items-center text-white transition-colors duration-300"
                   data-cursor="link"

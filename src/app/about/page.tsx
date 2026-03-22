@@ -19,7 +19,6 @@ export default function AboutPage() {
         title="We don't manufacture windows — We craft thresholds."
         description1="Guided by German precision and fueled by Indian architectural ambition, Xindo represents a paradigm shift in fenestration. Every profile we produce is a testament to our commitment to structural integrity and aesthetic purity."
         description2="Our strategic Indo-German partnership ensures every profile meets stringent global standards for thermal insulation, security, and durability."
-        image="/factory-cinematic.jpg" // Placeholder for future use
         badgeNumber="Indo-German"
         badgeText="Core Partnership"
         reverse={true}
