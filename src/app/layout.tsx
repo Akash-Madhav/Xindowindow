@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
+import MobileBottomBar from "@/components/MobileBottomBar";
+import SectionCounter from "@/components/SectionCounter";
+import Preloader from "@/components/Preloader";
+import CustomCursor from "@/components/CustomCursor";
+import SmoothScroller from "@/components/SmoothScroller";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -38,11 +43,25 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body
-        className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable} antialiased bg-[var(--color-black)] text-[var(--color-white)]`}
+        className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable} antialiased bg-[var(--color-black)] text-[var(--color-white)] pb-16 md:pb-0`}
       >
-        <Navbar />
-        {children}
-        <WhatsAppButton />
+        <div className="fixed inset-0 pointer-events-none z-[9998] mix-blend-overlay opacity-5 md:opacity-[0.04]">
+          <svg className="w-full h-full">
+            <filter id="noiseFilter">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+          </svg>
+        </div>
+        <CustomCursor />
+        <SectionCounter />
+        <SmoothScroller>
+          <Preloader />
+          <Navbar />
+          {children}
+          <WhatsAppFloat />
+          <MobileBottomBar />
+        </SmoothScroller>
       </body>
     </html>
   );

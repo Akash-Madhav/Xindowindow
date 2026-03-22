@@ -1,116 +1,123 @@
-'use client';
+'use client'
 
-import { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef, useState } from 'react'
+import { gsap } from '@/lib/gsap-config'
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-const steps = [
+const PROCESS_STEPS = [
   {
     num: '01',
-    title: 'Consultation & Site Audit',
-    desc: 'Our acoustic and thermal engineers assess your space, wind load requirements, and architectural vision.'
+    title: 'Survey',
+    desc: 'We survey your space and recommend the ideal uPVC profile for your requirements.'
   },
   {
     num: '02',
-    title: 'Precision Fabrication',
-    desc: 'Profiles are cut, reinforced with galvanized steel, and fusion-welded in our state-of-the-art facility.'
+    title: 'Selection',
+    desc: 'Choose from our complete range of sliding, casement, or special uPVC solutions.'
   },
   {
     num: '03',
-    title: 'Surgical Installation',
-    desc: 'Expert technicians install the systems with specialized sealants to ensure 100% weather and sound proofing.'
+    title: 'Fabrication',
+    desc: 'Indo-German precision manufacturing to your exact specification.'
   },
   {
     num: '04',
-    title: 'Handover & Warranty',
-    desc: 'Rigorous final inspection followed by the handover of your 10-year comprehensive warranty certificate.'
+    title: 'Installation',
+    desc: 'Professional installation within 4 days of windows arriving at site.'
   }
-];
+]
 
 export default function Process() {
-  const container = useRef<HTMLElement>(null);
-  
-  useGSAP(() => {
-    // Reveal steps individually as user scrolls
-    const stepElements = gsap.utils.toArray('.process-step');
-    
-    stepElements.forEach((step: any, i) => {
-      gsap.from(step, {
-        scrollTrigger: {
-          trigger: step,
-          start: 'top 85%',
-        },
-        opacity: 0.3,
-        x: 40,
-        duration: 0.6,
-        ease: 'power2.out',
-      });
-      
-      // Highlight effect when scrolling past
-      gsap.to(step.querySelector('.step-num'), {
-        scrollTrigger: {
-          trigger: step,
-          start: 'top center',
-          end: 'bottom center',
-          toggleClass: 'text-[var(--color-red)]'
-        }
-      });
-      
-      gsap.to(step.querySelector('.step-line'), {
-        scrollTrigger: {
-          trigger: step,
-          start: 'top center',
-          end: 'bottom center',
-          toggleClass: 'bg-[var(--color-red)] w-full'
-        }
-      });
-    });
+  const containerRef = useRef<HTMLDivElement>(null)
+  const lineRef = useRef<HTMLDivElement>(null)
+  const isTouch = typeof window !== 'undefined' ? window.matchMedia('(pointer: coarse)').matches : true
 
-  }, { scope: container });
+  useEffect(() => {
+    if (!containerRef.current || !lineRef.current || isTouch) return
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 60%',
+        end: 'bottom 80%',
+        scrub: 1
+      }
+    })
+
+    // Draw horizontal line based on scroll
+    tl.fromTo(lineRef.current,
+      { scaleX: 0 },
+      { scaleX: 1, transformOrigin: 'left', ease: 'none' }
+    )
+
+    return () => { tl.kill() }
+  }, [isTouch])
 
   return (
-    <section ref={container} className="pt-16 pb-24 px-6 md:px-12 bg-[var(--color-black)] relative border-t border-[var(--color-slate-deep)]">
-      <div className="max-w-[1320px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-          
-          {/* Left: Sticky Context */}
-          <div className="relative">
-            <div className="md:sticky md:top-32 max-w-sm">
-              <span className="caption text-[var(--color-red)] mb-4 block">OUR PROCESS</span>
-              <h2 className="text-[42px] font-headline text-on-surface leading-[1.25] mb-6">
-                The Anatomy of Installation
-              </h2>
-              <p className="text-[var(--color-mist)] body font-light">
-                From structural analysis to the final polish, our 4-step deployment maintains absolute quality control.
-              </p>
-              
-              <div className="mt-12 w-24 h-[1px] bg-[var(--color-charcoal)]"></div>
-            </div>
-          </div>
-          
-          {/* Right: Scrolling Steps */}
-          <div className="space-y-16 mt-8 md:mt-0 pb-16">
-            {steps.map((step, i) => (
-              <div key={i} className="process-step group relative pl-8 border-l border-[var(--color-charcoal)]">
-                 {/* Animated Line Indicator */}
-                <div className="step-line absolute left-[-1px] top-0 w-[1px] h-0 bg-[var(--color-red)] transition-all duration-300"></div>
+    <section 
+      ref={containerRef}
+      className="bg-[var(--color-black)] py-[64px] md:py-[120px] px-6 md:px-12 w-full relative"
+      data-section-id="05"
+    >
+      <div className="max-w-[1400px] mx-auto flex flex-col items-center">
+        
+        <div className="flex items-center gap-4 mb-20 md:mb-32">
+          <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
+          <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.18em]">Our Process</span>
+          <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
+        </div>
 
-                <div className="step-num font-mono text-[32px] text-[var(--color-charcoal)] mb-4 transition-colors duration-300">
+        {/* Desktop Process Timeline */}
+        <div className="hidden md:grid grid-cols-4 gap-4 w-full relative">
+          {/* Connecting Line */}
+          <div className="absolute top-[8px] left-[5%] w-[90%] h-[1px] bg-[rgba(200,16,46,0.2)] z-0" />
+          <div ref={lineRef} className="absolute top-[8px] left-[5%] w-[90%] h-[1px] bg-[var(--color-red)] z-0" />
+
+          {PROCESS_STEPS.map((step, idx) => (
+            <div key={idx} className="group relative z-10 flex flex-col px-4 cursor-default">
+              {/* Step Dot */}
+              <div className="w-4 h-4 rounded-full border border-[var(--color-red)] bg-[var(--color-black)] mx-auto mb-10 group-hover:bg-[var(--color-red)] group-hover:shadow-[0_0_12px_rgba(200,16,46,0.8)] transition-all duration-300 ease-out" />
+              
+              <div className="font-mono text-[64px] font-light text-[var(--color-red)] opacity-10 group-hover:opacity-20 transition-opacity mb-2 leading-none text-center">
+                {step.num}
+              </div>
+              
+              <h3 className="font-display text-[22px] font-medium text-[var(--color-white)] mb-3 text-center">
+                {step.title}
+              </h3>
+              
+              <p className="font-sans text-[13px] font-light text-[var(--color-silver)] text-center px-4 leading-[1.6]">
+                {step.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile Process Timeline */}
+        <div className="md:hidden flex flex-col w-full relative pl-2 py-4">
+          <div className="absolute left-[14px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-[var(--color-red)] to-transparent opacity-50 z-0" />
+          
+          {PROCESS_STEPS.map((step, idx) => (
+            <div key={idx} className="relative z-10 flex flex-row items-start mb-12 last:mb-0">
+              <div className="w-6 h-6 rounded-full border border-[var(--color-red)] bg-[var(--color-black)] flex items-center justify-center shrink-0 mt-1">
+                <div className="w-2 h-2 rounded-full bg-[var(--color-red)]" />
+              </div>
+              
+              <div className="flex flex-col ml-6">
+                <div className="font-mono text-[36px] font-light text-[var(--color-red)] opacity-20 mb-1 leading-none">
                   {step.num}
                 </div>
-                <h4 className="font-headline text-2xl text-[var(--color-white)] mb-3">{step.title}</h4>
-                <p className="body-s text-[var(--color-mist)]">
+                <h3 className="font-display text-[24px] font-medium text-[var(--color-white)] mb-2">
+                  {step.title}
+                </h3>
+                <p className="font-sans text-[14px] font-light text-[var(--color-silver)] leading-[1.6]">
                   {step.desc}
                 </p>
               </div>
-            ))}
-          </div>
-
+            </div>
+          ))}
         </div>
+        
       </div>
     </section>
-  );
+  )
 }

@@ -1,199 +1,192 @@
-'use client';
+'use client'
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useState } from 'react';
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
 
-const quoteSchema = z.object({
-  name: z.string().min(2, 'Name is required'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().min(10, 'Valid phone number is required'),
-  projectType: z.string().min(1, 'Please select a project type'),
-  requirements: z.string().optional(),
-  budget: z.string().optional(),
-});
-
-type QuoteFormValues = z.infer<typeof quoteSchema>;
+const formSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters.'),
+  phone: z.string().min(10, 'Please enter a valid phone number.'),
+  email: z.string().email('Please enter a valid email address.'),
+  productType: z.string().min(1, 'Please select a product type.'),
+  message: z.string().optional(),
+})
 
 export default function QuoteForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
-  const { register, handleSubmit, formState: { errors } } = useForm<QuoteFormValues>({
-    resolver: zodResolver(quoteSchema)
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  })
 
-  const onSubmit = async (data: QuoteFormValues) => {
-    setIsSubmitting(true);
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true)
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log('Form data:', data);
-    setIsSubmitting(false);
-    setIsSuccess(true);
-  };
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    setIsSubmitting(false)
+    setIsSuccess(true)
+  }
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-[var(--color-obsidian)] to-[#1a1112]">
-      <div className="max-w-[1320px] mx-auto glass-surface rounded-[var(--radius-xl)] p-8 md:p-16 border border-[var(--glass-border-red)] relative overflow-hidden">
-        
-        {/* Subtle Background Glow */}
-        <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[var(--color-red)] opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
+    <section id="quote" className="relative bg-[var(--color-black-mid)] py-[64px] md:py-[120px] px-6 md:px-12 w-full overflow-hidden" data-section-id="08">
+      {/* Decorative Grid BG */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(200, 16, 46, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(200, 16, 46, 0.1) 1px, transparent 1px)',
+          backgroundSize: '40px 40px'
+        }}
+      />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10">
-          
-          {/* Left Content */}
-          <div className="flex flex-col justify-center">
-            <span className="caption text-[var(--color-red)] mb-4 block">PREMIUM CONSULTATION</span>
-            <h2 className="text-[48px] md:text-[56px] font-headline text-on-surface leading-[1.1] mb-6">
-              Start Your <br className="hidden md:block" /> Transformation
-            </h2>
-            <p className="text-[var(--color-mist)] body font-light mb-12 max-w-md">
-              Share your architectural plans or brief. Our engineers will perform a 
-              preliminary analysis and craft a bespoke proposal tailored to your vision.
-            </p>
-            
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <span className="material-symbols-outlined text-[var(--color-red)] mt-1">support_agent</span>
-                <div>
-                  <h5 className="text-white font-sans font-bold text-[15px] mb-1">Dedicated Project Manager</h5>
-                  <p className="text-white/50 text-[13px] font-light">From concept to final handover</p>
-                </div>
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 relative z-10">
+        
+        {/* Left Column: Form */}
+        <div className="flex flex-col">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
+            <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.18em]">Request Quote</span>
+          </div>
+
+          <h2 className="font-display text-[42px] font-normal text-[var(--color-white)] mb-10 leading-[1.1]">
+            Build Your Vision With Us
+          </h2>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8 w-full max-w-[500px]">
+            {/* Name */}
+            <div className="relative group">
+              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Name</label>
+              <input 
+                {...register('name')}
+                disabled={isSubmitting || isSuccess}
+                className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors"
+                placeholder="Enter your full name"
+              />
+              {errors.name && <span className="text-[var(--color-red-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.name.message}</span>}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {/* Phone */}
+              <div className="relative group">
+                <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Phone</label>
+                <input 
+                  {...register('phone')}
+                  type="tel"
+                  disabled={isSubmitting || isSuccess}
+                  className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors"
+                  placeholder="+91"
+                />
+                {errors.phone && <span className="text-[var(--color-red-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.phone.message}</span>}
               </div>
-              <div className="flex items-start gap-4">
-                <span className="material-symbols-outlined text-[var(--color-red)] mt-1">design_services</span>
-                <div>
-                  <h5 className="text-white font-sans font-bold text-[15px] mb-1">Custom Fabrication</h5>
-                  <p className="text-white/50 text-[13px] font-light">Engineered to exact specifications</p>
-                </div>
+
+              {/* Email */}
+              <div className="relative group">
+                <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Email</label>
+                <input 
+                  {...register('email')}
+                  type="email"
+                  disabled={isSubmitting || isSuccess}
+                  className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors"
+                  placeholder="your@email.com"
+                />
+                {errors.email && <span className="text-[var(--color-red-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.email.message}</span>}
               </div>
             </div>
-          </div>
 
-          {/* Right Form */}
-          <div className="bg-[#131314]/50 backdrop-blur-md border border-white/5 p-8 md:p-10 rounded-[var(--radius-lg)]">
-            {isSuccess ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-12 animate-[fade_0.5s_ease-out]">
-                <div className="w-20 h-20 rounded-full bg-[var(--color-red)]/10 flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined text-[var(--color-red)] text-4xl">check_circle</span>
-                </div>
-                <h3 className="font-headline text-3xl text-white mb-4">Request Received</h3>
-                <p className="text-[var(--color-mist)] mb-8">
-                  Our engineering team will review your requirements and reach out within 24 hours.
-                </p>
-                <button 
-                  onClick={() => setIsSuccess(false)}
-                  className="px-8 py-3 bg-[var(--color-red)] text-white font-bold uppercase tracking-widest text-[11px] rounded-[var(--radius-sm)] transition-all hover:bg-[var(--color-red-bright)]"
-                >
-                  Submit Another Project
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 {/* Name */}
-                 <div className="space-y-2">
-                   <label htmlFor="name" className="font-mono text-[10px] uppercase tracking-widest text-white/50">Full Name</label>
-                   <input 
-                     {...register('name')}
-                     type="text" 
-                     id="name"
-                     className="w-full bg-transparent border-b border-white/20 pb-2 text-white font-sans focus:outline-none focus:border-[var(--color-red)] transition-colors placeholder:text-white/20"
-                     placeholder="John Doe"
-                   />
-                   {errors.name && <p className="text-[var(--color-red)] text-[11px]">{errors.name.message}</p>}
-                 </div>
+            {/* Product Type (Select) */}
+            <div className="relative group">
+              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Product Type</label>
+              <select 
+                {...register('productType')}
+                disabled={isSubmitting || isSuccess}
+                className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors appearance-none rounded-none"
+              >
+                <option value="" className="bg-[var(--color-black-light)] text-[var(--color-silver)]">Select an option</option>
+                <option value="sliding" className="bg-[var(--color-black-light)]">Sliding Windows & Doors</option>
+                <option value="casement" className="bg-[var(--color-black-light)]">Casement Windows & Doors</option>
+                <option value="special" className="bg-[var(--color-black-light)]">Special Architectural Systems</option>
+                <option value="accessories" className="bg-[var(--color-black-light)]">Accessories & Meshes</option>
+              </select>
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[var(--color-silver)] mt-2">▼</div>
+              {errors.productType && <span className="text-[var(--color-red-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.productType.message}</span>}
+            </div>
 
-                 {/* Phone */}
-                 <div className="space-y-2">
-                   <label htmlFor="phone" className="font-mono text-[10px] uppercase tracking-widest text-white/50">Phone Number</label>
-                   <input 
-                     {...register('phone')}
-                     type="tel" 
-                     id="phone"
-                     className="w-full bg-transparent border-b border-white/20 pb-2 text-white font-sans focus:outline-none focus:border-[var(--color-red)] transition-colors placeholder:text-white/20"
-                     placeholder="+91 90000 00000"
-                   />
-                   {errors.phone && <p className="text-[var(--color-red)] text-[11px]">{errors.phone.message}</p>}
-                 </div>
-               </div>
+            {/* Message */}
+            <div className="relative group">
+              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Message (Optional)</label>
+              <textarea 
+                {...register('message')}
+                disabled={isSubmitting || isSuccess}
+                rows={3}
+                className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors resize-none"
+                placeholder="Tell us about your project..."
+              />
+            </div>
 
-               {/* Email */}
-               <div className="space-y-2">
-                 <label htmlFor="email" className="font-mono text-[10px] uppercase tracking-widest text-white/50">Email Address</label>
-                 <input 
-                   {...register('email')}
-                   type="email" 
-                   id="email"
-                   className="w-full bg-transparent border-b border-white/20 pb-2 text-white font-sans focus:outline-none focus:border-[var(--color-red)] transition-colors placeholder:text-white/20"
-                   placeholder="john@example.com"
-                 />
-                 {errors.email && <p className="text-[var(--color-red)] text-[11px]">{errors.email.message}</p>}
-               </div>
+            <button 
+              type="submit"
+              disabled={isSubmitting || isSuccess}
+              data-cursor-button="true"
+              className={`relative w-full overflow-hidden mt-4 group flex items-center justify-center py-5 border ${isSuccess ? 'border-[#3A7A58] text-[#3A7A58]' : 'border-[var(--color-red)] text-[var(--color-red)]'} bg-transparent transition-all duration-300 md:hover:border-transparent md:hover:shadow-[0_0_24px_rgba(200,16,46,0.3)]`}
+            >
+              {!isSuccess && <div className="absolute inset-0 bg-[var(--color-red)] translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] z-0" />}
+              
+              <span className={`relative z-10 font-sans uppercase text-[12px] tracking-[0.18em] font-medium transition-colors ${isSuccess ? 'text-[#3A7A58]' : 'group-hover:text-[var(--color-white)]'}`}>
+                {isSubmitting ? (
+                  <span className="flex items-center gap-3">
+                    <span className="w-4 h-4 border-2 border-transparent border-t-[var(--color-red)] group-hover:border-t-white rounded-full animate-spin" />
+                    Processing
+                  </span>
+                ) : isSuccess ? (
+                  <span className="flex items-center gap-2">✓ We'll be in touch shortly.</span>
+                ) : (
+                  "Submit Request ->"
+                )}
+              </span>
+            </button>
+          </form>
+        </div>
 
-               {/* Project Type */}
-               <div className="space-y-2">
-                 <label htmlFor="projectType" className="font-mono text-[10px] uppercase tracking-widest text-white/50">Project Type</label>
-                 <select 
-                   {...register('projectType')}
-                   id="projectType"
-                   className="w-full bg-transparent border-b border-white/20 pb-2 text-white font-sans focus:outline-none focus:border-[var(--color-red)] transition-colors appearance-none cursor-pointer"
-                 >
-                   <option value="" className="bg-[#131314] text-white/50">Select Project Type</option>
-                   <option value="luxury_villa" className="bg-[#131314]">Luxury Villa</option>
-                   <option value="apartment" className="bg-[#131314]">Apartment Complex</option>
-                   <option value="commercial" className="bg-[#131314]">Commercial Building</option>
-                   <option value="renovation" className="bg-[#131314]">Renovation / Upgrade</option>
-                 </select>
-                 {errors.projectType && <p className="text-[var(--color-red)] text-[11px]">{errors.projectType.message}</p>}
-               </div>
-
-               {/* Requirements */}
-               <div className="space-y-2">
-                 <label htmlFor="requirements" className="font-mono text-[10px] uppercase tracking-widest text-white/50">Project Requirements</label>
-                 <textarea 
-                   {...register('requirements')}
-                   id="requirements"
-                   rows={3}
-                   className="w-full bg-transparent border-b border-white/20 pb-2 text-white font-sans focus:outline-none focus:border-[var(--color-red)] transition-colors resize-none placeholder:text-white/20"
-                   placeholder="Briefly describe your requirements..."
-                 ></textarea>
-               </div>
-
-               {/* File Upload (Visual only for now) */}
-               <div className="pt-4">
-                 <div className="border border-dashed border-white/20 rounded-[var(--radius-sm)] p-6 text-center hover:bg-white/5 hover:border-white/40 transition-colors cursor-pointer group">
-                   <span className="material-symbols-outlined text-white/50 group-hover:text-[var(--color-red)] mb-2 transition-colors">upload_file</span>
-                   <p className="font-sans text-[13px] text-white/70">Upload Floor Plan or Architecture Drawings</p>
-                   <p className="font-mono text-[10px] text-white/30 mt-1">PDF, DWG, JPG up to 10MB</p>
-                 </div>
-               </div>
-
-               {/* Submit Button */}
-               <div className="pt-6">
-                 <button 
-                   type="submit" 
-                   disabled={isSubmitting}
-                   className="w-full py-4 bg-[var(--color-red)] text-white font-bold uppercase tracking-widest text-[13px] rounded-sm transition-all hover:bg-[var(--color-red-bright)] hover:shadow-[var(--shadow-glow)] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-2"
-                 >
-                   {isSubmitting ? (
-                     <>
-                       <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                       </svg>
-                       Processing...
-                     </>
-                   ) : 'Submit Request'}
-                 </button>
-               </div>
-             </form>
-            )}
-          </div>
+        {/* Right Column: Contact Info */}
+        <div className="flex flex-col w-full h-full lg:pl-16 mt-8 md:mt-0 pt-16 md:pt-0 border-t md:border-t-0 border-[#2E2E33]">
           
+          <div className="font-mono text-[10px] uppercase text-[var(--color-silver)] tracking-[0.18em] mb-8">Contact Information</div>
+          
+          <div className="flex flex-col gap-12">
+            <div>
+              <div className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-widest mb-2">Address</div>
+              <p className="font-sans font-normal text-[16px] leading-[1.6] text-[var(--color-silver)] max-w-[280px]">
+                No. 115/62, Canal Bank Road,<br/>
+                CIT Nagar, Chennai — 600035, India
+              </p>
+            </div>
+
+            <div>
+              <div className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-widest mb-2">Phone</div>
+              <a 
+                href="tel:+919444045544" 
+                data-cursor="link"
+                className="font-display font-light text-[28px] md:text-[36px] text-[var(--color-white)] inline-block group"
+              >
+                 +91 94440 45544
+                 <span className="block mt-1 w-0 h-px bg-[var(--color-red)] group-hover:w-full transition-all duration-300" />
+              </a>
+            </div>
+
+            <div className="mt-4">
+               <a 
+                href="https://wa.me/919444045544" 
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 py-3 px-6 bg-[rgba(37,211,102,0.08)] border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors duration-300 font-sans text-[13px] uppercase tracking-widest rounded-none"
+               >
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                 Chat on WhatsApp
+               </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
