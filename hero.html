@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&amp;family=Manrope:wght@300;400;600;800&amp;family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#e5e2e3",
+              "secondary-container": "#921512",
+              "tertiary-fixed": "#d5e3ff",
+              "tertiary-container": "#0071d4",
+              "on-primary-container": "#fff5f3",
+              "surface-container": "#201f20",
+              "surface-dim": "#131314",
+              "on-background": "#e5e2e3",
+              "background": "#0A0A0B",
+              "on-tertiary-fixed-variant": "#004788",
+              "surface-container-highest": "#353436",
+              "on-surface-variant": "#e9bcb6",
+              "primary-container": "#e30613",
+              "error": "#ffb4ab",
+              "inverse-on-surface": "#313031",
+              "on-secondary-fixed": "#410001",
+              "on-secondary": "#690003",
+              "surface": "#131314",
+              "surface-tint": "#ffb4aa",
+              "tertiary-fixed-dim": "#a7c8ff",
+              "surface-variant": "#353436",
+              "primary-fixed": "#ffdad5",
+              "secondary-fixed-dim": "#ffb4aa",
+              "surface-container-lowest": "#0e0e0f",
+              "on-primary-fixed": "#410001",
+              "primary": "#ffb4aa",
+              "tertiary": "#a7c8ff",
+              "secondary-fixed": "#ffdad5",
+              "on-secondary-container": "#ff9f93",
+              "inverse-primary": "#c0000c",
+              "on-primary-fixed-variant": "#930007",
+              "on-tertiary": "#003061",
+              "surface-container-low": "#1c1b1c",
+              "outline-variant": "#5e3f3b",
+              "on-tertiary-container": "#f5f7ff",
+              "on-error": "#690005",
+              "on-primary": "#690003",
+              "on-secondary-fixed-variant": "#8e1210",
+              "secondary": "#ffb4aa",
+              "on-tertiary-fixed": "#001b3c",
+              "inverse-surface": "#e5e2e3",
+              "primary-fixed-dim": "#ffb4aa",
+              "surface-bright": "#3a393a",
+              "on-error-container": "#ffdad6",
+              "outline": "#af8782",
+              "surface-container-high": "#2a2a2b",
+              "error-container": "#93000a"
+            },
+            fontFamily: {
+              "headline": ["Cormorant Garamond"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .diagonal-split {
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        }
+        @media (min-width: 768px) {
+            .diagonal-split-right {
+                clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#0A0A0B] text-on-surface font-body selection:bg-primary-container selection:text-white overflow-x-hidden">
+<!-- TopAppBar Shell -->
+<header class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] rounded-sm bg-surface/60 backdrop-blur-md dark:bg-black/60 shadow-[0_40px_40px_rgba(0,0,0,0.04)] flex justify-between items-center px-8 py-4 z-[100] no-border tonal-layering">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#E30613]" data-icon="menu">menu</span>
+<h1 class="font-['Cormorant_Garamond'] text-2xl font-bold tracking-tighter text-[#E5E2E3]">The Window &amp; Door Experts</h1>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-['Cormorant_Garamond'] text-lg tracking-tight uppercase text-[#FFB4AA] font-bold transition-colors duration-300" href="#">Showroom</a>
+<a class="font-['Cormorant_Garamond'] text-lg tracking-tight uppercase text-[#E5E2E3]/70 hover:text-[#FFB4AA] transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-['Cormorant_Garamond'] text-lg tracking-tight uppercase text-[#E5E2E3]/70 hover:text-[#FFB4AA] transition-colors duration-300" href="#">Services</a>
+<a class="font-['Cormorant_Garamond'] text-lg tracking-tight uppercase text-[#E5E2E3]/70 hover:text-[#FFB4AA] transition-colors duration-300" href="#">Connect</a>
+</nav>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-sm text-sm font-bold uppercase tracking-widest scale-95 duration-200 ease-out hover:scale-100">
+            Request Quote
+        </button>
+</header>
+<main class="min-h-screen flex flex-col md:flex-row">
+<!-- Left Side: Content Area (55%) -->
+<section class="w-full md:w-[55%] min-h-screen bg-[#0A0A0B] flex items-center px-8 md:px-24 pt-32 pb-20 z-10">
+<div class="max-w-2xl">
+<!-- Label Chip -->
+<div class="inline-flex items-center px-4 py-1.5 mb-8 rounded-full border border-on-surface/10 bg-white/5 backdrop-blur-sm">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFB4AA]">Indo-German Excellence</span>
+</div>
+<!-- Main Headline -->
+<h2 class="text-6xl md:text-8xl font-headline font-bold leading-[0.9] tracking-tighter mb-8">
+<span class="text-primary-container block">The Window</span>
+<span class="text-on-surface block">&amp; Door Experts</span>
+</h2>
+<!-- Body Text -->
+<p class="text-lg md:text-xl text-on-surface/60 font-light leading-relaxed mb-12 max-w-lg">
+                    Premium uPVC Windows &amp; Doors — engineered with German precision, crafted for Indian homes. Experience architectural clarity that lasts a lifetime.
+                </p>
+<!-- Actions -->
+<div class="flex flex-wrap gap-6 mb-16">
+<button class="px-8 py-4 bg-gradient-to-br from-[#FFB4AA] to-[#E30613] text-[#410001] font-bold uppercase tracking-widest text-sm rounded-sm transition-transform active:scale-95">
+                        Explore Products
+                    </button>
+<button class="px-8 py-4 border border-on-surface/20 hover:bg-on-surface/5 text-on-surface font-bold uppercase tracking-widest text-sm rounded-sm transition-all">
+                        Request Quote
+                    </button>
+</div>
+<!-- Floating Glass Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="p-4 rounded-sm border border-white/5 bg-white/5 backdrop-blur-md">
+<span class="block text-primary-container font-headline text-2xl font-bold mb-1">500+</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface/40">Projects</span>
+</div>
+<div class="p-4 rounded-sm border border-white/5 bg-white/5 backdrop-blur-md">
+<span class="block text-primary-container font-headline text-2xl font-bold mb-1">10-Year</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface/40">Warranty</span>
+</div>
+<div class="p-4 rounded-sm border border-white/5 bg-white/5 backdrop-blur-md">
+<span class="block text-primary-container font-headline text-2xl font-bold mb-1">Certified</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface/40">Indo-German</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Visual Area (45%) -->
+<section class="w-full md:w-[45%] h-[442px] md:h-screen relative overflow-hidden bg-surface-container-lowest">
+<div class="absolute inset-0 diagonal-split-right hidden md:block">
+<img alt="Premium window installation" class="w-full h-full object-cover grayscale-[20%] contrast-125" data-alt="Luxurious modern minimalist window installation in a high-end villa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAK6Ug5iCXWvyCjSWLVIHjrDnEpLEKcrVoUwviri40vryuJ8Qbq_ey3VT_eCIUfQOGhRlfY0CTxG86jdtLfreTui_tnab6M9XCBYMzS8J-qGz5DsSjmM4gleumAkwa_cx9aJij0QiRn_n0JVlm8oWfN-idWPISR2o9EQ2lMEQlayhS88yb-gl4sA5-XEU-Vum05pKB6_XGcS3KCv2NO57ZOaWb7znz9vSazzHqF7GZFQnyXNzN5LECAJ0Vj7O5ian6EZ-hEoJSmOAR"/>
+<div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0B] via-transparent to-transparent"></div>
+</div>
+<!-- Mobile view fallback (no diagonal split) -->
+<div class="md:hidden w-full h-full">
+<img alt="Premium window installation" class="w-full h-full object-cover" data-alt="Modern high-end glass door architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy7QFL4v5oSvw1axzV6aEtJSN1g-3rsissMrGVmTHCkldMAbr27HvNpNERke35kW72yZiW9fhPoxqnp0DNJyCCg2IRQNWttik8bMsV1Hj6SmALXNHAeByanAGvOnFrTb-6349lK88216WG0DI7VDKNAWR1b3ww0ZJcMUD_b71gkARqWm5hcVJwSqlv9PCyxsOaS9PpkYALTysantkRGcsgvk0qgELMnK0lYJfW0CTN4_6zl1-hn1IKw-ZAhdzrKXKet7npyyzLRdE4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0B] to-transparent"></div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shell -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 bg-[#131314]/60 backdrop-blur-xl z-50 tonal-shift bg-[#0E0E0F]">
+<a class="flex flex-col items-center justify-center text-[#FFB4AA] border-t-2 border-[#E30613] pt-2" href="#">
+<span class="material-symbols-outlined" data-icon="door_front">door_front</span>
+<span class="font-['Manrope'] text-[10px] tracking-widest uppercase mt-1">Showroom</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#E5E2E3]/40 pt-2 hover:bg-[#131314] hover:text-[#E5E2E3]" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-['Manrope'] text-[10px] tracking-widest uppercase mt-1">Portfolio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#E5E2E3]/40 pt-2 hover:bg-[#131314] hover:text-[#E5E2E3]" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-['Manrope'] text-[10px] tracking-widest uppercase mt-1">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#E5E2E3]/40 pt-2 hover:bg-[#131314] hover:text-[#E5E2E3]" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-['Manrope'] text-[10px] tracking-widest uppercase mt-1">Connect</span>
+</a>
+</footer>
+</body></html>
