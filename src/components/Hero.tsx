@@ -51,7 +51,7 @@ export default function Hero() {
         <motion.div 
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }} className="mb-8"
+          transition={{ duration: 0.8, delay: 0.8 }} className="mb-4 sm:mb-8"
         >
           <div className="px-4 py-2 rounded-full border border-[rgba(200,16,46,0.2)] bg-[rgba(255,255,255,0.03)] backdrop-blur-[12px]">
             <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.3em]">
@@ -68,14 +68,14 @@ export default function Hero() {
           </h1>
 
           {/* Decorative Line */}
-          <div ref={decLineRef} className="h-px w-32 bg-[var(--color-red)] mt-8 origin-center" style={{ transform: 'scaleX(0)' }} />
+          <div ref={decLineRef} className="h-px w-24 sm:w-32 bg-[var(--color-red)] mt-5 sm:mt-8 origin-center" style={{ transform: 'scaleX(0)' }} />
 
           {/* Subtext */}
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 1.2 }} 
-            className="mt-8 sm:mt-10 max-w-[580px] 2xl:max-w-[720px] font-sans font-light text-[15px] sm:text-[17px] md:text-[19px] 2xl:text-[22px] leading-[1.7] text-[var(--color-silver)]"
+            className="mt-4 sm:mt-8 sm:mt-10 max-w-[560px] 2xl:max-w-[720px] font-sans font-light text-[13px] sm:text-[15px] md:text-[19px] 2xl:text-[22px] leading-[1.65] text-[var(--color-silver)] px-2 sm:px-0"
           >
             Premium uPVC Windows & Doors — engineered with German precision, crafted for India's finest homes and architectural developments.
           </motion.p>
@@ -85,7 +85,7 @@ export default function Hero() {
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
             transition={{ duration: 1, delay: 1.5 }}
-            className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center gap-5 sm:gap-8 w-full sm:w-auto"
+            className="mt-6 sm:mt-10 sm:mt-12 flex flex-col sm:flex-row items-center gap-3 sm:gap-8 w-full sm:w-auto"
           >
             <button 
               className="group relative overflow-hidden px-12 py-4 bg-[var(--color-red)] text-[var(--color-white)] transition-all duration-300 w-full sm:w-auto rounded-full hover:scale-105 shadow-[0_12px_32px_rgba(200,16,46,0.4)]"

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap-config'
 import Image from 'next/image'
 
@@ -33,10 +33,30 @@ export default function Products({
 }: ProductsProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
-  const [isTouch, setIsTouch] = useState(true)
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
-    setIsTouch(window.matchMedia('(pointer: coarse)').matches)
+    const isTouch = window.matchMedia('(pointer: coarse)').matches
+
+    // GSAP image reveal — works on both mobile (scroll-triggered per panel) and desktop (during h-scroll)
+    const imgs = imageRefs.current.filter(Boolean) as HTMLDivElement[]
+    imgs.forEach(img => {
+      gsap.fromTo(img,
+        { clipPath: 'inset(100% 0% 0% 0%)', scale: 1.15, opacity: 0 },
+        {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          scale: 1,
+          opacity: 1,
+          duration: 1.4,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: img,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        }
+      )
+    })
 
     if (window.matchMedia('(pointer: coarse)').matches) return
 
@@ -113,7 +133,9 @@ export default function Products({
             ">
               
               {/* Image */}
-              <div className="relative bg-[#0A0A0B] overflow-hidden group shadow-[0_32px_80px_rgba(0,0,0,0.55)] rounded-sm
+              <div 
+                ref={el => { imageRefs.current[idx] = el }}
+                className="relative bg-[#0A0A0B] overflow-hidden group shadow-[0_32px_80px_rgba(0,0,0,0.55)] rounded-sm
                 aspect-[16/9] sm:aspect-[4/3] md:aspect-[16/9] w-full
                 lg:aspect-square 2xl:aspect-[4/5]
               ">

@@ -1,9 +1,10 @@
 import Hero from '@/components/Hero'
 import About from '@/components/About'
-import Products from '@/components/Products'
+import ProductsClient from '@/components/ProductsClient'
 import Benefits from '@/components/Benefits'
 import Testimonials from '@/components/Testimonials'
 import SectionDivider from '@/components/SectionDivider'
+
 
 export default function Home() {
   return (
@@ -20,7 +21,7 @@ export default function Home() {
         badgeText="Year Warranty"
       />
 
-      <Products 
+      <ProductsClient 
         id="03"
       />
 

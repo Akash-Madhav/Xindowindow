@@ -1,9 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 export default function CustomCursor() {
-  const [isTouch, setIsTouch] = useState(true)
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
   const requestRef = useRef<number | null>(null)
@@ -14,10 +13,8 @@ export default function CustomCursor() {
   const cursorState = useRef('default')
 
   useEffect(() => {
-    // Check if it's a touch device
-    if (!window.matchMedia('(pointer: coarse)').matches) {
-      setIsTouch(false)
-    }
+    // Only run on non-touch devices
+    if (window.matchMedia('(pointer: coarse)').matches) return
 
     const onMouseMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY }
@@ -26,7 +23,7 @@ export default function CustomCursor() {
     window.addEventListener('mousemove', onMouseMove, { passive: true })
 
     const updateCursor = () => {
-      if (!isTouch && dotRef.current && ringRef.current) {
+      if (dotRef.current && ringRef.current) {
         // Dot follows exactly
         dotRef.current.style.transform = `translate3d(calc(${mouse.current.x}px - 50%), calc(${mouse.current.y}px - 50%), 0)`
 
@@ -106,22 +103,23 @@ export default function CustomCursor() {
       document.removeEventListener('mouseover', handleMouseOver)
       if (requestRef.current) cancelAnimationFrame(requestRef.current)
     }
-  }, [isTouch])
-
-  if (isTouch) return null
+  }, [])
 
   return (
     <>
+      {/* Hidden on touch/coarse-pointer devices (phone, tablet, TV remote) via CSS */}
+      <style>{`@media (pointer: coarse) { .xindo-cursor { display: none !important; } }`}</style>
       {/* Dot */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-2 h-2 bg-[var(--color-white)] rounded-full pointer-events-none z-[9999] transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] mix-blend-difference"
+        className="xindo-cursor fixed top-0 left-0 w-2 h-2 bg-[var(--color-white)] rounded-full pointer-events-none z-[9999] transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] mix-blend-difference"
       />
       {/* Ring */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border-[1.5px] border-[var(--color-red)] pointer-events-none z-[9998] transition-[width,height,background-color,border-color,border-radius] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-center"
+        className="xindo-cursor fixed top-0 left-0 w-8 h-8 rounded-full border-[1.5px] border-[var(--color-red)] pointer-events-none z-[9998] transition-[width,height,background-color,border-color,border-radius] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-center"
       />
     </>
   )
 }
+
