@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap-config'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 
 interface ProductItem {
@@ -34,11 +35,13 @@ export default function Products({
   const trackRef = useRef<HTMLDivElement>(null)
   const imageRefs = useRef<(HTMLDivElement | null)[]>([])
 
-  useEffect(() => {
+  useGSAP(() => {
     // Horizontal scroll + pinning runs on ALL screen sizes
     const sections = gsap.utils.toArray('.product-panel') as HTMLDivElement[]
 
     if (trackRef.current && containerRef.current) {
+      const getScrollAmount = () => trackRef.current!.scrollWidth - window.innerWidth
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -52,14 +55,14 @@ export default function Products({
             delay: 0.05,
             ease: 'power2.inOut',
           },
-          end: '+=3500',
+          end: () => `+=${getScrollAmount()}`,
           invalidateOnRefresh: true,
           anticipatePin: 1,
         }
       })
 
-      tl.to(sections, {
-        xPercent: -100 * (sections.length - 1),
+      tl.to(trackRef.current, {
+        x: () => -getScrollAmount(),
         ease: 'none'
       })
 
@@ -67,15 +70,9 @@ export default function Products({
         ScrollTrigger.refresh()
       }, 100)
 
-      return () => {
-        clearTimeout(refreshTimeout)
-        tl.kill()
-        ScrollTrigger.getAll().forEach(t => {
-          if (t.vars.trigger === containerRef.current) t.kill()
-        })
-      }
+      return () => clearTimeout(refreshTimeout)
     }
-  }, [products])
+  }, { dependencies: [products], scope: containerRef })
 
   return (
     <section
@@ -86,12 +83,12 @@ export default function Products({
       {/* Track: always horizontal across all screen sizes */}
       <div
         ref={trackRef}
-        className="flex flex-row w-[400vw] h-full will-change-transform"
+        className="flex flex-row w-fit h-full will-change-transform"
       >
         {products.map((prod, idx) => (
           <div
             key={prod.id}
-            className="product-panel relative w-[100vw] h-full flex items-center justify-center overflow-hidden"
+            className="product-panel relative w-screen max-w-full shrink-0 h-full flex items-center justify-center overflow-hidden"
           >
             {/* Watermark */}
             <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none z-0 opacity-[0.03]">

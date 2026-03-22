@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 
 interface AboutProps {
@@ -32,7 +33,7 @@ export default function About({
   const leftColRef = useRef<HTMLDivElement>(null)
   const rightColRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!containerRef.current || !leftColRef.current || !rightColRef.current) return
 
     const tl = gsap.timeline({
@@ -51,9 +52,7 @@ export default function About({
       { y: 0, opacity: 1, duration: 1, ease: 'power4.out' },
       "-=0.7"
     )
-
-    return () => { tl.kill() }
-  }, [])
+  }, { scope: containerRef })
 
   return (
     <section 

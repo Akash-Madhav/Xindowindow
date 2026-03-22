@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
+import { useGSAP } from '@gsap/react'
 
 interface ProjectItem {
   id: number
@@ -39,7 +40,7 @@ export default function Gallery({
   const containerRef = useRef<HTMLDivElement>(null)
   const bgTextRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!containerRef.current) return
 
     const tl = gsap.timeline({
@@ -67,9 +68,7 @@ export default function Gallery({
         }
       })
     }
-
-    return () => { tl.kill() }
-  }, [projects])
+  }, { dependencies: [projects], scope: containerRef })
 
   // Lock body scroll when lightbox open
   useEffect(() => {

@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap-config'
+import { useGSAP } from '@gsap/react'
 
 interface ProcessStep {
   num: string
@@ -32,7 +33,7 @@ export default function Process({
   const lineRef = useRef<HTMLDivElement>(null)
   const [isTouch, setIsTouch] = useState(true)
 
-  useEffect(() => {
+  useGSAP(() => {
     setIsTouch(window.matchMedia('(pointer: coarse)').matches)
 
     if (!containerRef.current || !lineRef.current) return
@@ -51,9 +52,7 @@ export default function Process({
       { scaleX: 0 },
       { scaleX: 1, transformOrigin: 'left', ease: 'none' }
     )
-
-    return () => { tl.kill() }
-  }, [steps])
+  }, { dependencies: [steps], scope: containerRef })
 
   return (
     <section 

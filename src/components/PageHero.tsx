@@ -1,7 +1,8 @@
 'use client'
 import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
 
 interface PageHeroProps {
   title: string
@@ -16,7 +17,7 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
 
   const textRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useGSAP(() => {
     const tl = gsap.timeline({ delay: 0.5 })
     
     if (titleRef.current) {
@@ -33,9 +34,7 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
         '-=0.8'
       )
     }
-
-    return () => { tl.kill() }
-  }, [])
+  })
 
   return (
     <section 

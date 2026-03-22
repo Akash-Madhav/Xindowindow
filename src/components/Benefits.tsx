@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap-config'
+import { useGSAP } from '@gsap/react'
 
 interface BenefitItem {
   title: string
@@ -78,7 +79,7 @@ export default function Benefits({
 
   const scrambledText = useScrambleText(title, inView)
 
-  useEffect(() => {
+  useGSAP(() => {
     setIsTouch(window.matchMedia('(pointer: coarse)').matches)
 
     if (!containerRef.current) return
@@ -113,9 +114,7 @@ export default function Benefits({
         { rotateY: 0, opacity: 1, y: 0, duration: 0.8, stagger: 0.08, ease: 'power4.out' }, 0.4
       )
     }
-
-    return () => { tl.kill() }
-  }, [items])
+  }, { dependencies: [items], scope: containerRef })
 
   return (
     <section 

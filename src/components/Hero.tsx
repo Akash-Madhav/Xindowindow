@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
+import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -15,7 +16,7 @@ export default function Hero() {
   
   const [isTouch, setIsTouch] = useState(true)
 
-  useEffect(() => {
+  useGSAP(() => {
     setIsTouch(window.matchMedia('(pointer: coarse)').matches)
 
     // Entrance animation for text
@@ -35,9 +36,7 @@ export default function Hero() {
         '-=0.8'
       )
     }
-
-    return () => { tl.kill() }
-  }, [])
+  }, { scope: containerRef })
 
   return (
     <section 
