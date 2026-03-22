@@ -3,7 +3,6 @@ import { Cormorant_Garamond, DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import MobileBottomBar from "@/components/MobileBottomBar";
 import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroller from "@/components/SmoothScroller";
@@ -43,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable} antialiased bg-[var(--color-black)] text-[var(--color-white)] pb-16 md:pb-0`}
+        className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable} antialiased bg-[var(--color-black)] text-[var(--color-white)]`}
       >
         <div className="fixed inset-0 pointer-events-none z-[9998] mix-blend-overlay opacity-5 md:opacity-[0.04]">
           <svg className="w-full h-full">
@@ -60,7 +59,6 @@ export default function RootLayout({
           {children}
           <Footer />
           <WhatsAppFloat />
-          <MobileBottomBar />
         </SmoothScroller>
       </body>
     </html>

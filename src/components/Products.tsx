@@ -52,8 +52,9 @@ export default function Products({
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
-          scrub: 1.2,
-          end: () => `+=${trackWidth - window.innerWidth}`
+          scrub: 2.5,
+          snap: 1 / (sections.length - 1),
+          end: "+=6000"
         }
       })
 

@@ -89,8 +89,8 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right Section */}
-          <div className="flex items-center gap-6">
+          {/* Right Section / Hamburger */}
+          <div className="flex items-center gap-4">
             <Link 
               href="/contact"
               className="hidden md:block px-6 py-2.5 rounded-full bg-[var(--color-red)] text-[10px] font-sans uppercase tracking-[0.15em] text-[var(--color-white)] transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_rgba(200,16,46,0.3)]"
@@ -99,6 +99,26 @@ export default function Navbar() {
               Request Quote
             </Link>
 
+            {/* Premium Hamburger Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="flex flex-col gap-[5px] justify-center items-center w-10 h-10 md:hidden relative z-[600]"
+              aria-label="Toggle Menu"
+              data-cursor="link"
+            >
+              <motion.span
+                animate={mobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                className="w-6 h-[1.5px] bg-white block rounded-full origin-center transition-all bg-[var(--color-white)]"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
+                className="w-6 h-[1.5px] bg-white block rounded-full transition-all bg-[var(--color-white)]"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                className="w-6 h-[1.5px] bg-white block rounded-full origin-center transition-all bg-[var(--color-white)]"
+              />
+            </button>
           </div>
         </div>
       </header>
@@ -107,24 +127,32 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ clipPath: 'circle(0% at calc(100% - 32px) 32px)' }}
-            animate={{ clipPath: 'circle(150% at calc(100% - 32px) 32px)' }}
-            exit={{ clipPath: 'circle(0% at calc(100% - 32px) 32px)' }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[499] bg-[rgba(10,10,11,0.96)] backdrop-blur-xl md:hidden overflow-hidden flex flex-col justify-center px-6"
+            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            animate={{ opacity: 1, backdropFilter: 'blur(24px)' }}
+            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 z-[499] bg-[rgba(10,10,11,0.98)] md:hidden flex flex-col items-center justify-center p-8 pt-24"
           >
-            <nav className="flex flex-col gap-6 w-full mt-10">
+            {/* Background Watermark */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none select-none overflow-hidden">
+               <span className="font-display text-[40vw] text-white rotate-90 leading-none">XINDO</span>
+            </div>
+
+            <nav className="flex flex-col gap-4 w-full relative z-10 items-center text-center">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 + (i * 0.06), ease: "easeOut" }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 + (i * 0.08), ease: [0.16, 1, 0.3, 1] }}
                   key={link.name}
+                  className="w-full"
                 >
                   <Link
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="font-display font-normal text-[36px] tracking-tight text-white block uppercase"
+                    className={`font-display font-light text-[42px] tracking-tight block uppercase transition-colors 
+                      ${pathname === link.href ? 'text-[var(--color-red)]' : 'text-white hover:text-[var(--color-red)]'}
+                    `}
                   >
                     {link.name}
                   </Link>
@@ -133,16 +161,20 @@ export default function Navbar() {
             </nav>
             
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="mt-16 flex flex-col gap-4 border-t border-[rgba(255,255,255,0.1)] pt-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="mt-16 flex flex-col gap-6 items-center w-full relative z-10 border-t border-[rgba(255,255,255,0.05)] pt-12"
             >
-              <a href="https://wa.me/919444045544" className="font-mono text-[14px] text-[var(--color-red)]">WhatsApp Chat</a>
+              <div className="flex flex-col items-center gap-2">
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-silver)] mb-2">Connect with us</span>
+                <a href="https://wa.me/919444045544" className="font-sans text-[16px] text-white underline underline-offset-8 decoration-[var(--color-red)]/30 hover:decoration-[var(--color-red)] transition-all">WhatsApp Concierge</a>
+              </div>
+              
               <Link 
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-6 py-3 border border-[rgba(255,255,255,0.1)] text-[11px] font-sans uppercase tracking-widest text-white mt-4 w-fit"
+                className="mt-6 px-10 py-4 bg-[var(--color-red)] text-[12px] font-sans uppercase tracking-[0.2em] text-white rounded-full shadow-[0_12px_40px_rgba(200,16,46,0.3)]"
               >
                 Request Quote
               </Link>
