@@ -54,7 +54,7 @@ export default function Products({
           start: "top top",
           scrub: 2.5,
           snap: 1 / (sections.length - 1),
-          end: "+=6000",
+          end: "+=2000",
           invalidateOnRefresh: true,
           anticipatePin: 1,
         }
