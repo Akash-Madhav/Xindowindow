@@ -28,12 +28,12 @@ export default function SmoothScroller({ children }: { children: ReactNode }) {
 
   return (
     <ReactLenis root options={{
-      lerp: 0.08,
+      lerp: 0.07,
       duration: 1.2,
       smoothWheel: true,
-      wheelMultiplier: 0.8,
-      touchMultiplier: 1.5,
-      infinite: false
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
     }}>
       {children as any}
     </ReactLenis>

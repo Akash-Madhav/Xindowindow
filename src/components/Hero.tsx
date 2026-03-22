@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
 import Image from 'next/image'
+import SplineVisual from './SplineVisual'
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -55,9 +56,42 @@ export default function Hero() {
     }
   }, [])
 
+  // Mouse Parallax & Gyroscope (Subtle restoration)
   useEffect(() => {
-    // No-op for shake removal
-  }, [])
+    let requestRef: number
+    let targetX = 0
+    let targetY = 0
+    let currentX = 0
+    let currentY = 0
+
+    const updateParallax = () => {
+      currentX += (targetX - currentX) * 0.06
+      currentY += (targetY - currentY) * 0.06
+
+      if (textGroupRef.current) {
+        textGroupRef.current.style.transform = `translate3d(${currentX * 0.004}vw, ${currentY * 0.004}vh, 0)`
+      }
+      if (imageWrapperRef.current) {
+        imageWrapperRef.current.style.transform = `translate3d(${currentX * -0.002}vw, ${currentY * -0.002}vh, 0)`
+      }
+
+      requestRef = requestAnimationFrame(updateParallax)
+    }
+
+    if (!isTouch) {
+      const handleMouseMove = (e: MouseEvent) => {
+        targetX = e.clientX - window.innerWidth / 2
+        targetY = e.clientY - window.innerHeight / 2
+      }
+      window.addEventListener('mousemove', handleMouseMove)
+      requestRef = requestAnimationFrame(updateParallax)
+      
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove)
+        cancelAnimationFrame(requestRef)
+      }
+    }
+  }, [isTouch])
 
   return (
     <section 
@@ -68,15 +102,16 @@ export default function Hero() {
       {/* Right parallax image area */}
       <div 
         ref={imageWrapperRef} 
-        className="absolute right-0 top-0 w-full md:w-[55%] h-full z-0 overflow-hidden"
+        className="absolute right-0 top-0 w-full md:w-[60%] h-full z-0 overflow-hidden"
         style={{ clipPath: 'inset(0 100% 0 0)' }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-black)] via-[rgba(10,10,11,0.6)] to-transparent z-10" />
-        <div className="absolute inset-0 bg-[#1A1A1E]" /> {/* Placeholder for actul image */}
-        {/* <Image src="/hero-image.jpg" ... /> */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-black)] via-[rgba(10,10,11,0.4)] to-transparent z-10" />
+        <div className="absolute inset-0 z-0">
+          <SplineVisual />
+        </div>
       </div>
 
-      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 z-20 relative h-full flex flex-col justify-center">
+      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-16 z-20 relative h-full flex flex-col justify-center">
         
         {/* Label Chip */}
         <motion.div 
@@ -95,7 +130,7 @@ export default function Hero() {
         <div ref={textGroupRef} className="will-change-transform">
           <h1 className="font-display font-light text-[48px] md:text-[96px] tracking-[-0.03em] text-[var(--color-white)] leading-[1.05] flex flex-col">
             <div ref={line1Ref} className="origin-left">The Window &</div>
-            <div ref={line2Ref} className="origin-left ml-6 md:ml-16">Door Experts</div>
+            <div ref={line2Ref} className="origin-left">Door Experts</div>
           </h1>
 
           {/* Decorative Line */}
@@ -105,7 +140,7 @@ export default function Hero() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 2.3 }} // 1500 preloader + 800 delay = 2.3
+            transition={{ duration: 0.7, delay: 2.3 }} 
             className="mt-8 max-w-[440px] font-sans font-light text-[17px] md:text-[18px] leading-[1.65] text-[var(--color-silver)]"
           >
             Premium uPVC Windows & Doors — engineered with German precision, crafted for India's finest homes and developments.
@@ -117,7 +152,7 @@ export default function Hero() {
             className="mt-10 flex flex-col sm:flex-row items-center gap-6"
           >
             <button 
-              className="group relative overflow-hidden px-8 py-4 border border-[var(--color-red)] text-[var(--color-red)] hover:text-[var(--color-white)] transition-colors duration-300 w-full sm:w-auto"
+              className="group relative overflow-hidden px-10 py-4 border border-[var(--color-red)] text-[var(--color-red)] hover:text-[var(--color-white)] transition-colors duration-300 w-full sm:w-auto"
               data-cursor-button="true"
             >
               <span className="relative z-10 font-sans uppercase text-[12px] tracking-widest font-medium">Explore Products</span>
@@ -127,9 +162,9 @@ export default function Hero() {
               className="group flex items-center text-[var(--color-mist)] hover:text-[var(--color-white)] transition-colors duration-300 w-full sm:w-auto mt-4 sm:mt-0"
               data-cursor="link"
             >
-              <span className="font-sans uppercase text-[12px] tracking-widest mr-2">Request Quote</span>
-              <span className="w-8 h-px bg-current group-hover:w-12 transition-all duration-300" />
-              <svg className="w-4 h-4 -ml-1 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <span className="font-sans font-light uppercase text-[12px] tracking-widest mr-3">Request Quote</span>
+              <span className="w-12 h-px bg-current group-hover:w-16 transition-all duration-300" />
+              <svg className="w-4 h-4 -ml-1 transition-transform group-hover:translate-x-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </motion.div>
         </div>

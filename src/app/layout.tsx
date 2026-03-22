@@ -41,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="dark">
       <body
         className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable} antialiased bg-[var(--color-black)] text-[var(--color-white)] pb-16 md:pb-0`}
       >

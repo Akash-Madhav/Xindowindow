@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { gsap } from '@/lib/gsap-config'
+import { gsap, ScrollTrigger } from '@/lib/gsap-config'
 import Link from 'next/link'
 
 const PRODUCTS = [
