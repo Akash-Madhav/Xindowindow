@@ -63,6 +63,18 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Hide scrollbar on touch devices (phone, tablet, TV) */
+@media (pointer: coarse), (max-width: 1024px) {
+  html, body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Glassmorphism Classes */
 .glass-surface {
   background: var(--glass-bg);

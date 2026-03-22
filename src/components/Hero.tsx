@@ -62,13 +62,13 @@ export default function Hero() {
 
         {/* Text Group */}
         <div className="flex flex-col items-center">
-          <h1 className="font-display font-light text-[44px] sm:text-[64px] md:text-[110px] 2xl:text-[140px] tracking-[-0.04em] text-[var(--color-white)] leading-[1.05] flex flex-col items-center">
+          <h1 className="font-display font-light text-[34px] sm:text-[64px] md:text-[110px] 2xl:text-[140px] tracking-[-0.04em] text-[var(--color-white)] leading-[1.05] flex flex-col items-center">
             <div ref={line1Ref}>The Window &</div>
             <div ref={line2Ref}>Door Experts</div>
           </h1>
 
           {/* Decorative Line */}
-          <div ref={decLineRef} className="h-px w-24 sm:w-32 bg-[var(--color-red)] mt-5 sm:mt-8 origin-center" style={{ transform: 'scaleX(0)' }} />
+          <div ref={decLineRef} className="h-px w-16 sm:w-32 bg-[var(--color-red)] mt-4 sm:mt-8 origin-center" style={{ transform: 'scaleX(0)' }} />
 
           {/* Subtext */}
           <motion.p 
@@ -85,17 +85,17 @@ export default function Hero() {
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
             transition={{ duration: 1, delay: 1.5 }}
-            className="mt-6 sm:mt-10 sm:mt-12 flex flex-col sm:flex-row items-center gap-3 sm:gap-8 w-full sm:w-auto"
+            className="mt-5 sm:mt-12 flex flex-col sm:flex-row items-center gap-3 sm:gap-8 w-full sm:w-auto"
           >
             <button 
-              className="group relative overflow-hidden px-12 py-4 bg-[var(--color-red)] text-[var(--color-white)] transition-all duration-300 w-full sm:w-auto rounded-full hover:scale-105 shadow-[0_12px_32px_rgba(200,16,46,0.4)]"
+              className="group relative overflow-hidden px-8 py-3 sm:px-12 sm:py-4 bg-[var(--color-red)] text-[var(--color-white)] transition-all duration-300 w-full sm:w-auto rounded-full hover:scale-105 shadow-[0_8px_24px_rgba(200,16,46,0.35)]"
               data-cursor-button="true"
             >
               <span className="relative z-10 font-sans uppercase text-[12px] tracking-[0.2em] font-semibold">Explore Collections</span>
             </button>
             <Link 
               href="/contact"
-              className="group flex items-center text-[var(--color-mist)] hover:text-[var(--color-white)] transition-colors duration-300 w-full sm:w-auto mt-4 sm:mt-0"
+              className="group flex items-center justify-center text-[var(--color-mist)] hover:text-[var(--color-white)] transition-colors duration-300 w-full sm:w-auto"
               data-cursor="link"
             >
               <span className="font-sans font-light uppercase text-[12px] tracking-[0.2em] mr-4 border-b border-transparent group-hover:border-[var(--color-red)] transition-all">Request Quote</span>
@@ -117,9 +117,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 2.0 + (i * 0.15) }}
-            className="flex flex-col items-center min-w-[120px]"
+            className="flex flex-col items-center min-w-[80px] sm:min-w-[120px]"
           >
-            <div className="font-mono text-[20px] sm:text-[24px] md:text-[32px] 2xl:text-[40px] text-[var(--color-red)] tracking-[-0.02em] leading-none mb-2">{stat.num}</div>
+            <div className="font-mono text-[16px] sm:text-[24px] md:text-[32px] 2xl:text-[40px] text-[var(--color-red)] tracking-[-0.02em] leading-none mb-1">{stat.num}</div>
             <div className="font-sans text-[10px] uppercase text-[var(--color-silver)] tracking-widest">{stat.label}</div>
           </motion.div>
         ))}

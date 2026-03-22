@@ -72,9 +72,14 @@ export default function Products({
           pin: true,
           pinSpacing: true,
           start: "top top",
-          scrub: 2.5,
-          snap: 1 / (sections.length - 1),
-          end: "+=2000",
+          scrub: 1.5,
+          snap: {
+            snapTo: 1 / (sections.length - 1),
+            duration: { min: 0.3, max: 0.8 },
+            delay: 0.05,
+            ease: "power2.inOut",
+          },
+          end: "+=3500",
           invalidateOnRefresh: true,
           anticipatePin: 1,
         }
