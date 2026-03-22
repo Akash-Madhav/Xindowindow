@@ -1,42 +1,35 @@
 'use client'
 import PageHero from '@/components/PageHero'
+import About from '@/components/About'
 import QuoteForm from '@/components/QuoteForm'
-import SectionDivider from '@/components/SectionDivider'
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)]">
+    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
       <PageHero 
-        title="Get in Touch" 
+        title="Connect with Us" 
         subtitle="Ready to transform your vision into an architectural masterpiece? Our experts are here to guide your technical and aesthetic choices."
-        bgText="CONNECT"
+        bgText="CONTACT"
       />
-      <SectionDivider />
-      <div data-section-id="02" className="py-24 px-6 max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
-        <div>
-          <h2 className="font-display text-[36px] text-white mb-8">Corporate Office</h2>
-          <div className="flex flex-col gap-6 text-[var(--color-silver)] font-light text-[17px]">
-            <p>Xindo Window Pvt. Ltd.<br/>Chennai, Tamil Nadu, India</p>
-            <p>Email: info@xindowindow.com</p>
-            <p>Tel: +91 94440 45544</p>
-          </div>
-        </div>
-        <div>
-          <h2 className="font-display text-[36px] text-white mb-8">Factory Address</h2>
-          <div className="flex flex-col gap-6 text-[var(--color-silver)] font-light text-[17px]">
-            <p>State Highway 113,<br/>Tamil Nadu 600001</p>
-            <p>Working Hours: Mon - Sat, 09:00 - 18:00</p>
-          </div>
-        </div>
+      
+      <div className="py-12 md:py-24">
+        <QuoteForm />
       </div>
-      <SectionDivider />
-      <div data-section-id="03"><QuoteForm /></div>
-      <SectionDivider />
-      <div data-section-id="04" className="w-full h-24" /> {/* Spacer */}
-      <SectionDivider />
-      <div data-section-id="05" className="py-24 px-6 max-w-[800px] mx-auto text-center">
-         <h2 className="font-display text-[32px] text-white mb-4">FAQ</h2>
-         <p className="text-[var(--color-silver)] font-light">Have a technical question about our uPVC systems or installation process? <a href="#" className="text-[var(--color-red)]">Download our technical guide</a> or call our help desk.</p>
+
+      <About 
+        id="02"
+        tag="Regional Presence"
+        title="Visit our Corporate Office & Factory"
+        description1="Located in the industrial heart of Chennai, our corporate office and primary manufacturing facility are open for architectural consultations and technical walkthroughs."
+        description2="Tel: +91 94440 45544 | Email: info@xindowindow.com | State Highway 113, Tamil Nadu"
+        badgeNumber="Chennai"
+        badgeText="Headquarters"
+        reverse={false}
+      />
+
+      <div className="py-24 px-6 max-w-[800px] mx-auto text-center opacity-60">
+         <h2 className="font-display text-[24px] text-white mb-4 uppercase tracking-widest">Architectural Documentation</h2>
+         <p className="text-[var(--color-silver)] font-light text-[14px] leading-relaxed">Have a technical question about our uPVC systems or installation process? Our technical help desk is available for deep-dive specification analysis.</p>
       </div>
     </main>
   )

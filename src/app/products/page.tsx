@@ -2,28 +2,37 @@
 import PageHero from '@/components/PageHero'
 import Products from '@/components/Products'
 import Benefits from '@/components/Benefits'
-import QuoteForm from '@/components/QuoteForm'
-import SectionDivider from '@/components/SectionDivider'
 
 export default function ProductsPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)]">
+    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
       <PageHero 
-        title="Collections" 
+        title="The Collections" 
         subtitle="Uncompromising precision in every frame. Explore our ranges from minimalist sliding systems to grand architectural focal points."
         bgText="SYSTEMS"
       />
-      <SectionDivider />
-      <div data-section-id="02"><Products /></div>
-      <SectionDivider />
-      <div data-section-id="03" className="py-24 px-6 max-w-[1200px] mx-auto text-center">
-        <h2 className="font-display text-[42px] text-white mb-6">Unrivaled Performance</h2>
-        <p className="text-[var(--color-silver)] font-light max-w-[600px] mx-auto">Our uPVC systems are tested for extreme Indian weather conditions, ensuring 10+ years of silent, secure performance.</p>
-      </div>
-      <SectionDivider />
-      <div data-section-id="04"><Benefits /></div>
-      <SectionDivider />
-      <div data-section-id="05"><QuoteForm /></div>
+      
+      <Products 
+        id="02"
+        products={[
+          { id: 'sliding-lux', name: 'Elite Sliding', type: 'Panoramic Systems', watermark: 'PANORAMIC', links: ['Slim Profile', 'Triple Track', 'Self-Lubricating'], desc: 'Our Elite Sliding series offers virtually unobstructed views with some of the slimmest sightlines in the industry.' },
+          { id: 'casement-lux', name: 'Master Casement', type: 'Acoustic Barrier', watermark: 'ACOUSTIC', links: ['Multi-Acoustic Seal', 'Heavy Duty Hinges', 'Dual Action'], desc: 'Engineered specifically for noise reduction in high-density urban environments without sacrificing elegance.' },
+          { id: 'special-lux', name: 'Custom Studio', type: 'Architectural Bespoke', watermark: 'BESPOKE', links: ['Arched Frames', 'Compound Miters', 'Bifold Systems'], desc: 'When the design demands unique geometries, our Custom Studio delivers precision-engineered solutions.' },
+          { id: 'hardware-lux', name: 'Signature Hardware', type: 'Swiss-German Components', watermark: 'KINETIC', links: ['Multi-Point Locking', 'Anti-Corrosive Handles', 'Friction Stays'], desc: 'The unseen excellence that ensures your windows operate with frictionless grace for decades.' }
+        ]}
+      />
+
+      <Benefits 
+        id="03"
+        tag="Architectural Freedom"
+        title="Customized for Your Design Language"
+        items={[
+          { title: 'Bespoke Sizing', desc: 'Millimeter precision for any rough opening' },
+          { title: 'Color Curation', desc: 'Premium lamination in metallic and wood finishes' },
+          { title: 'Glass Integration', desc: 'Supporting DGU, TGU, and Acoustic laminates' },
+          { title: 'Smart Security', desc: 'Compatible with modern home automation sensors' }
+        ]}
+      />
     </main>
   )
 }

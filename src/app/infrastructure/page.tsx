@@ -1,45 +1,37 @@
 'use client'
 import PageHero from '@/components/PageHero'
+import About from '@/components/About'
 import Process from '@/components/Process'
-import ClientsMarquee from '@/components/ClientsMarquee'
-import QuoteForm from '@/components/QuoteForm'
-import SectionDivider from '@/components/SectionDivider'
 
 export default function InfrastructurePage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)]">
+    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
       <PageHero 
-        title="The Factory" 
+        title="The Infrastructure" 
         subtitle="State-of-the-art manufacturing facility powered by German robotics and local craftsmanship. Witness the precision behind Xindo."
-        bgText="PRECISION"
+        bgText="FACTORY"
       />
-      <SectionDivider />
-      <div data-section-id="02" className="py-24 px-6 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="aspect-video bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] flex items-center justify-center">
-          <span className="font-mono text-[10px] text-[var(--color-silver)] uppercase tracking-widest">Robotic Welding Visual</span>
-        </div>
-        <div>
-          <h2 className="font-display text-[42px] text-white mb-6 leading-tight">Automated Perfection</h2>
-          <p className="text-[var(--color-silver)] font-light text-[18px] leading-relaxed mb-8">Our Chennai facility employs fully automated CNC processing centers to ensure every miter, every cut, and every weld is accurate to 0.5mm.</p>
-          <ul className="flex flex-col gap-4">
-             <li className="flex items-center gap-3 text-[var(--color-white)] font-sans text-[14px] uppercase tracking-wider">
-               <span className="w-1.5 h-1.5 bg-[var(--color-red)] rounded-full" /> Automatic PVC Welding
-             </li>
-             <li className="flex items-center gap-3 text-[var(--color-white)] font-sans text-[14px] uppercase tracking-wider">
-               <span className="w-1.5 h-1.5 bg-[var(--color-red)] rounded-full" /> CNC Corner Cleaning
-             </li>
-             <li className="flex items-center gap-3 text-[var(--color-white)] font-sans text-[14px] uppercase tracking-wider">
-               <span className="w-1.5 h-1.5 bg-[var(--color-red)] rounded-full" /> EPDM Gasket Integration
-             </li>
-          </ul>
-        </div>
-      </div>
-      <SectionDivider />
-      <div data-section-id="03"><Process /></div>
-      <SectionDivider />
-      <div data-section-id="04"><ClientsMarquee /></div>
-      <SectionDivider />
-      <div data-section-id="05"><QuoteForm /></div>
+      
+      <About 
+        id="02"
+        tag="Strategic Capability"
+        title="20,000 Sq.Ft. of Automated Precision"
+        description1="Our Chennai facility employs fully automated CNC processing centers to ensure every miter, every cut, and every weld is accurate to 0.5mm. We don't believe in manual error; we believe in robotic perfection."
+        description2="From automatic PVC welding to CNC corner cleaning and EPDM gasket integration, our line is a masterclass in modern fenestration technology."
+        badgeNumber="Automated"
+        badgeText="Manufacturing Line"
+      />
+
+      <Process 
+        id="03"
+        tag="Supply Chain Integrity"
+        steps={[
+          { num: '01', title: 'Extrusion', desc: 'Sourcing high-grade uPVC compounds engineered for UV stability.' },
+          { num: '02', title: 'Fabrication', desc: 'Precision-automated machining with millimetric accuracy.' },
+          { num: '03', title: 'Quality Control', desc: 'Rigorous 20-point inspection before any dispatch.' },
+          { num: '04', title: 'Logistics', desc: 'Secured transport and tracking system for timely delivery.' }
+        ]}
+      />
     </main>
   )
 }

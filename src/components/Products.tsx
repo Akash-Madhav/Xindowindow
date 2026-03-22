@@ -3,43 +3,34 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap-config'
 import Link from 'next/link'
+import Image from 'next/image'
 
-const PRODUCTS = [
-  {
-    id: 'sliding',
-    name: 'Sliding',
-    type: 'Windows / Doors',
-    watermark: 'SLIDING',
-    links: ['2-Track Sliding', '3-Track Sliding', 'Multi-Track with Mesh'],
-    desc: 'Engineered for seamless operation and maximum natural light. Perfect for modern Indian homes.'
-  },
-  {
-    id: 'casement',
-    name: 'Casement',
-    type: 'Windows / Doors',
-    watermark: 'CASEMENT',
-    links: ['Open Out', 'Open In', 'Top Hung', 'French Doors'],
-    desc: 'Superior acoustic insulation and advanced multi-point security locking systems.'
-  },
-  {
-    id: 'special',
-    name: 'Special',
-    type: 'Architectural Systems',
-    watermark: 'SPECIAL',
-    links: ['Tilt & Turn', 'Slide & Fold', 'Arch Windows', 'Bay Windows'],
-    desc: 'Bespoke European designs for unique architectural requirements and luxury spaces.'
-  },
-  {
-    id: 'accessories',
-    name: 'Accessories',
-    type: 'Hardware & Meshes',
-    watermark: 'HARDWARE',
-    links: ['Fiber Mesh', 'SS Mesh', 'Premium Handles', 'Friction Stays'],
-    desc: 'Precision-crafted hardware guaranteeing long-lasting performance and security.'
-  }
+interface ProductItem {
+  id: string
+  name: string
+  type: string
+  watermark: string
+  links: string[]
+  desc: string
+  image?: string
+}
+
+const DEFAULT_PRODUCTS = [
+  { id: 'sliding', name: 'Sliding', type: 'Windows / Doors', watermark: 'SLIDING', links: ['2-Track', '3-Track', 'Multi-Track'], desc: 'Engineered for seamless operation and maximum natural light.' },
+  { id: 'casement', name: 'Casement', type: 'Windows / Doors', watermark: 'CASEMENT', links: ['Open Out', 'Open In', 'Top Hung'], desc: 'Superior acoustic insulation and advanced multi-point security.' },
+  { id: 'special', name: 'Special', type: 'Architectural', watermark: 'SPECIAL', links: ['Tilt & Turn', 'Slide & Fold', 'Arch'], desc: 'Bespoke European designs for unique architectural requirements.' },
+  { id: 'accessories', name: 'Accessories', type: 'Hardware', watermark: 'HARDWARE', links: ['Fiber Mesh', 'SS Mesh', 'Premium Handles'], desc: 'Precision-crafted hardware guaranteeing long-lasting performance.' }
 ]
 
-export default function Products() {
+interface ProductsProps {
+  id?: string
+  products?: ProductItem[]
+}
+
+export default function Products({ 
+  id = "03", 
+  products = DEFAULT_PRODUCTS 
+}: ProductsProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const [isTouch, setIsTouch] = useState(true)
@@ -61,29 +52,8 @@ export default function Products() {
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
-          scrub: 1,
+          scrub: 1.2,
           end: () => `+=${trackWidth - window.innerWidth}`
-        }
-      })
-
-      // Image reveals per panel
-      sections.forEach((panel) => {
-        const img = panel.querySelector('.product-img-reveal')
-        if (img) {
-          gsap.fromTo(img,
-            { clipPath: 'inset(100% 0 0 0)' },
-            { 
-              clipPath: 'inset(0% 0 0 0)', 
-              ease: "none",
-              scrollTrigger: {
-                trigger: panel,
-                containerAnimation: pinScroll,
-                start: "left center",
-                end: "center center",
-                scrub: true
-              }
-            }
-          )
         }
       })
 
@@ -94,82 +64,80 @@ export default function Products() {
         })
       }
     }
-  }, [])
+  }, [products])
 
   return (
     <section 
       ref={containerRef}
-      className="relative bg-[var(--color-black)] w-full lg:h-[100svh] overflow-hidden"
-      data-section-id="03"
+      className={`relative bg-[var(--color-black)] w-full lg:h-screen min-h-screen overflow-hidden z-10`}
+      data-section-id={id}
     >
       <div 
         ref={trackRef} 
-        className={`flex ${isTouch ? 'flex-col snap-y snap-mandatory h-[85svh] overflow-y-auto w-full border-t border-[rgba(255,255,255,0.05)]' : 'flex-row w-[400vw] h-full will-change-transform'}`}
+        className={`flex ${isTouch ? 'flex-col min-h-screen w-full' : 'flex-row w-[400vw] h-full will-change-transform'}`}
       >
-        {PRODUCTS.map((prod, idx) => (
+        {products.map((prod, idx) => (
           <div 
             key={prod.id} 
-            className={`product-panel relative ${isTouch ? 'w-full h-full snap-start' : 'w-[100vw] h-full'} flex items-center justify-center`}
+            className={`product-panel relative ${isTouch ? 'w-full min-h-screen py-32' : 'w-[100vw] h-full'} flex items-center justify-center`}
           >
-            {/* Watermark */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-[0.04]">
+            {/* Watermark Background */}
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none z-0 opacity-[0.03]">
               <span 
-                className={`font-display font-light text-transparent ${isTouch ? 'text-[64px]' : 'text-[120px] lg:text-[200px]'} tracking-widest uppercase`}
-                style={{ WebkitTextStroke: '1px var(--color-white)' }}
+                className={`font-display font-light text-transparent ${isTouch ? 'text-[70px]' : 'text-[15vw]'} tracking-[0.2em] uppercase whitespace-nowrap`}
+                style={{ WebkitTextStroke: '1.5px var(--color-white)' }}
               >
                 {prod.watermark}
               </span>
             </div>
 
-            {/* Background Image Reveal */}
-            <div className="absolute inset-0 z-0 pointer-events-none product-img-reveal" style={{ clipPath: isTouch ? 'none' : 'inset(100% 0 0 0)' }}>
-              <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,10,11,0.2)] to-[rgba(10,10,11,0.9)] z-10" />
-              {/* Image Placeholder */}
-              <div className="w-full h-full bg-[#111]" />
-            </div>
-
             {/* Content Container */}
-            <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_40%] h-full z-20 relative pt-20 md:pt-0">
+            <div className="w-full max-w-[1400px] mx-auto px-6 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 h-full z-20 relative items-center">
               
-              {/* Left Content */}
-              <div className="flex flex-col justify-center h-full max-w-[480px]">
-                <div className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-[0.15em] mb-4">
-                  0{idx + 1} // {prod.type}
+              {/* Image Column */}
+              <div className="relative aspect-[4/5] md:aspect-square bg-[#0A0A0B] overflow-hidden group shadow-[0_40px_100px_rgba(0,0,0,0.5)]">
+                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] to-transparent opacity-30 z-10" />
+                 {prod.image ? (
+                    <Image src={prod.image} fill className="object-cover transition-transform duration-[2s] group-hover:scale-105" alt={prod.name} />
+                 ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                       <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-silver)] opacity-30">{prod.name} Visual</span>
+                    </div>
+                 )}
+              </div>
+
+              {/* Text Column */}
+              <div className="flex flex-col max-w-[500px]">
+                <div className="flex items-center gap-4 mb-8">
+                  <span className="font-mono text-[12px] text-[var(--color-red)] tracking-[0.3em]">0{idx + 1}</span>
+                  <div className="w-8 h-px bg-[var(--color-red)] opacity-30" />
+                  <span className="font-mono text-[11px] text-[var(--color-silver)] uppercase tracking-[0.2em]">{prod.type}</span>
                 </div>
-                <h2 className="font-display text-[42px] md:text-[72px] text-[var(--color-white)] leading-[1.1] mb-6">
+                
+                <h2 className="font-display font-light text-[56px] md:text-[84px] text-[var(--color-white)] leading-[1] mb-10 tracking-tight">
                   {prod.name}
                 </h2>
                 
-                <p className="font-sans font-light text-[15px] md:text-[18px] text-[var(--color-silver)] leading-[1.65] mb-8">
+                <p className="font-sans font-light text-[17px] md:text-[20px] text-[var(--color-silver)] leading-[1.7] mb-12">
                   {prod.desc}
                 </p>
 
-                <div className="flex flex-col gap-3 mb-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-16">
                   {prod.links.map(link => (
-                    <div key={link} className="flex items-center gap-3">
-                      <div className="w-[4px] h-[4px] bg-[var(--color-red)] rounded-full" />
-                      <span className="font-sans text-[13px] text-[var(--color-silver)] hover:text-white transition-colors cursor-pointer">{link}</span>
+                    <div key={link} className="flex items-center gap-4 group cursor-pointer hover:translate-x-1 transition-transform">
+                      <div className="w-1.5 h-1.5 bg-[var(--color-red)] rounded-full group-hover:scale-125 transition-transform" />
+                      <span className="font-sans text-[14px] uppercase tracking-[0.15em] text-[var(--color-silver)] group-hover:text-white transition-colors">{link}</span>
                     </div>
                   ))}
                 </div>
 
                 <button 
-                  data-cursor-button="true"
-                  className="w-fit group relative px-8 py-4 border border-[var(--color-red)] text-[var(--color-white)] bg-transparent overflow-hidden transition-all duration-300 hover:border-transparent hover:shadow-[0_0_20px_rgba(200,16,46,0.3)]"
+                  className="w-fit group flex items-center text-white transition-colors duration-300"
+                  data-cursor="link"
                 >
-                  <div className="absolute inset-0 bg-[rgba(200,16,46,0.1)] translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] z-0" />
-                  <span className="relative z-10 font-sans uppercase text-[12px] tracking-widest font-medium group-hover:text-[var(--color-white)]">Explore Collection</span>
+                  <span className="font-sans font-normal uppercase text-[12px] tracking-[0.2em] mr-4">Explore Collection</span>
+                  <div className="w-12 h-px bg-[var(--color-red)] group-hover:w-24 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                 </button>
-              </div>
-
-              {/* Right DrawSVG Graphic */}
-              <div className="hidden md:flex items-center justify-center relative">
-                <svg width="60%" height="60%" viewBox="0 0 100 100" className="opacity-80 drop-shadow-[0_0_30px_rgba(200,16,46,0.2)]" preserveAspectRatio="xMidYMid meet">
-                  {/* Pseudo structural line drawing representation to be replaced with real DrawSVG */}
-                  <rect x="25" y="20" width="50" height="70" fill="none" stroke="var(--color-red)" strokeWidth="1.5" className="draw-path" strokeDasharray="300" strokeDashoffset="0" />
-                  <line x1="50" y1="20" x2="50" y2="90" stroke="var(--color-red)" strokeWidth="1.5" className="draw-path" />
-                  <line x1="25" y1="55" x2="75" y2="55" stroke="var(--color-red)" strokeWidth="1.5" className="draw-path" />
-                </svg>
               </div>
 
             </div>

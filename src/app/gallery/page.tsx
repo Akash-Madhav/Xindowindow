@@ -1,29 +1,29 @@
 'use client'
 import PageHero from '@/components/PageHero'
 import Gallery from '@/components/Gallery'
-import ClientsMarquee from '@/components/ClientsMarquee'
-import QuoteForm from '@/components/QuoteForm'
-import SectionDivider from '@/components/SectionDivider'
 
 export default function GalleryPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)]">
+    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
       <PageHero 
-        title="Showcase" 
+        title="The Gallery" 
         subtitle="A visual testament to architectural grandeur. Explore our portfolio of luxury residences and high-profile commercial landmarks."
         bgText="PORTFOLIO"
       />
-      <SectionDivider />
-      <div data-section-id="02"><Gallery /></div>
-      <SectionDivider />
-      <div data-section-id="03" className="py-24 px-6 max-w-[1200px] mx-auto text-center">
-        <h2 className="font-display text-[42px] text-white mb-6">Designed to Inspire</h2>
-        <p className="text-[var(--color-silver)] font-light max-w-[600px] mx-auto">From coastal villas to urban skyscrapers, Xindo provides the structural integrity and aesthetic clarity required by modern architects.</p>
-      </div>
-      <SectionDivider />
-      <div data-section-id="04"><ClientsMarquee /></div>
-      <SectionDivider />
-      <div data-section-id="05"><QuoteForm /></div>
+      
+      <Gallery 
+        id="02"
+        tag="Visual Testament"
+        title="SHOWCASE"
+        projects={[
+          { id: 10, name: 'Sapphire Residences', height: 'h-[400px]' },
+          { id: 11, name: 'Marina Bay Towers', height: 'h-[300px]' },
+          { id: 12, name: 'Skyline Corporate Hub', height: 'h-[450px]' },
+          { id: 13, name: 'The Emerald Villa', height: 'h-[320px]' },
+          { id: 14, name: 'Azure Tech Park', height: 'h-[380px]' },
+          { id: 15, name: 'Ivory Heights', height: 'h-[280px]' }
+        ]}
+      />
     </main>
   )
 }

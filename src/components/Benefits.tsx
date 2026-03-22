@@ -3,7 +3,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap-config'
 
-const BENEFITS = [
+interface BenefitItem {
+  title: string
+  desc: string
+}
+
+const DEFAULT_BENEFITS = [
   { title: 'Maintenance Free', desc: '10-year warranty' },
   { title: 'Customizable', desc: 'cutting-edge technology' },
   { title: 'High Quality', desc: 'thermal, soundproof, security, weather' },
@@ -14,6 +19,13 @@ const BENEFITS = [
   { title: 'Warping Proof', desc: 'extreme climate resistance' },
   { title: 'Security', desc: 'multi-point locking systems' }
 ]
+
+interface BenefitsProps {
+  id?: string
+  tag?: string
+  title: string
+  items?: BenefitItem[]
+}
 
 function useScrambleText(text: string, inView: boolean) {
   const [displayText, setDisplayText] = useState('')
@@ -50,7 +62,12 @@ function useScrambleText(text: string, inView: boolean) {
   return displayText
 }
 
-export default function Benefits() {
+export default function Benefits({ 
+  id = "04", 
+  tag = "Benefits", 
+  title, 
+  items = DEFAULT_BENEFITS 
+}: BenefitsProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLHeadingElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
@@ -59,7 +76,7 @@ export default function Benefits() {
   const [inView, setInView] = useState(false)
   const [isTouch, setIsTouch] = useState(true)
 
-  const scrambledText = useScrambleText("Nine Reasons Xindo is India's Premium Choice", inView)
+  const scrambledText = useScrambleText(title, inView)
 
   useEffect(() => {
     setIsTouch(window.matchMedia('(pointer: coarse)').matches)
@@ -88,70 +105,66 @@ export default function Benefits() {
     if (window.matchMedia('(pointer: coarse)').matches) {
       tl.fromTo(cards, 
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.06, ease: 'luxurious' }, 0.4
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power4.out' }, 0.4
       )
     } else {
       tl.fromTo(cards, 
-        { rotateY: 90, opacity: 0 },
-        { rotateY: 0, opacity: 1, duration: 0.6, stagger: 0.06, ease: 'luxurious' }, 0.4
+        { rotateY: 90, opacity: 0, y: 40 },
+        { rotateY: 0, opacity: 1, y: 0, duration: 0.8, stagger: 0.08, ease: 'power4.out' }, 0.4
       )
     }
 
     return () => { tl.kill() }
-  }, [])
+  }, [items])
 
   return (
     <section 
       ref={containerRef}
-      className="relative bg-[var(--color-black-soft)] py-24 md:py-32 px-6 md:px-12 w-full overflow-hidden min-h-[100svh] z-10"
-      data-section-id="04"
+      className={`relative bg-[var(--color-black)] py-24 md:py-32 px-6 md:px-12 w-full overflow-hidden min-h-screen flex items-center z-10`}
+      data-section-id={id}
     >
-      {/* Blueprint SVG Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.06] flex items-center justify-center">
-        <svg width="100%" height="100%" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" fill="none">
-          <g stroke="var(--color-red)" strokeWidth="1" strokeDasharray="4000">
-            <rect ref={svgLinesRef} x="5%" y="10%" width="90%" height="80%" className="blueprint-path" />
+      {/* Blueprint SVG Background (Cinematic overlay) */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.04] flex items-center justify-center">
+        <svg width="120%" height="120%" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" fill="none">
+          <g stroke="var(--color-red)" strokeWidth="0.5" strokeDasharray="4000">
+            <rect ref={svgLinesRef} x="5%" y="10%" width="90%" height="80%" />
             <line x1="500" y1="60" x2="500" y2="540" />
             <line x1="50" y1="300" x2="950" y2="300" />
-            <circle cx="500" cy="300" r="100" />
-            <rect x="250" y="150" width="100" height="100" />
-            <rect x="650" y="150" width="100" height="100" />
-            <rect x="250" y="350" width="100" height="100" />
-            <rect x="650" y="350" width="100" height="100" />
+            <circle cx="500" cy="300" r="150" />
           </g>
         </svg>
       </div>
 
-      <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col items-center">
+      <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col items-center w-full">
         
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-4 mb-8">
           <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
-          <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.18em]">Benefits</span>
+          <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.25em]">{tag}</span>
           <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
         </div>
 
-        <h2 ref={headerRef} className="font-mono font-normal text-[24px] md:text-[32px] tracking-[-0.01em] text-[var(--color-white)] text-center mb-16 h-[40px]">
+        <h2 ref={headerRef} className="font-display font-light text-[32px] md:text-[48px] tracking-tight text-[var(--color-white)] text-center mb-20 min-h-[60px] max-w-[800px]">
           {scrambledText}
         </h2>
 
          {/* Grid container with 3D perspective */}
         <div 
           ref={gridRef}
-          style={{ perspective: isTouch ? 'none' : '1000px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-[2px] w-full max-w-[1200px]"
+          style={{ perspective: isTouch ? 'none' : '1200px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-[2px] w-full"
         >
-          {BENEFITS.map((benefit, i) => (
+          {items.map((benefit, i) => (
             <div 
               key={i} 
-              className="benefit-card group relative bg-[rgba(255,255,255,0.02)] p-8 md:p-10 flex flex-col gap-6 md:hover:bg-[rgba(200,16,46,0.08)] border border-transparent md:hover:border-[rgba(200,16,46,0.3)] md:hover:shadow-[0_0_40px_rgba(200,16,46,0.1)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] md:hover:-translate-y-2 transform-style-3d origin-center"
+              className="benefit-card group relative bg-[rgba(255,255,255,0.02)] p-10 md:p-12 flex flex-col gap-6 md:hover:bg-[rgba(255,255,255,0.03)] border border-transparent md:hover:border-[rgba(255,255,255,0.05)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform-style-3d origin-center"
             >
-              <div className="font-mono text-[24px] text-[var(--color-red)] opacity-60 group-hover:opacity-100 transition-opacity">0{i+1}</div>
-              <div>
-                <h3 className="font-display text-[22px] md:text-[28px] text-[var(--color-white)] mb-2">{benefit.title}</h3>
-                <p className="font-sans text-[13px] md:text-[14px] text-[var(--color-silver)] uppercase tracking-wider">{benefit.desc}</p>
+              <div className="font-mono text-[24px] text-[var(--color-red)] opacity-40 group-hover:opacity-100 transition-opacity">0{i+1}</div>
+              <div className="flex flex-col gap-3">
+                <h3 className="font-display text-[24px] md:text-[28px] text-[var(--color-white)] leading-tight">{benefit.title}</h3>
+                <p className="font-sans text-[13px] md:text-[14px] text-[var(--color-silver)] uppercase tracking-[0.15em] leading-relaxed">{benefit.desc}</p>
               </div>
-              <div className="absolute top-8 right-8 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 flex items-center justify-center">
-                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[var(--color-red)] opacity-0 group-hover:opacity-100 transition-opacity" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <div className="absolute top-10 right-10 flex items-center justify-center">
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[var(--color-red)] opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </div>
             </div>
           ))}

@@ -2,25 +2,34 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Products from '@/components/Products'
 import Benefits from '@/components/Benefits'
-import Process from '@/components/Process'
-import Gallery from '@/components/Gallery'
 import Testimonials from '@/components/Testimonials'
-import ClientsMarquee from '@/components/ClientsMarquee'
-import QuoteForm from '@/components/QuoteForm'
-import Footer from '@/components/Footer'
 import SectionDivider from '@/components/SectionDivider'
 
 export default function Home() {
   return (
     <main className="flex min-h-[100svh] flex-col bg-[var(--color-black)] w-full overflow-hidden selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
       <Hero />
-      <SectionDivider />
-      <About />
-      <SectionDivider />
-      <Products />
-      <SectionDivider />
-      <Benefits />
-      <SectionDivider />
+      
+      <About 
+        id="02"
+        tag="Legacy"
+        title="Engineering Excellence Since Inception"
+        description1="Xindo Window Pvt. Ltd. represents the pinnacle of fenestration engineering, combining German technological precision with a profound understanding of Indian architectural needs."
+        description2="Our strategic Indo-German partnership ensures every profile meets stringent global standards for thermal insulation, security, and durability."
+        badgeNumber="10"
+        badgeText="Year Warranty"
+      />
+
+      <Products 
+        id="03"
+      />
+
+      <Benefits 
+        id="04"
+        tag="The Premium Choice"
+        title="Nine Reasons Architects Choose Xindo"
+      />
+
       <Testimonials />
     </main>
   )

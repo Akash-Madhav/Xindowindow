@@ -1,10 +1,6 @@
-'use client'
+import Link from 'next/link'
 
 export default function MobileBottomBar() {
-  const scrollToQuote = () => {
-    document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 h-[64px] bg-[rgba(10,10,11,0.92)] backdrop-blur-md border-t border-[rgba(200,16,46,0.2)] z-[400]" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <div className="flex w-full h-full">
@@ -17,12 +13,12 @@ export default function MobileBottomBar() {
         </a>
         
         {/* Right Request Quote Button */}
-        <button 
-          onClick={scrollToQuote}
+        <Link 
+          href="/contact"
           className="flex-1 flex items-center justify-center bg-[var(--color-red)] active:bg-[#E8213F] text-[var(--color-white)] font-sans text-[11px] uppercase tracking-wider transition-colors"
         >
           Request Quote
-        </button>
+        </Link>
       </div>
     </div>
   )
