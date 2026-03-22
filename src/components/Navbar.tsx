@@ -30,46 +30,51 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 w-full z-[500] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]
-          ${scrolled 
-            ? 'h-[64px] bg-[rgba(10,10,11,0.85)] backdrop-blur-[24px] border-b border-[rgba(200,16,46,0.12)]' 
-            : 'h-[80px] bg-transparent border-b border-transparent'
-          }
+        className={`fixed top-0 left-0 right-0 w-full z-[500] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none
+          ${scrolled ? 'pt-4' : 'pt-6'}
         `}
       >
-        <div className="h-full px-6 md:px-12 flex items-center justify-between">
+        <div 
+          className={`mx-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto
+            ${scrolled 
+              ? 'w-[92%] max-w-[1200px] h-[64px] rounded-full bg-[rgba(10,10,11,0.75)] backdrop-blur-[24px] border border-[rgba(255,255,255,0.08)] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
+              : 'w-[96%] max-w-[1400px] h-[80px] rounded-2xl bg-[rgba(255,255,255,0.02)] backdrop-blur-[8px] border border-[rgba(255,255,255,0.05)]'
+            }
+            px-6 md:px-10 flex items-center justify-between
+          `}
+        >
           
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-4 group" aria-label="Xindo Window Home" data-cursor="link">
-            <div className="w-[36px] h-[36px] border border-[var(--color-red)] flex items-center justify-center relative overflow-hidden">
-              <span className="font-display text-[18px] text-[var(--color-white)]">X</span>
+          <Link href="/" className="flex items-center gap-3 group" aria-label="Xindo Window Home" data-cursor="link">
+            <div className="w-[32px] h-[32px] border border-[var(--color-red)] flex items-center justify-center relative overflow-hidden transition-transform duration-500 group-hover:rotate-90">
+              <span className="font-display text-[16px] text-[var(--color-white)]">X</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-medium text-[16px] md:text-[18px] text-[var(--color-white)] leading-none mb-1">Xindo Window</span>
-              <span className="font-sans font-light text-[10px] text-[var(--color-silver)] uppercase tracking-widest leading-none">Pvt. Ltd.</span>
+              <span className="font-display font-medium text-[15px] md:text-[17px] text-[var(--color-white)] leading-none mb-0.5">Xindo Window</span>
+              <span className="font-sans font-light text-[9px] text-[var(--color-silver)] uppercase tracking-widest leading-none">Pvt. Ltd.</span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8" onMouseLeave={() => setMegaMenuOpen(false)}>
+          <nav className="hidden md:flex items-center gap-8 h-full" onMouseLeave={() => setMegaMenuOpen(false)}>
             {NAV_LINKS.map((link) => (
               <div 
                 key={link.name} 
-                className="relative py-8"
+                className="relative h-full flex items-center"
                 onMouseEnter={() => link.hasDropdown && setMegaMenuOpen(true)}
               >
                 <Link
                   href={link.href}
                   data-cursor="link"
-                  className="font-sans font-normal uppercase text-[11px] tracking-[0.14em] text-[var(--color-silver)] hover:text-[var(--color-white)] transition-colors duration-300 group"
+                  className="font-sans font-normal uppercase text-[10px] tracking-[0.18em] text-[var(--color-silver)] hover:text-[var(--color-white)] transition-colors duration-300 group py-4"
                 >
                   {link.name}
-                  <span className="absolute bottom-6 left-0 w-full h-px bg-[var(--color-red)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                  <span className="absolute bottom-4 left-0 w-full h-px bg-[var(--color-red)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                 </Link>
                 
                 {/* Mega Menu Hook trigger invisible area */}
                 {link.hasDropdown && megaMenuOpen && (
-                  <div className="absolute top-[100%] left-1/2 -translate-x-1/2 w-[80px] h-[30px] bg-transparent" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-[120px] h-[20px] bg-transparent" />
                 )}
               </div>
             ))}
@@ -77,11 +82,11 @@ export default function Navbar() {
 
           {/* Right Section */}
           <div className="flex items-center gap-6">
-            <a href="tel:+919444045544" className="hidden lg:block font-mono text-[12px] text-[var(--color-silver)] hover:text-[var(--color-white)] transition-colors" data-cursor="link">
+            <a href="tel:+919444045544" className="hidden lg:block font-mono text-[11px] text-[var(--color-silver)] hover:text-[var(--color-white)] transition-colors" data-cursor="link">
               +91 94440 45544
             </a>
             <button 
-              className="hidden md:block px-6 py-3 border border-[rgba(255,255,255,0.1)] text-[11px] font-sans uppercase tracking-widest text-[var(--color-white)] transition-all hover:bg-[var(--color-white)] hover:text-[var(--color-black)]"
+              className="hidden md:block px-5 py-2.5 rounded-full border border-[rgba(255,255,255,0.1)] text-[10px] font-sans uppercase tracking-[0.15em] text-[var(--color-white)] transition-all hover:bg-[var(--color-white)] hover:text-[var(--color-black)] hover:scale-105 active:scale-95"
               data-cursor="button"
             >
               Request Quote
@@ -93,9 +98,9 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
             >
-              <span className={`block w-6 h-[1px] bg-white transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'rotate-45 translate-y-[1px]' : '-translate-y-1'}`} />
-              <span className={`block w-6 h-[1px] bg-white transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
-              <span className={`block w-6 h-[1px] bg-white transition-all duration-300 ease-in-out ${mobileMenuOpen ? '-rotate-45 -translate-y-[1px]' : 'translate-y-1'}`} />
+              <span className={`block w-5 h-[1px] bg-white transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'rotate-45 translate-y-[1px]' : '-translate-y-1'}`} />
+              <span className={`block w-5 h-[1px] bg-white transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+              <span className={`block w-5 h-[1px] bg-white transition-all duration-300 ease-in-out ${mobileMenuOpen ? '-rotate-45 -translate-y-[1px]' : 'translate-y-1'}`} />
             </button>
           </div>
         </div>
