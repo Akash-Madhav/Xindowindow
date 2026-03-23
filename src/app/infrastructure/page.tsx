@@ -24,7 +24,7 @@ export default function InfrastructurePage() {
       />
 
       <Process 
-        id="03"
+        id="manufacturing-process"
         tag="Supply Chain Integrity"
         steps={[
           { num: '01', title: 'Extrusion', desc: 'Sourcing high-grade uPVC compounds engineered for UV stability.' },

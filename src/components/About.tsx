@@ -55,6 +55,7 @@ export default function About({
 
   return (
     <section 
+      id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
       className={`relative w-full min-h-screen bg-[var(--color-black)] py-16 sm:py-20 px-5 sm:px-8 md:px-12 flex items-center overflow-hidden`}
       data-section-id={id}

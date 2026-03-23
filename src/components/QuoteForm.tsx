@@ -34,7 +34,7 @@ export default function QuoteForm() {
   }
 
   return (
-    <section id="quote" className="relative bg-[var(--color-black-mid)] py-12 sm:py-16 md:py-[120px] px-5 sm:px-8 md:px-12 w-full overflow-hidden" data-section-id="08">
+    <section id="contact-form" className="relative bg-[var(--color-black-mid)] py-12 sm:py-16 md:py-[120px] px-5 sm:px-8 md:px-12 w-full overflow-hidden" data-section-id="08">
       {/* Decorative Grid BG */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"

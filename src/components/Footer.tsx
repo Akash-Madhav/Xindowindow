@@ -43,10 +43,17 @@ export default function Footer() {
           <div className="flex flex-col">
             <h4 className="font-mono text-[10px] text-[var(--color-white)] uppercase tracking-widest mb-6 border-b border-[#2E2E33] pb-4">Company</h4>
             <ul className="flex flex-col gap-4">
-              {['About', 'Certifications', 'Infrastructure', 'Gallery', 'Testimonials', 'Career'].map((link) => (
-                <li key={link}>
-                  <Link href={`#${link.toLowerCase()}`} className="font-sans font-light text-[14px] text-[var(--color-silver)] hover:text-[var(--color-red)] transition-colors duration-200">
-                    {link}
+              {[
+                { name: 'About', href: '/about' },
+                { name: 'Certifications', href: '/about#quality-standards' },
+                { name: 'Infrastructure', href: '/infrastructure' },
+                { name: 'Gallery', href: '/gallery' },
+                { name: 'Testimonials', href: '/#testimonials' },
+                { name: 'Career', href: '/contact#contact-form' }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="font-sans font-light text-[14px] text-[var(--color-silver)] hover:text-[var(--color-red)] transition-colors duration-200">
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -57,10 +64,17 @@ export default function Footer() {
           <div className="flex flex-col">
             <h4 className="font-mono text-[10px] text-[var(--color-white)] uppercase tracking-widest mb-6 border-b border-[#2E2E33] pb-4">Products</h4>
             <ul className="flex flex-col gap-4">
-              {['Sliding Windows', 'Sliding Doors', 'Casement Windows', 'Casement Doors', 'Special Windows', 'Accessories'].map((link) => (
-                <li key={link}>
-                  <Link href="#products" className="font-sans font-light text-[14px] text-[var(--color-silver)] hover:text-[var(--color-red)] transition-colors duration-200">
-                    {link}
+              {[
+                { name: 'Sliding Windows', href: '/products#sliding' },
+                { name: 'Sliding Doors', href: '/products#sliding' },
+                { name: 'Casement Windows', href: '/products#casement' },
+                { name: 'Casement Doors', href: '/products#casement' },
+                { name: 'Special Windows', href: '/products#special' },
+                { name: 'Accessories', href: '/products#accessories' }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="font-sans font-light text-[14px] text-[var(--color-silver)] hover:text-[var(--color-red)] transition-colors duration-200">
+                    {link.name}
                   </Link>
                 </li>
               ))}

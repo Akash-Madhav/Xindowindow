@@ -62,7 +62,11 @@ export default function Testimonials() {
   const splitWords = (text: string) => text.split(' ')
 
   return (
-    <section className="relative w-full h-[100svh] bg-[var(--color-black)] overflow-hidden flex items-center justify-center px-5 sm:px-8 md:px-12" data-section-id="06">
+    <section 
+      id="testimonials"
+      className="relative bg-[var(--color-black)] py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-12 w-full overflow-hidden"
+      data-section-id="06"
+    >
       
       {/* Ambient Quote Mark */}
       <div 

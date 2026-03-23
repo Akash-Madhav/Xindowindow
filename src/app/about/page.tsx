@@ -37,7 +37,7 @@ export default function AboutPage() {
       />
 
       <Benefits 
-        id="04"
+        id="quality-standards"
         tag="Quality Standards"
         title="Engineered to Outlast the Elements"
         items={[

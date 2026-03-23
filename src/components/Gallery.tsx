@@ -95,6 +95,7 @@ export default function Gallery({
 
   return (
     <section 
+      id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
       className={`relative bg-[var(--color-black)] py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-12 min-h-screen flex items-center overflow-hidden z-10`}
       data-section-id={id}

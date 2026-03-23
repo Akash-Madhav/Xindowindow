@@ -88,6 +88,7 @@ export default function Products({
 
   return (
     <section
+      id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
       className="relative bg-[var(--color-black)] w-full h-[100svh] overflow-hidden z-10"
       data-section-id={id}

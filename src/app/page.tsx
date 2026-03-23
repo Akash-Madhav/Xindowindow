@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
       
       <About 
-        id="02"
+        id="company-overview"
         tag="Legacy"
         title="Engineering Excellence Since Inception"
         description1="Xindo Window Pvt. Ltd. represents the pinnacle of fenestration engineering, combining German technological precision with a profound understanding of Indian architectural needs."
@@ -24,11 +24,11 @@ export default function Home() {
       />
 
       <ProductsClient 
-        id="03"
+        id="featured-collections"
       />
 
       <Benefits 
-        id="04"
+        id="premium-benefits"
         tag="The Premium Choice"
         title="Nine Reasons Architects Choose Xindo"
       />
