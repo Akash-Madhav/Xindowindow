@@ -115,7 +115,7 @@ export default function Products({
 
             {/* Content — column on mobile, 2-col grid on desktop */}
             {/* Content — column on mobile, 2-col grid on desktop */}
-            <div className="w-full h-full z-20 relative px-5 sm:px-10 md:px-14 lg:px-16 xl:px-20 2xl:px-24 flex flex-col items-center text-center lg:text-left lg:items-start justify-center gap-3 sm:gap-5 pt-14 sm:pt-16 pb-6 lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-20 2xl:gap-32 lg:max-w-[1400px] 2xl:max-w-[1800px] lg:mx-auto lg:pt-0 lg:pb-0">
+            <div className="w-full z-20 relative px-5 sm:px-10 md:px-14 lg:px-16 xl:px-20 2xl:px-24 flex flex-col items-center text-center lg:text-left lg:items-center justify-center gap-6 lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-20 2xl:gap-32 lg:max-w-[1400px] 2xl:max-w-[1800px] lg:mx-auto">
 
               {/* Image */}
               <div
