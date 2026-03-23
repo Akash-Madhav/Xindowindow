@@ -103,7 +103,7 @@ export default function About({
           <div className="absolute inset-0 bg-[#0A0A0B] z-10 overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.6)]">
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] to-transparent opacity-40 z-20" />
             {image ? (
-               <Image src={image} fill className="object-cover transition-transform duration-[2s] hover:scale-105" alt={title} />
+               <Image src={image} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-[2s] hover:scale-105" alt={title} />
             ) : (
                <div className="w-full h-full bg-[#111114] flex items-center justify-center">
                   <div className="w-20 h-20 border border-[rgba(200,16,46,0.1)] rounded-full animate-pulse" />

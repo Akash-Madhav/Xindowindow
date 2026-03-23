@@ -16,12 +16,12 @@ export default function GalleryPage() {
         tag="Visual Testament"
         title="SHOWCASE"
         projects={[
-          { id: 10, name: 'Sapphire Residences', height: 'h-[400px]' },
-          { id: 11, name: 'Marina Bay Towers', height: 'h-[300px]' },
-          { id: 12, name: 'Skyline Corporate Hub', height: 'h-[450px]' },
-          { id: 13, name: 'The Emerald Villa', height: 'h-[320px]' },
-          { id: 14, name: 'Azure Tech Park', height: 'h-[380px]' },
-          { id: 15, name: 'Ivory Heights', height: 'h-[280px]' }
+          { id: 10, name: 'Sapphire Residences', height: 'h-[400px]', image: '/images/gallery/sapphire.png' },
+          { id: 11, name: 'Marina Bay Towers', height: 'h-[300px]', image: '/images/gallery/marina.png' },
+          { id: 12, name: 'Skyline Corporate Hub', height: 'h-[450px]', image: '/images/gallery/skyline.png' },
+          { id: 13, name: 'The Emerald Villa', height: 'h-[320px]', image: '/images/gallery/emerald.png' },
+          { id: 14, name: 'Azure Tech Park', height: 'h-[380px]', image: '/images/gallery/azure.png' },
+          { id: 15, name: 'Ivory Heights', height: 'h-[280px]', image: '/images/gallery/ivory.png' }
         ]}
       />
     </main>

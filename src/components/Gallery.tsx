@@ -4,11 +4,13 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
+import Image from 'next/image'
 
 interface ProjectItem {
   id: number
   name: string
   height: string
+  image?: string
 }
 
 const DEFAULT_PROJECTS = [
@@ -128,7 +130,17 @@ export default function Gallery({
               onClick={() => setSelectedId(project.id)}
             >
               {/* Image filter treatments */}
-              <div className="absolute inset-0 z-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] bg-[rgba(255,255,255,0.02)]" />
+              <div className="absolute inset-0 z-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] bg-[rgba(255,255,255,0.02)]">
+                {project.image && (
+                  <Image 
+                    src={project.image} 
+                    alt={project.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700"
+                  />
+                )}
+              </div>
               
               {/* Red overlay hover */}
               <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.8)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
@@ -158,8 +170,18 @@ export default function Gallery({
               className="relative w-full max-w-[1200px] aspect-[16/9] bg-[#0A0A0B] shadow-2xl flex flex-col overflow-hidden"
               onClick={e => e.stopPropagation()}
             >
-              <div className="w-full h-full bg-[#111] flex items-center justify-center">
-                 <div className="flex flex-col items-center gap-6">
+              <div className="w-full h-full bg-[#111] flex items-center justify-center relative overflow-hidden">
+                {selectedProject.image && (
+                  <Image 
+                    src={selectedProject.image} 
+                    alt={selectedProject.name}
+                    fill
+                    sizes="100vw"
+                    className="object-cover opacity-70"
+                    priority
+                  />
+                )}
+                 <div className="flex flex-col items-center gap-6 relative z-10">
                    <div className="w-16 h-px bg-[var(--color-red)] animate-pulse" />
                    <span className="text-[var(--color-silver)] font-sans uppercase tracking-widest text-[12px]">{selectedProject.name}</span>
                  </div>

@@ -110,7 +110,7 @@ export default function Products({
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] to-transparent opacity-25 z-10" />
                 {prod.image ? (
-                  <Image src={prod.image} fill className="object-cover transition-transform duration-[2s] group-hover:scale-105" alt={prod.name} />
+                  <Image src={prod.image} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-[2s] group-hover:scale-105" alt={prod.name} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-silver)] opacity-30">{prod.name} Visual</span>
