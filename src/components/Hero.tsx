@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Hero() {
@@ -48,10 +49,13 @@ export default function Hero() {
           transition={{ duration: 2, ease: "easeOut" }}
           className="relative w-full h-full"
         >
-          <img 
+          <Image 
             src="/images/hero-bg.png" 
             alt="Xindo Premium Architecture" 
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
         </motion.div>
         {/* Soft overlay to ensure text readability */}
