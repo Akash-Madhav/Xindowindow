@@ -9,7 +9,7 @@ export default function Preloader() {
   useEffect(() => {
     const hasLoaded = sessionStorage.getItem('xindo-preloader-done')
     if (hasLoaded) {
-      setIsLoading(false)
+      Promise.resolve().then(() => setIsLoading(false))
       return
     }
 

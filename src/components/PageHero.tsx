@@ -15,7 +15,7 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const lineRef = useRef<HTMLDivElement>(null)
 
-  const textRef = useRef<HTMLDivElement>(null)
+
 
   useGSAP(() => {
     const tl = gsap.timeline({ delay: 0.5 })

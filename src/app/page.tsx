@@ -1,9 +1,10 @@
+'use client'
+
 import Hero from '@/components/Hero'
 import About from '@/components/About'
 import ProductsClient from '@/components/ProductsClient'
 import Benefits from '@/components/Benefits'
 import Testimonials from '@/components/Testimonials'
-import SectionDivider from '@/components/SectionDivider'
 
 
 export default function Home() {

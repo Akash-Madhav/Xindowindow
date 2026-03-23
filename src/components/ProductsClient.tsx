@@ -7,6 +7,6 @@ const DynamicProducts = dynamic(() => import('@/components/Products'), {
   loading: () => <div className="w-full min-h-screen bg-[var(--color-black)]" />,
 })
 
-export default function ProductsClient(props: any) {
+export default function ProductsClient(props: { id?: string }) {
   return <DynamicProducts {...props} />
 }

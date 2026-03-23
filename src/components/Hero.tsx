@@ -1,10 +1,9 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Hero() {
@@ -14,11 +13,8 @@ export default function Hero() {
   const line2Ref = useRef<HTMLDivElement>(null)
   const decLineRef = useRef<HTMLDivElement>(null)
   
-  const [isTouch, setIsTouch] = useState(true)
 
   useGSAP(() => {
-    setIsTouch(window.matchMedia('(pointer: coarse)').matches)
-
     // Entrance animation for text
     const tl = gsap.timeline({ delay: 0.5 })
     
@@ -76,7 +72,7 @@ export default function Hero() {
             transition={{ duration: 1.2, delay: 1.2 }} 
             className="mt-4 sm:mt-8 sm:mt-10 max-w-[560px] 2xl:max-w-[720px] font-sans font-light text-[13px] sm:text-[15px] md:text-[19px] 2xl:text-[22px] leading-[1.65] text-[var(--color-silver)] px-2 sm:px-0"
           >
-            Premium uPVC Windows & Doors — engineered with German precision, crafted for India's finest homes and architectural developments.
+            Premium uPVC Windows & Doors — engineered with German precision, crafted for India&apos;s finest homes and architectural developments.
           </motion.p>
 
           {/* CTAs */}

@@ -28,24 +28,23 @@ interface BenefitsProps {
   items?: BenefitItem[]
 }
 
+const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+
 function useScrambleText(text: string, inView: boolean) {
   const [displayText, setDisplayText] = useState('')
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
   useEffect(() => {
     if (!inView) return
 
     let iteration = 0
-    let interval: ReturnType<typeof setInterval>
-    
-    interval = setInterval(() => {
+    const interval = setInterval(() => {
       setDisplayText(
         text
           .split('')
           .map((letter, index) => {
             if (index < iteration) return text[index]
             if (letter === ' ') return ' '
-            return chars[Math.floor(Math.random() * chars.length)]
+            return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
           })
           .join('')
       )
@@ -114,7 +113,7 @@ export default function Benefits({
         { rotateY: 0, opacity: 1, y: 0, duration: 0.8, stagger: 0.08, ease: 'power4.out' }, 0.4
       )
     }
-  }, { dependencies: [items], scope: containerRef })
+  }, { dependencies: [items, title], scope: containerRef })
 
   return (
     <section 

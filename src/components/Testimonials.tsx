@@ -95,7 +95,7 @@ export default function Testimonials() {
             // Swipe gesture handling
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
-            onDragEnd={(e, info) => {
+            onDragEnd={(_, info) => {
               if (info.offset.x > 50) prevSlide()
               else if (info.offset.x < -50) nextSlide()
             }}

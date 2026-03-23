@@ -10,7 +10,18 @@ if (typeof window !== "undefined") {
   // Try to register, but wrap in try-catch in case they aren't installed properly
   try {
     gsap.registerPlugin(ScrollTrigger, CustomEase, SplitText, DrawSVG)
-  } catch (e) {
+    
+    // Global configurations for mobile stability
+    ScrollTrigger.config({
+      ignoreMobileResize: true,
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load"
+    })
+    
+    // Normalize scroll behavior for consistent feel across devices
+    if (typeof window !== 'undefined') {
+      ScrollTrigger.normalizeScroll(true)
+    }
+  } catch {
     gsap.registerPlugin(ScrollTrigger, CustomEase)
     console.warn("Premium GSAP plugins not found. Skipping registration.");
   }

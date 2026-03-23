@@ -30,7 +30,7 @@ export default function Footer() {
               <span className="font-display font-medium text-[16px] md:text-[18px] text-[var(--color-white)]">Xindo Window</span>
             </Link>
             <p className="font-sans font-light text-[14px] leading-[1.6] text-[var(--color-silver)] mb-8">
-              "The Window Door Experts"<br/>
+              &quot;The Window Door Experts&quot;<br/>
               Give Your Home The Best.
             </p>
             <div className="px-3 py-1.5 w-fit border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] backdrop-blur-md flex items-center gap-2">

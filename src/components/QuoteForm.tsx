@@ -23,6 +23,10 @@ export default function QuoteForm() {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true)
+    // For logging/tracking in development if needed
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Form data:', data)
+    }
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500))
     setIsSubmitting(false)
@@ -139,7 +143,7 @@ export default function QuoteForm() {
                     Processing
                   </span>
                 ) : isSuccess ? (
-                  <span className="flex items-center gap-2">✓ We'll be in touch shortly.</span>
+                  <span className="flex items-center gap-2">✓ We&apos;ll be in touch shortly.</span>
                 ) : (
                   "Submit Request ->"
                 )}

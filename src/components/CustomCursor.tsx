@@ -31,7 +31,7 @@ export default function CustomCursor() {
         ring.current.x += (mouse.current.x - ring.current.x) * 0.15
         ring.current.y += (mouse.current.y - ring.current.y) * 0.15
 
-        let ringTransform = `translate3d(calc(${ring.current.x}px - 50%), calc(${ring.current.y}px - 50%), 0)`
+        const ringTransform = `translate3d(calc(${ring.current.x}px - 50%), calc(${ring.current.y}px - 50%), 0)`
         
         // Handle cursor states manually to avoid React state lag
         const state = document.documentElement.getAttribute('data-cursor') || 'default'

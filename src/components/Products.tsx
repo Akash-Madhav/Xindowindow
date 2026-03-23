@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useCallback } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
@@ -35,12 +35,16 @@ export default function Products({
   const trackRef = useRef<HTMLDivElement>(null)
   const imageRefs = useRef<(HTMLDivElement | null)[]>([])
 
+  const getScrollAmount = useCallback(() => {
+    if (!trackRef.current) return 0
+    return trackRef.current.scrollWidth - window.innerWidth
+  }, [])
+
   useGSAP(() => {
     // Horizontal scroll + pinning runs on ALL screen sizes
     const sections = gsap.utils.toArray('.product-panel') as HTMLDivElement[]
 
     if (trackRef.current && containerRef.current) {
-      const getScrollAmount = () => trackRef.current!.scrollWidth - window.innerWidth
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -58,6 +62,8 @@ export default function Products({
           end: () => `+=${getScrollAmount()}`,
           invalidateOnRefresh: true,
           anticipatePin: 1,
+          fastScrollEnd: true,
+          refreshPriority: 1
         }
       })
 
@@ -66,18 +72,24 @@ export default function Products({
         ease: 'none'
       })
 
-      const refreshTimeout = setTimeout(() => {
+      const onResize = () => {
         ScrollTrigger.refresh()
-      }, 100)
+      }
+      
+      window.addEventListener('resize', onResize)
 
-      return () => clearTimeout(refreshTimeout)
+      return () => {
+        window.removeEventListener('resize', onResize)
+        tl.kill()
+        ScrollTrigger.getAll().forEach(st => st.kill())
+      }
     }
-  }, { dependencies: [products], scope: containerRef })
+  }, { dependencies: [products, getScrollAmount], scope: containerRef })
 
   return (
     <section
       ref={containerRef}
-      className="relative bg-[var(--color-black)] w-full h-screen overflow-hidden z-10"
+      className="relative bg-[var(--color-black)] w-full h-[100svh] overflow-hidden z-10"
       data-section-id={id}
     >
       {/* Track: always horizontal across all screen sizes */}

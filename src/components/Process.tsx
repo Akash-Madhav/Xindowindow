@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
 
@@ -31,11 +31,9 @@ export default function Process({
 }: ProcessProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const lineRef = useRef<HTMLDivElement>(null)
-  const [isTouch, setIsTouch] = useState(true)
+
 
   useGSAP(() => {
-    setIsTouch(window.matchMedia('(pointer: coarse)').matches)
-
     if (!containerRef.current || !lineRef.current) return
 
     const tl = gsap.timeline({
