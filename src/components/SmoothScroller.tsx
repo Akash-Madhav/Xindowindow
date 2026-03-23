@@ -40,7 +40,15 @@ export default function SmoothScroller({ children }: { children: ReactNode }) {
       mediaQuery.addListener(handleMediaQueryChange)
     }
     
+    
+    // Normalize scroll behavior for consistent feel across devices
+    // This must happen after hydration to avoid mismatch on <html> and <body>
+    ScrollTrigger.normalizeScroll(true)
+    
     return () => {
+      // Cleanup specifically if normalization was applied
+      ScrollTrigger.normalizeScroll(false)
+      
       if (mediaQuery.removeEventListener) {
         mediaQuery.removeEventListener('change', handleMediaQueryChange)
       } else {

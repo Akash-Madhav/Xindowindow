@@ -16,11 +16,6 @@ if (typeof window !== "undefined") {
       ignoreMobileResize: true,
       autoRefreshEvents: "visibilitychange,DOMContentLoaded,load"
     })
-    
-    // Normalize scroll behavior for consistent feel across devices
-    if (typeof window !== 'undefined') {
-      ScrollTrigger.normalizeScroll(true)
-    }
   } catch {
     gsap.registerPlugin(ScrollTrigger, CustomEase)
     console.warn("Premium GSAP plugins not found. Skipping registration.");
