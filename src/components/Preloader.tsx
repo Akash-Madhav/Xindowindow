@@ -13,14 +13,10 @@ export default function Preloader() {
       return
     }
 
-    // Mobile loader is faster
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const speedMultiplier = isMobile ? 0.7 : 1;
-
     const timer = setTimeout(() => {
       setIsLoading(false)
       sessionStorage.setItem('xindo-preloader-done', 'true')
-    }, 1100 * speedMultiplier) // 800ms draw + 300ms pause
+    }, 2000) // Stay longer to cover hydration better
 
     return () => clearTimeout(timer)
   }, [])
@@ -29,13 +25,13 @@ export default function Preloader() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6 }} // 600ms unmount fade
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-black)]"
-          aria-live="polite"
-          role="status"
-          aria-label="Loading"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }} // 600ms unmount fade
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-black)]"
+            aria-live="polite"
+            role="status"
+            aria-label="Loading"
         >
           <svg
             width="80"

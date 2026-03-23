@@ -114,12 +114,13 @@ export default function Products({
             </div>
 
             {/* Content — column on mobile, 2-col grid on desktop */}
-            <div className="w-full h-full z-20 relative px-5 sm:px-10 md:px-14 lg:px-16 xl:px-20 2xl:px-24 flex flex-col justify-center gap-3 sm:gap-5 pt-14 sm:pt-16 pb-6 lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-20 2xl:gap-32 lg:max-w-[1400px] 2xl:max-w-[1800px] lg:mx-auto lg:pt-0 lg:pb-0 lg:items-center">
+            {/* Content — column on mobile, 2-col grid on desktop */}
+            <div className="w-full h-full z-20 relative px-5 sm:px-10 md:px-14 lg:px-16 xl:px-20 2xl:px-24 flex flex-col items-center text-center lg:text-left lg:items-start justify-center gap-3 sm:gap-5 pt-14 sm:pt-16 pb-6 lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-20 2xl:gap-32 lg:max-w-[1400px] 2xl:max-w-[1800px] lg:mx-auto lg:pt-0 lg:pb-0">
 
               {/* Image */}
               <div
                 ref={el => { imageRefs.current[idx] = el }}
-                className="relative bg-[#0A0A0B] overflow-hidden group shadow-[0_16px_48px_rgba(0,0,0,0.55)] rounded-sm w-full flex-shrink-0 h-[28vh] sm:h-[34vh] md:h-[38vh] lg:h-auto lg:aspect-square 2xl:aspect-[4/5]"
+                className="relative bg-[#0A0A0B] overflow-hidden group shadow-[0_16px_48px_rgba(0,0,0,0.55)] rounded-sm w-full max-w-[400px] lg:max-w-none flex-shrink-0 h-[28vh] sm:h-[34vh] md:h-[38vh] lg:h-auto lg:aspect-square 2xl:aspect-[4/5]"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] to-transparent opacity-25 z-10" />
                 {prod.image ? (
@@ -132,7 +133,7 @@ export default function Products({
               </div>
 
               {/* Text */}
-              <div className="flex flex-col flex-shrink min-h-0">
+              <div className="flex flex-col items-center lg:items-start flex-shrink min-h-0">
                 <div className="flex items-center gap-3 mb-2 sm:mb-4">
                   <span className="font-mono text-[10px] sm:text-[12px] text-[var(--color-red)] tracking-[0.3em]">0{idx + 1}</span>
                   <div className="w-5 h-px bg-[var(--color-red)] opacity-30" />
@@ -143,11 +144,11 @@ export default function Products({
                   {prod.name}
                 </h2>
 
-                <p className="font-sans font-light text-[var(--color-silver)] leading-[1.6] mb-3 sm:mb-6 text-[12px] sm:text-[15px] md:text-[16px] xl:text-[18px] 2xl:text-[22px]">
+                <p className="font-sans font-light text-[var(--color-silver)] leading-[1.6] mb-3 sm:mb-6 text-[12px] sm:text-[15px] md:text-[16px] xl:text-[18px] 2xl:text-[22px] max-w-[500px]">
                   {prod.desc}
                 </p>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 mb-4 sm:mb-8">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-2 mb-4 sm:mb-8 max-w-[600px]">
                   {prod.links.map(link => (
                     <div key={link} className="flex items-center gap-2 group cursor-pointer hover:translate-x-1 transition-transform">
                       <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-[var(--color-red)] rounded-full shrink-0" />

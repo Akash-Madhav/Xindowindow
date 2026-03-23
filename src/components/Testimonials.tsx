@@ -87,7 +87,7 @@ export default function Testimonials() {
         }
       `}} />
 
-      <div className="max-w-[900px] 2xl:max-w-[1200px] w-full relative z-10 flex flex-col items-center">
+      <div className="max-w-[900px] 2xl:max-w-[1200px] w-full mx-auto relative z-10 flex flex-col items-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}

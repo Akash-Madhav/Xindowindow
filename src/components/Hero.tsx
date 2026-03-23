@@ -15,13 +15,13 @@ export default function Hero() {
   
 
   useGSAP(() => {
-    // Entrance animation for text
-    const tl = gsap.timeline({ delay: 0.5 })
+    // Entrance animation for text - immediate after preloader
+    const tl = gsap.timeline({ delay: 0.2 })
     
     if (line1Ref.current && line2Ref.current) {
       tl.fromTo([line1Ref.current, line2Ref.current],
         { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: 'power4.out' }
+        { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'power4.out' }
       )
     }
 
@@ -40,6 +40,24 @@ export default function Hero() {
       className="relative w-full h-[100svh] bg-[var(--color-black)] overflow-hidden flex items-center justify-center text-center"
       data-section-id="01"
     >
+      {/* Cinematic Background */}
+      <div className="absolute inset-0 z-0">
+        <motion.div 
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.6 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          className="relative w-full h-full"
+        >
+          <img 
+            src="/images/hero-bg.png" 
+            alt="Xindo Premium Architecture" 
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+        {/* Soft overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-black)] via-transparent to-[var(--color-black)] opacity-80" />
+      </div>
+
       <div className="w-full max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-5 sm:px-8 md:px-16 z-20 relative flex flex-col items-center">
         
         {/* Label Chip */}

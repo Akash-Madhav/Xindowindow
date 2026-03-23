@@ -1,12 +1,7 @@
 'use client'
 
-import dynamic from 'next/dynamic'
+import Products from '@/components/Products'
 
-const DynamicProducts = dynamic(() => import('@/components/Products'), {
-  ssr: false,
-  loading: () => <div className="w-full min-h-screen bg-[var(--color-black)]" />,
-})
-
-export default function ProductsClient(props: { id?: string }) {
-  return <DynamicProducts {...props} />
+export default function ProductsClient({ id }: { id?: string }) {
+  return <Products id={id} />
 }
