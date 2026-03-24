@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 const CLIENT_LOGOS = [
   { name: 'Developer A', logo: '/images/logos/client1.png' },
