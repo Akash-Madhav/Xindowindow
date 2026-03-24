@@ -138,5 +138,6 @@ p { @apply font-sans font-normal text-[14px] sm:text-[16px] lg:text-[17px] 2xl:t
   .body-l { font-size: 32px; }
   p { font-size: 26px; }
   .stat { font-size: 180px; }
+  .marquee-item { font-size: 44px; margin-left: 40px; margin-right: 40px; }
 }
 
