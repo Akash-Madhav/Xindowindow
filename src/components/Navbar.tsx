@@ -102,10 +102,10 @@ export default function Navbar() {
           </nav>
 
           {/* Right Section / Hamburger */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-8">
             <Link 
               href="/contact"
-              className="hidden md:block px-6 py-2.5 rounded-full bg-[var(--color-red)] text-[10px] font-sans uppercase tracking-[0.15em] text-[var(--color-white)] transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_rgba(200,16,46,0.3)] font-bold"
+              className="hidden lg:block px-9 py-2.5 rounded-full bg-[var(--color-red)] text-[10px] font-sans uppercase tracking-[0.14em] text-white transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_rgba(200,16,46,0.2)] font-bold border border-white/10 whitespace-nowrap"
               data-cursor-button="true"
             >
               Request Quote
