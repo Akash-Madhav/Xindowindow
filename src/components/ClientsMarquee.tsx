@@ -34,7 +34,7 @@ export default function ClientsMarquee() {
           {CLIENTS.map((client, i) => (
             <div 
               key={`c1-${i}`}
-              className="px-8 py-4 border border-transparent hover:border-[var(--color-red-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] 3xl:text-[44px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
+              className="px-8 py-4 border border-transparent hover:border-[var(--color-red-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
             >
               {client}
             </div>
@@ -45,7 +45,7 @@ export default function ClientsMarquee() {
           {CLIENTS.map((client, i) => (
             <div 
               key={`c2-${i}`}
-              className="px-8 py-4 border border-transparent hover:border-[var(--color-red-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] 3xl:text-[44px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
+              className="px-8 py-4 border border-transparent hover:border-[var(--color-red-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
             >
               {client}
             </div>
