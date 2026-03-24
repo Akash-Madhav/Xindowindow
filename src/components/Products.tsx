@@ -90,7 +90,7 @@ export default function Products({
     <section
       id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
-      className="relative bg-[var(--color-black)] w-full h-[100svh] overflow-hidden z-10"
+      className="relative bg-[var(--color-black)] w-full h-[100svh] overflow-hidden z-10 industrial-texture"
       data-section-id={id}
     >
       {/* Track: always horizontal across all screen sizes */}
@@ -103,63 +103,72 @@ export default function Products({
             key={prod.id}
             className="product-panel relative w-screen max-w-full shrink-0 h-full flex items-center justify-center overflow-hidden"
           >
-            {/* Watermark */}
-            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none z-0 opacity-[0.03]">
+            {/* Watermark - Technical Look */}
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none z-0 opacity-[0.02]">
               <span
-                className="font-display font-light text-transparent text-[20vw] lg:text-[12vw] 2xl:text-[10vw] tracking-[0.2em] uppercase whitespace-nowrap"
-                style={{ WebkitTextStroke: '1.5px var(--color-white)' }}
+                className="font-display font-bold text-transparent text-[22vw] lg:text-[14vw] tracking-[-0.05em] uppercase whitespace-nowrap italic"
+                style={{ WebkitTextStroke: '1px var(--color-white)' }}
               >
                 {prod.watermark}
               </span>
             </div>
 
             {/* Content — column on mobile, 2-col grid on desktop */}
-            {/* Content — column on mobile, 2-col grid on desktop */}
-            <div className="w-full z-20 relative px-5 sm:px-10 md:px-14 lg:px-16 xl:px-20 2xl:px-24 flex flex-col items-center text-center lg:text-left lg:items-center justify-center gap-6 lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-20 2xl:gap-32 lg:max-w-[1400px] 2xl:max-w-[1800px] lg:mx-auto">
-
-              {/* Image */}
+            <div className="w-full z-20 relative px-5 sm:px-10 md:px-14 lg:px-20 2xl:px-32 flex flex-col items-center text-center lg:text-left lg:items-center justify-center gap-8 lg:grid lg:grid-cols-2 lg:gap-20 2xl:gap-40 lg:max-w-[1400px] 2xl:max-w-[1900px] lg:mx-auto">
+              {/* Image Container with Technical Borders */}
               <div
                 ref={el => { imageRefs.current[idx] = el }}
-                className="relative bg-[#0A0A0B] overflow-hidden group shadow-[0_16px_48px_rgba(0,0,0,0.55)] rounded-sm w-full max-w-[400px] lg:max-w-none flex-shrink-0 h-[28vh] sm:h-[34vh] md:h-[38vh] lg:h-auto lg:aspect-square 2xl:aspect-[4/5]"
+                className="relative bg-[var(--color-black-mid)] overflow-hidden group shadow-2xl border border-[var(--color-black-light)] w-full max-w-[320px] sm:max-w-[420px] lg:max-w-none flex-shrink-0 h-[28vh] sm:h-[32vh] md:h-[40vh] lg:h-[45vh] lg:aspect-square 2xl:aspect-[4/5] 3xl:h-[55vh]"
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] to-transparent opacity-25 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] via-transparent to-transparent opacity-50 z-10" />
                 {prod.image ? (
-                  <Image src={prod.image} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-[2s] group-hover:scale-105" alt={prod.name} />
+                  <Image src={prod.image} fill sizes="(max-width: 1024px) 100vw, (max-width: 1920px) 50vw, 40vw" className="object-cover transition-transform duration-[2.5s] group-hover:scale-110 contrast-[1.05] grayscale-[0.1]" alt={prod.name} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-silver)] opacity-30">{prod.name} Visual</span>
                   </div>
                 )}
+                
+                {/* Product Detail Overlay */}
+                <div className="absolute top-6 right-6 z-20 hidden lg:block">
+                  <div className="bg-[var(--color-black-soft)] border border-[var(--color-red-muted)] px-4 py-3 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0">
+                    <span className="font-mono text-[10px] 2xl:text-[12px] uppercase text-[var(--color-red)] tracking-widest font-bold">Base Standard: ASTM/ISO</span>
+                  </div>
+                </div>
               </div>
 
               {/* Text */}
-              <div className="flex flex-col items-center lg:items-start flex-shrink min-h-0">
-                <div className="flex items-center gap-3 mb-2 sm:mb-4">
-                  <span className="font-mono text-[10px] sm:text-[12px] text-[var(--color-red)] tracking-[0.3em]">0{idx + 1}</span>
-                  <div className="w-5 h-px bg-[var(--color-red)] opacity-30" />
-                  <span className="font-mono text-[9px] sm:text-[11px] text-[var(--color-silver)] uppercase tracking-[0.2em]">{prod.type}</span>
+              <div className="flex flex-col items-center lg:items-start flex-shrink min-h-0 w-full px-2 sm:px-0">
+                <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                  <span className="font-mono text-[11px] sm:text-[14px] text-[var(--color-red)] tracking-[0.4em] font-bold">0{idx + 1}</span>
+                  <div className="w-6 sm:w-10 h-[2px] bg-[var(--color-red-muted)]" />
+                  <span className="font-mono text-[10px] sm:text-[12px] text-[var(--color-silver)] uppercase tracking-[0.3em] font-medium opacity-60">{prod.type}</span>
                 </div>
 
-                <h2 className="font-display font-light leading-[0.95] tracking-tight mb-2 sm:mb-4 text-[var(--color-white)] text-[32px] sm:text-[48px] md:text-[60px] lg:text-[60px] xl:text-[76px] 2xl:text-[96px]">
+                <h2 className="font-display font-bold leading-[0.9] tracking-tighter mb-6 lg:mb-8 text-[var(--color-white)] text-[34px] sm:text-[52px] md:text-[72px] lg:text-[80px] 2xl:text-[112px] 3xl:text-[140px] uppercase italic">
                   {prod.name}
                 </h2>
 
-                <p className="font-sans font-light text-[var(--color-silver)] leading-[1.6] mb-3 sm:mb-6 text-[12px] sm:text-[15px] md:text-[16px] xl:text-[18px] 2xl:text-[22px] max-w-[500px]">
+                <p className="font-sans font-normal text-[var(--color-silver)] leading-[1.6] sm:leading-[1.7] mb-8 sm:mb-10 text-[14px] sm:text-[17px] lg:text-[18px] 2xl:text-[22px] 3xl:text-[28px] max-w-[500px] lg:max-w-[600px] 3xl:max-w-[900px] opacity-80 italic border-l-2 border-[var(--color-red-muted)] pl-6 text-left">
                   {prod.desc}
                 </p>
 
-                <div className="flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-2 mb-4 sm:mb-8 max-w-[600px]">
+                {/* Technical Specs Overlay Style */}
+                <div className="flex flex-wrap justify-start gap-x-6 gap-y-3 mb-10 max-w-[640px] 3xl:max-w-none">
                   {prod.links.map(link => (
-                    <div key={link} className="flex items-center gap-2 group cursor-pointer hover:translate-x-1 transition-transform">
-                      <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-[var(--color-red)] rounded-full shrink-0" />
-                      <span className="font-sans text-[10px] sm:text-[12px] uppercase tracking-[0.12em] text-[var(--color-silver)] group-hover:text-white transition-colors">{link}</span>
+                    <div key={link} className="flex items-center gap-2 group cursor-pointer">
+                      <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-[var(--color-red)] group-hover:scale-150 transition-transform duration-300" />
+                      <span className="font-mono text-[10px] sm:text-[12px] 3xl:text-[16px] uppercase tracking-[0.2em] text-[var(--color-white)] opacity-60 group-hover:opacity-100 group-hover:text-[var(--color-red)] transition-all font-bold italic">{link}</span>
                     </div>
                   ))}
                 </div>
 
-                <button className="w-fit group flex items-center text-white transition-colors duration-300" data-cursor="link">
-                  <span className="font-sans font-normal uppercase text-[10px] sm:text-[12px] tracking-[0.2em] mr-3">Explore Collection</span>
-                  <div className="w-8 sm:w-12 h-px bg-[var(--color-red)] group-hover:w-16 sm:group-hover:w-24 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                <button className="w-fit group flex items-center text-white transition-all duration-500" data-cursor="link">
+                  <span className="font-sans font-bold uppercase text-[11px] sm:text-[12px] 2xl:text-[14px] tracking-[0.3em] mr-6 group-hover:text-[var(--color-red)] transition-colors">Technical Specification</span>
+                  <div className="relative flex items-center">
+                    <div className="w-10 sm:w-14 h-[2px] bg-[var(--color-red)] group-hover:w-24 2xl:group-hover:w-32 transition-all duration-700 ease-[luxurious]" />
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 -ml-1 text-[var(--color-red)] transition-transform group-hover:translate-x-4 duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </div>
                 </button>
               </div>
             </div>

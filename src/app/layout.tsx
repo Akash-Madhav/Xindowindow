@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans, DM_Mono } from "next/font/google";
+import { Outfit, Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -8,24 +8,24 @@ import CustomCursor from "@/components/CustomCursor";
 import SmoothScroller from "@/components/SmoothScroller";
 import Footer from "@/components/Footer";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  display: "swap",
-});
-
-const dmMono = DM_Mono({
-  variable: "--font-dm-mono",
-  subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable} antialiased bg-[var(--color-black)] text-[var(--color-white)]`}
+        className={`${outfit.variable} ${inter.variable} ${spaceMono.variable} antialiased bg-[var(--color-black)] text-[var(--color-white)]`}
       >
         <div className="fixed inset-0 pointer-events-none z-[9998] mix-blend-overlay opacity-5 md:opacity-[0.04]">
           <svg className="w-full h-full">

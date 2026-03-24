@@ -7,9 +7,9 @@ export default function ProductsPage() {
   return (
     <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
       <PageHero 
-        title="The Collections" 
-        subtitle="Uncompromising precision in every frame. Explore our ranges from minimalist sliding systems to grand architectural focal points."
-        bgText="SYSTEMS"
+        title="Systems Portfolio" 
+        subtitle="Uncompromising engineering precision in every profile. Explore our ranges from high-performance sliding systems to grand architectural focal points."
+        bgText="ENGINEERING"
       />
       
       <Products 

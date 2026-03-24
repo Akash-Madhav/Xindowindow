@@ -15,8 +15,6 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const lineRef = useRef<HTMLDivElement>(null)
 
-
-
   useGSAP(() => {
     const tl = gsap.timeline({ delay: 0.5 })
     
@@ -37,57 +35,40 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
   })
 
   return (
-    <section 
-      data-section-id="01"
-      className="relative w-full h-[100svh] bg-[var(--color-black)] flex items-center justify-center overflow-hidden text-center"
-    >
-      {/* Background Cinematic Text */}
-      {bgText && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
-          <span className="font-display text-[18vw] sm:text-[16vw] md:text-[12vw] 2xl:text-[10vw] uppercase tracking-[0.2em] text-white whitespace-nowrap">
-            {bgText}
-          </span>
-        </div>
-      )}
-
-      {/* Cinematic Gradient Overlays */}
-      <div className="absolute inset-x-0 bottom-0 h-1/2 z-10 pointer-events-none bg-gradient-to-t from-[var(--color-black)] to-transparent" />
-      <div className="absolute inset-x-0 top-0 h-1/3 z-10 pointer-events-none bg-gradient-to-b from-[var(--color-black)] to-transparent" />
-
-      <div className="relative z-20 w-full max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-5 sm:px-8 md:px-16 flex flex-col items-center">
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8"
-        >
-          <div className="px-4 py-2 rounded-full border border-[rgba(200,16,46,0.2)] bg-[rgba(255,255,255,0.03)] backdrop-blur-[12px]">
-            <span className="font-mono text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-[var(--color-red)]">
-              Xindo / {title}
-            </span>
-          </div>
-        </motion.div>
-        
+    <section className="relative w-full h-[60vh] sm:h-[70vh] flex items-center justify-center overflow-hidden bg-[var(--color-black-mid)] industrial-texture border-b border-[var(--color-black-light)]">
+      {/* Background Watermark - Technical Look */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-[0.03]">
         <h1 
-          ref={titleRef}
-          className="font-display font-light text-[44px] sm:text-[64px] md:text-[110px] 2xl:text-[140px] text-white tracking-tight leading-[1.05] flex flex-col items-center"
+          className="font-display font-bold text-[22vw] lg:text-[16vw] text-transparent tracking-tighter uppercase whitespace-nowrap italic"
+          style={{ WebkitTextStroke: '1px var(--color-white)' }}
         >
-          {title}
+          {bgText || title}
         </h1>
-        
-        <div 
-          ref={lineRef}
-          className="h-px w-24 md:w-32 bg-[var(--color-red)] my-10 origin-center"
-        />
-        
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
+      </div>
+
+      <div className="relative z-10 text-center px-6 max-w-[1000px] 2xl:max-w-[1400px] 3xl:max-w-[1800px]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="max-w-[600px] 2xl:max-w-[780px] font-sans font-light text-[14px] sm:text-[16px] md:text-[19px] 2xl:text-[22px] text-[var(--color-silver)] leading-relaxed"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-center"
         >
-          {subtitle}
-        </motion.p>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-10 sm:w-12 h-[2px] bg-[var(--color-red)]" />
+            <span className="font-mono text-[9px] sm:text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-bold opacity-60">System Registry</span>
+            <div className="w-10 sm:w-12 h-[2px] bg-[var(--color-red)]" />
+          </div>
+
+          <h1 ref={titleRef} className="font-display font-bold text-[36px] sm:text-[52px] md:text-[72px] 2xl:text-[96px] 3xl:text-[120px] leading-[0.95] text-white tracking-tighter uppercase italic mb-8">
+            {title}
+          </h1>
+          
+          <div ref={lineRef} className="w-12 sm:w-16 h-[3px] bg-[var(--color-red)] mb-8 origin-center" />
+
+          <p className="font-sans font-normal text-[14px] sm:text-[17px] md:text-[19px] 2xl:text-[22px] 3xl:text-[28px] text-[var(--color-silver)] max-w-[500px] sm:max-w-[700px] 2xl:max-w-none opacity-80 leading-relaxed italic border-l-2 border-[var(--color-red-muted)] pl-6 sm:pl-8 mx-auto text-left">
+            {subtitle}
+          </p>
+        </motion.div>
       </div>
     </section>
   )

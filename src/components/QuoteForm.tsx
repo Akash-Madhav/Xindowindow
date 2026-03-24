@@ -100,31 +100,31 @@ export default function QuoteForm() {
 
             {/* Product Type (Select) */}
             <div className="relative group">
-              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Product Type</label>
+              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-2 tracking-[0.3em] font-bold opacity-60">System Category</label>
               <select 
                 {...register('productType')}
                 disabled={isSubmitting || isSuccess}
-                className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors appearance-none rounded-none"
+                className="w-full bg-transparent border-b border-[var(--color-black-light)] py-4 font-sans text-[15px] font-normal text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors appearance-none rounded-none cursor-pointer"
               >
-                <option value="" className="bg-[var(--color-black-light)] text-[var(--color-silver)]">Select an option</option>
-                <option value="sliding" className="bg-[var(--color-black-light)]">Sliding Windows & Doors</option>
-                <option value="casement" className="bg-[var(--color-black-light)]">Casement Windows & Doors</option>
-                <option value="special" className="bg-[var(--color-black-light)]">Special Architectural Systems</option>
-                <option value="accessories" className="bg-[var(--color-black-light)]">Accessories & Meshes</option>
+                <option value="" className="bg-[var(--color-black-mid)] text-[var(--color-silver)]">Select an option</option>
+                <option value="sliding" className="bg-[var(--color-black-mid)]">Sliding Windows & Doors</option>
+                <option value="casement" className="bg-[var(--color-black-mid)]">Casement Windows & Doors</option>
+                <option value="special" className="bg-[var(--color-black-mid)]">Special Architectural Systems</option>
+                <option value="accessories" className="bg-[var(--color-black-mid)]">Accessories & Meshes</option>
               </select>
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[var(--color-silver)] mt-2">▼</div>
-              {errors.productType && <span className="text-[var(--color-red-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.productType.message}</span>}
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[var(--color-silver)] mt-3">▼</div>
+              {errors.productType && <span className="text-[var(--color-red)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.productType.message}</span>}
             </div>
 
             {/* Message */}
             <div className="relative group">
-              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Message (Optional)</label>
+              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-2 tracking-[0.3em] font-bold opacity-60">Technical Requirements (Optional)</label>
               <textarea 
                 {...register('message')}
                 disabled={isSubmitting || isSuccess}
                 rows={3}
-                className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors resize-none"
-                placeholder="Tell us about your project..."
+                className="w-full bg-transparent border-b border-[var(--color-black-light)] py-4 font-sans text-[15px] font-normal text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors resize-none"
+                placeholder="Mention specific wind-load or acoustic needs..."
               />
             </div>
 
@@ -132,20 +132,20 @@ export default function QuoteForm() {
               type="submit"
               disabled={isSubmitting || isSuccess}
               data-cursor-button="true"
-              className={`relative w-full overflow-hidden mt-4 group flex items-center justify-center py-5 border ${isSuccess ? 'border-[#3A7A58] text-[#3A7A58]' : 'border-[var(--color-red)] text-[var(--color-red)]'} bg-transparent transition-all duration-300 md:hover:border-transparent md:hover:shadow-[0_0_24px_rgba(200,16,46,0.3)]`}
+              className={`relative w-full overflow-hidden mt-6 group flex items-center justify-center py-6 border ${isSuccess ? 'border-[#3A7A58] text-[#3A7A58]' : 'border-[var(--color-red)] text-[var(--color-white)] bg-[var(--color-red)]'} transition-all duration-500`}
             >
-              {!isSuccess && <div className="absolute inset-0 bg-[var(--color-red)] translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] z-0" />}
+              {!isSuccess && <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[luxurious] z-0" />}
               
-              <span className={`relative z-10 font-sans uppercase text-[12px] tracking-[0.18em] font-medium transition-colors ${isSuccess ? 'text-[#3A7A58]' : 'group-hover:text-[var(--color-white)]'}`}>
+              <span className={`relative z-10 font-mono uppercase text-[12px] tracking-[0.3em] font-bold transition-colors ${isSuccess ? 'text-[#3A7A58]' : 'group-hover:text-black'}`}>
                 {isSubmitting ? (
                   <span className="flex items-center gap-3">
-                    <span className="w-4 h-4 border-2 border-transparent border-t-[var(--color-red)] group-hover:border-t-white rounded-full animate-spin" />
-                    Processing
+                    <span className="w-4 h-4 border-2 border-transparent border-t-white group-hover:border-t-black rounded-full animate-spin" />
+                    Processing Request
                   </span>
                 ) : isSuccess ? (
-                  <span className="flex items-center gap-2">✓ We&apos;ll be in touch shortly.</span>
+                  <span className="flex items-center gap-2">✓ Technical request received.</span>
                 ) : (
-                  "Submit Request ->"
+                  "Request Quote "
                 )}
               </span>
             </button>
@@ -153,28 +153,28 @@ export default function QuoteForm() {
         </div>
 
         {/* Right Column: Contact Info */}
-        <div className="flex flex-col w-full h-full lg:pl-16 mt-8 md:mt-0 pt-16 md:pt-0 border-t md:border-t-0 border-[#2E2E33]">
+        <div className="flex flex-col w-full h-full lg:pl-20 mt-12 md:mt-0 pt-16 md:pt-0 border-t md:border-t-0 border-[var(--color-black-light)]">
           
-          <div className="font-mono text-[10px] uppercase text-[var(--color-silver)] tracking-[0.18em] mb-8">Contact Information</div>
+          <div className="font-mono text-[10px] uppercase text-[var(--color-silver)] tracking-[0.4em] mb-12 font-bold opacity-60">Corporate Command Center</div>
           
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-16">
             <div>
-              <div className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-widest mb-2">Address</div>
-              <p className="font-sans font-normal text-[16px] leading-[1.6] text-[var(--color-silver)] max-w-[280px]">
+              <div className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-[0.3em] mb-4 font-bold">Base of Operations</div>
+              <p className="font-sans font-normal text-[18px] leading-relaxed text-[var(--color-silver)] max-w-[320px] italic">
                 No. 115/62, Canal Bank Road,<br/>
                 CIT Nagar, Chennai — 600035, India
               </p>
             </div>
 
             <div>
-              <div className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-widest mb-2">Phone</div>
+              <div className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-[0.3em] mb-4 font-bold">Direct Line</div>
               <a 
                 href="tel:+919444045544" 
                 data-cursor="link"
-                className="font-display font-light text-[28px] md:text-[36px] text-[var(--color-white)] inline-block group"
+                className="font-display font-bold text-[32px] md:text-[44px] text-[var(--color-white)] inline-block group italic tracking-tighter"
               >
                  +91 94440 45544
-                 <span className="block mt-1 w-0 h-px bg-[var(--color-red)] group-hover:w-full transition-all duration-300" />
+                 <span className="block mt-2 w-0 h-[2px] bg-[var(--color-red)] group-hover:w-full transition-all duration-500" />
               </a>
             </div>
 
@@ -182,10 +182,10 @@ export default function QuoteForm() {
                <a 
                 href="https://wa.me/919444045544" 
                 target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 py-3 px-6 bg-[rgba(37,211,102,0.08)] border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors duration-300 font-sans text-[13px] uppercase tracking-widest rounded-none"
+                className="inline-flex items-center gap-4 py-4 px-8 bg-[rgba(37,211,102,0.1)] border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-500 font-mono text-[12px] uppercase tracking-[0.3em] font-bold"
                >
                  <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.68 4.61 1.86 6.496L4 29l7.697-1.835A12.93 12.93 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.98 9.98 0 01-5.12-1.404l-.37-.222-3.8.906.938-3.7-.24-.38A9.96 9.96 0 016 15c0-5.523 4.477-10 10-10zm-3.285 5.5c-.19 0-.498.072-.76.358-.26.287-1 .977-1 2.383 0 1.406 1.023 2.764 1.166 2.955.143.19 2.008 3.073 4.877 4.196 2.414.95 2.873.762 3.39.713.52-.048 1.666-.68 1.904-1.336.237-.656.237-1.217.166-1.336-.07-.12-.262-.19-.548-.334-.286-.143-1.666-.822-1.926-.916-.26-.094-.45-.142-.64.143-.19.284-.73.915-.896 1.105-.166.19-.333.214-.618.07-.286-.143-1.205-.443-2.295-1.414-.85-.754-1.42-1.686-1.59-1.97-.165-.285-.017-.44.127-.583.13-.13.286-.333.428-.5.143-.166.19-.285.285-.476.096-.19.048-.357-.024-.5-.07-.143-.63-1.527-.868-2.094-.225-.548-.463-.48-.63-.49-.165-.01-.356-.013-.546-.013z"/></svg>
-                 Chat on WhatsApp
+                 WhatsApp Concierge
                </a>
             </div>
           </div>

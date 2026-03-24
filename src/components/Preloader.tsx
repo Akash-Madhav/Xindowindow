@@ -34,35 +34,35 @@ export default function Preloader() {
             aria-label="Loading"
         >
           <svg
-            width="80"
-            height="80"
+            width="100"
+            height="100"
             viewBox="0 0 120 120"
             className="text-[var(--color-red)]"
             aria-hidden="true"
           >
             <motion.path
-              d="M20,20 L100,100 M100,20 L20,100"
+              d="M30,30 L90,90 M90,30 L30,90"
               stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
+              strokeWidth="6"
+              strokeLinecap="square"
               fill="transparent"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{
-                duration: 0.8, 
+                duration: 1.2, 
                 ease: [0.16, 1, 0.3, 1] 
               }}
             />
-            {/* Box around the X */}
+            {/* Box around the X - more industrial */}
             <motion.rect
-              x="10" y="10" width="100" height="100"
+              x="15" y="15" width="90" height="90"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="3"
               fill="transparent"
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.5 }}
+              animate={{ pathLength: 1, opacity: 0.3 }}
               transition={{
-                duration: 0.8,
+                duration: 1.2,
                 ease: [0.16, 1, 0.3, 1]
               }}
             />

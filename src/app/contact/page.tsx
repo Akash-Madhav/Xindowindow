@@ -17,13 +17,13 @@ export default function ContactPage() {
       </div>
 
       <About 
-        id="02"
+        id="corporate-hq"
         tag="Regional Presence"
-        title="Visit our Corporate Office & Factory"
-        description1="Located in the industrial heart of Chennai, our corporate office and primary manufacturing facility are open for architectural consultations and technical walkthroughs."
-        description2="Tel: +91 94440 45544 | Email: info@xindowindow.com | State Highway 113, Tamil Nadu"
+        title="Corporate Office & Advanced Manufacturing"
+        description1="Located in the industrial heart of Chennai, our corporate headquarters and primary manufacturing facility are open for architectural consultations and technical walkthroughs."
+        description2="Direct Tech Support: +91 94440 45544 | info@xindowindow.com | State Highway 113, Tamil Nadu"
         badgeNumber="Chennai"
-        badgeText="Headquarters"
+        badgeText="HQ Command"
         reverse={false}
         image="/images/about-office.png"
       />

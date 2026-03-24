@@ -64,17 +64,17 @@ export default function Testimonials() {
   return (
     <section 
       id="testimonials"
-      className="relative bg-[var(--color-black)] py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-12 w-full overflow-hidden"
+      className="relative bg-[var(--color-black)] py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full overflow-hidden border-t border-[var(--color-black-light)] industrial-texture"
       data-section-id="06"
     >
       
       {/* Ambient Quote Mark */}
       <div 
-        className="absolute top-0 left-[-40px] md:left-[5%] text-[var(--color-white)] opacity-[0.03] select-none pointer-events-none"
+        className="absolute top-10 left-[5%] text-[var(--color-white)] opacity-[0.02] select-none pointer-events-none"
       >
         <span 
-          className="font-display font-light text-[180px] sm:text-[250px] md:text-[400px] leading-none block"
-          style={{ animation: 'ambientRotate 8s ease-in-out infinite alternate' }}
+          className="font-display font-bold text-[200px] sm:text-[300px] md:text-[500px] leading-none block italic"
+          style={{ animation: 'ambientRotate 10s ease-in-out infinite alternate' }}
         >
           &quot;
         </span>
@@ -87,15 +87,22 @@ export default function Testimonials() {
         }
       `}} />
 
-      <div className="max-w-[900px] 2xl:max-w-[1200px] w-full mx-auto relative z-10 flex flex-col items-center">
+      <div className="max-w-[1000px] 2xl:max-w-[1400px] w-full mx-auto relative z-10 flex flex-col items-center">
+        
+        <div className="flex items-center gap-4 mb-20">
+          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+          <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">Client Verdict</span>
+          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+        </div>
+
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} 
-            className="flex flex-col items-center text-center w-full min-h-[200px] sm:min-h-[280px] md:min-h-[300px] justify-center"
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} 
+            className="flex flex-col items-center text-center w-full min-h-[240px] sm:min-h-[300px] md:min-h-[340px] justify-center"
             // Swipe gesture handling
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -105,15 +112,15 @@ export default function Testimonials() {
             }}
           >
             {/* Word by word quote */}
-            <h3 className="font-display text-[22px] sm:text-[30px] md:text-[42px] 2xl:text-[52px] font-normal leading-[1.3] text-[var(--color-white)] tracking-[-0.01em] mb-10 sm:mb-12 flex flex-wrap justify-center gap-x-2 md:gap-x-3">
+            <h3 className="font-display text-[26px] sm:text-[36px] md:text-[48px] 2xl:text-[60px] font-bold leading-[1.1] text-[var(--color-white)] tracking-tight mb-12 flex flex-wrap justify-center gap-x-3 md:gap-x-4 uppercase italic">
               {splitWords(TESTIMONIALS[current].text).map((word, i) => (
                 <motion.span
                   key={i}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ 
-                    duration: 0.4, 
-                    delay: 0.1 + (i * 0.04), // 40ms stagger
+                    duration: 0.5, 
+                    delay: 0.1 + (i * 0.05), // 50ms stagger
                     ease: [0.16, 1, 0.3, 1] 
                   }}
                   className="inline-block"
@@ -127,17 +134,17 @@ export default function Testimonials() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 + (splitWords(TESTIMONIALS[current].text).length * 0.04) + 0.4 }}
-              className="flex flex-col items-center group relative overflow-hidden"
+              transition={{ delay: 0.2 + (splitWords(TESTIMONIALS[current].text).length * 0.05) + 0.5 }}
+              className="flex flex-col items-center group relative"
             >
-              <span className="font-mono text-[14px] uppercase tracking-widest text-[var(--color-red)]">
+              <span className="font-mono text-[14px] md:text-[16px] uppercase tracking-[0.3em] text-[var(--color-red)] font-bold italic">
                 {TESTIMONIALS[current].author}
               </span>
               <motion.div 
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 + (splitWords(TESTIMONIALS[current].text).length * 0.04) + 0.6 }}
-                className="h-[1px] w-full bg-[var(--color-red)] mt-3 opacity-60 origin-left" 
+                transition={{ duration: 0.5, delay: 0.2 + (splitWords(TESTIMONIALS[current].text).length * 0.05) + 0.8 }}
+                className="h-[2px] w-12 bg-[var(--color-red)] mt-5 opacity-40 origin-center" 
               />
             </motion.div>
 

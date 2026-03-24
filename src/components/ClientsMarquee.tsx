@@ -16,17 +16,17 @@ export default function ClientsMarquee() {
   return (
     <section className="bg-[var(--color-black)] py-[80px] w-full relative overflow-hidden flex flex-col items-center" data-section-id="07">
       
-      <div className="flex items-center gap-4 mb-16">
-        <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
-        <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.18em]">Our Clients</span>
-        <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
+      <div className="flex items-center gap-4 mb-20">
+        <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+        <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">Strategic Partners</span>
+        <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
       </div>
 
       <div 
-        className="relative w-full overflow-hidden flex"
+        className="relative w-full overflow-hidden flex bg-[var(--color-black-mid)] py-12 border-y border-[var(--color-black-light)] industrial-texture"
         style={{
-          maskImage: 'linear-gradient(to right, transparent, black 120px, black calc(100% - 120px), transparent)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent, black 120px, black calc(100% - 120px), transparent)'
+          maskImage: 'linear-gradient(to right, transparent, black 150px, black calc(100% - 150px), transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 150px, black calc(100% - 150px), transparent)'
         }}
       >
         {/* Marquee Track 1 */}
@@ -34,7 +34,7 @@ export default function ClientsMarquee() {
           {CLIENTS.map((client, i) => (
             <div 
               key={`c1-${i}`}
-              className="px-6 py-3 border border-transparent hover:border-[rgba(200,16,46,0.2)] font-display text-[16px] md:text-[20px] font-normal text-[var(--color-silver)] opacity-50 hover:opacity-100 hover:text-[var(--color-white)] transition-all duration-300 mx-4 whitespace-nowrap cursor-default"
+              className="px-8 py-4 border border-transparent hover:border-[var(--color-red-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] 3xl:text-[44px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
             >
               {client}
             </div>
@@ -45,7 +45,7 @@ export default function ClientsMarquee() {
           {CLIENTS.map((client, i) => (
             <div 
               key={`c2-${i}`}
-              className="px-6 py-3 border border-transparent hover:border-[rgba(200,16,46,0.2)] font-display text-[16px] md:text-[20px] font-normal text-[var(--color-silver)] opacity-50 hover:opacity-100 hover:text-[var(--color-white)] transition-all duration-300 mx-4 whitespace-nowrap cursor-default"
+              className="px-8 py-4 border border-transparent hover:border-[var(--color-red-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] 3xl:text-[44px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
             >
               {client}
             </div>

@@ -97,7 +97,7 @@ export default function Gallery({
     <section 
       id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
-      className={`relative bg-[var(--color-black)] py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-12 min-h-screen flex items-center overflow-hidden z-10`}
+      className={`relative bg-[var(--color-black-mid)] py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 min-h-screen flex items-center overflow-hidden z-10 industrial-texture border-y border-[var(--color-black-light)]`}
       data-section-id={id}
     >
       {/* Background Cinematic Text */}
@@ -106,8 +106,8 @@ export default function Gallery({
         className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
       >
         <span 
-          className="font-display font-light text-[15vw] md:text-[12vw] leading-none text-transparent tracking-[0.2em] opacity-[0.03]"
-          style={{ WebkitTextStroke: '1.5px var(--color-white)' }}
+          className="font-display font-bold text-[18vw] md:text-[14vw] leading-none text-transparent tracking-tight opacity-[0.02] uppercase italic"
+          style={{ WebkitTextStroke: '1px var(--color-white)' }}
         >
           {title}
         </span>
@@ -115,40 +115,41 @@ export default function Gallery({
 
       <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto relative z-10 w-full flex flex-col items-center">
         
-        <div className="flex items-center gap-4 mb-16 md:mb-24">
-          <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
-          <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.25em]">{tag}</span>
-          <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
+        <div className="flex items-center gap-4 mb-20">
+          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+          <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">{tag}</span>
+          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
         </div>
         
         {/* Masonry Layout Grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-[4px] w-full">
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 w-full">
           {projects.map((project) => (
             <motion.div
               key={project.id}
               layoutId={`project-img-${project.id}`}
-              className={`gallery-item group relative overflow-hidden mb-[4px] bg-[#0A0A0B] cursor-pointer ${project.height}`}
+              className={`gallery-item group relative overflow-hidden mb-6 bg-[var(--color-black-soft)] cursor-pointer ${project.height} border border-[var(--color-black-light)] hover:border-[var(--color-red-muted)] transition-colors duration-500`}
               onClick={() => setSelectedId(project.id)}
             >
               {/* Image filter treatments */}
-              <div className="absolute inset-0 z-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] bg-[rgba(255,255,255,0.02)]">
+              <div className="absolute inset-0 z-0 scale-100 group-hover:scale-110 transition-all duration-[2s] ease-[luxurious]">
                 {project.image && (
                   <Image 
                     src={project.image} 
                     alt={project.name}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 contrast-[1.1] grayscale-[0.2] group-hover:grayscale-0"
                   />
                 )}
               </div>
               
-              {/* Red overlay hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.8)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
+              {/* Overlay hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-700 z-10 pointer-events-none" />
               
-              <div className="absolute bottom-5 sm:bottom-8 left-5 sm:left-8 z-20 translate-y-[20px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                <span className="font-display text-[20px] md:text-[24px] text-white tracking-wide block mb-1">{project.name}</span>
-                <span className="font-sans text-[10px] text-[var(--color-silver)] uppercase tracking-[0.25em]">Exclusive Collection</span>
+              <div className="absolute bottom-8 left-8 right-8 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[luxurious]">
+                <div className="w-8 h-[2px] bg-[var(--color-red)] mb-4" />
+                <span className="font-display font-bold text-[24px] md:text-[28px] text-white tracking-tight block mb-2 uppercase italic">{project.name}</span>
+                <span className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-[0.2em] font-bold">Showcase Profile</span>
               </div>
             </motion.div>
           ))}

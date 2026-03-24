@@ -14,13 +14,13 @@ export default function AboutPage() {
       />
       
       <About 
-        id="02"
-        tag="The Vision"
-        title="We don't manufacture windows — We craft thresholds."
-        description1="Guided by German precision and fueled by Indian architectural ambition, Xindo represents a paradigm shift in fenestration. Every profile we produce is a testament to our commitment to structural integrity and aesthetic purity."
-        description2="Our strategic Indo-German partnership ensures every profile meets stringent global standards for thermal insulation, security, and durability."
-        badgeNumber="Indo-German"
-        badgeText="Core Partnership"
+        id="vision-manifesto"
+        tag="The Engineering Vision"
+        title="We don't manufacture windows — We engineer thresholds."
+        description1="Guided by German precision and fueled by Indian architectural ambition, Xindo represents a paradigm shift in fenestration. Every profile we produce is a technical asset, designed for structural supremacy and aesthetic purity."
+        description2="Our strategic Indo-German technical alliance ensures every profile meets the most stringent global standards for thermal insulation, security, and extreme climate durability."
+        badgeNumber="ISO-9001"
+        badgeText="Certified Plant"
         reverse={true}
         image="/images/about-vision.png"
       />

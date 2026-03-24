@@ -4,6 +4,7 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import ProductsClient from '@/components/ProductsClient'
 import Benefits from '@/components/Benefits'
+import TrustSection from '@/components/TrustSection'
 import Testimonials from '@/components/Testimonials'
 
 
@@ -32,6 +33,8 @@ export default function Home() {
         tag="The Premium Choice"
         title="Nine Reasons Architects Choose Xindo"
       />
+
+      <TrustSection />
 
       <Testimonials />
     </main>

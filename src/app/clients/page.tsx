@@ -14,13 +14,13 @@ export default function ClientsPage() {
       />
       
       <About 
-        id="02"
-        tag="Mutual Trust"
-        title="We collaborate with India&apos;s leading visionaries."
-        description1="From mega-townships to boutique coastal retreats, Xindo is the preferred fenestration partner for developers who refuse to compromise on structural integrity or aesthetic purity."
-        description2="We don't just supply windows; we build long-term infrastructure partnerships that span across decades and developments."
-        badgeNumber="Premium"
-        badgeText="Developer Choice"
+        id="partnership-vision"
+        tag="Strategic Alliances"
+        title="We engineer solutions with India's leading visionaries."
+        description1="From complex commercial landmarks to exclusive high-end residences, Xindo Window is the definitive fenestration partner for developers who demand structural perfection."
+        description2="We offer an elite Indo-German technical standard that ensures every architectural vision is realized with absolute precision and climate resilience."
+        badgeNumber="Top-Tier"
+        badgeText="Industrial Partner"
         reverse={true}
         image="/images/about-clients.png"
       />

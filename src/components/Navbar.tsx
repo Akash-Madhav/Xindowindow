@@ -29,6 +29,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [mobileMenuOpen])
+
   return (
     <>
       <header
@@ -48,12 +60,12 @@ export default function Navbar() {
           
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" aria-label="Xindo Window Home" data-cursor="link">
-            <div className="w-[32px] h-[32px] border border-[var(--color-red)] flex items-center justify-center relative overflow-hidden transition-transform duration-500 group-hover:rotate-90">
-              <span className="font-display text-[16px] text-[var(--color-white)]">X</span>
+            <div className="w-[36px] h-[36px] border-2 border-[var(--color-red)] flex items-center justify-center relative overflow-hidden transition-all duration-500 group-hover:bg-[var(--color-red)]">
+              <span className="font-display font-bold text-[18px] text-[var(--color-white)] italic">X</span>
             </div>
-            <div className="flex flex-col">
-              <span className="font-display font-medium text-[15px] md:text-[17px] text-[var(--color-white)] leading-none mb-0.5">Xindo Window</span>
-              <span className="font-sans font-light text-[9px] text-[var(--color-silver)] uppercase tracking-widest leading-none">Pvt. Ltd.</span>
+            <div className="flex flex-col text-left">
+              <span className="font-display font-bold text-[16px] md:text-[18px] text-[var(--color-white)] leading-none mb-0.5 uppercase italic tracking-tight">Xindo Window</span>
+              <span className="font-mono text-[9px] text-[var(--color-silver)] uppercase tracking-[0.3em] leading-none font-bold opacity-60">Architectural Systems</span>
             </div>
           </Link>
 
@@ -69,7 +81,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     data-cursor="link"
-                    className={`font-sans font-normal uppercase text-[10px] tracking-[0.18em] transition-colors duration-300 group py-4 
+                    className={`nav-link py-4 
                       ${isActive ? 'text-[var(--color-white)]' : 'text-[var(--color-silver)] hover:text-[var(--color-white)]'}
                     `}
                   >
@@ -93,7 +105,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <Link 
               href="/contact"
-              className="hidden md:block px-6 py-2.5 rounded-full bg-[var(--color-red)] text-[10px] font-sans uppercase tracking-[0.15em] text-[var(--color-white)] transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_rgba(200,16,46,0.3)]"
+              className="hidden md:block px-6 py-2.5 rounded-full bg-[var(--color-red)] text-[10px] font-sans uppercase tracking-[0.15em] text-[var(--color-white)] transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_rgba(200,16,46,0.3)] font-bold"
               data-cursor-button="true"
             >
               Request Quote
@@ -131,54 +143,56 @@ export default function Navbar() {
             animate={{ opacity: 1, backdropFilter: 'blur(24px)' }}
             exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-[499] bg-[rgba(10,10,11,0.98)] md:hidden flex flex-col justify-between px-6 pt-28 pb-10"
+            className="fixed inset-0 z-[499] bg-[rgba(10,10,11,0.98)] md:hidden overflow-y-auto"
           >
             {/* Background Watermark */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none select-none overflow-hidden">
+            <div className="fixed inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none select-none overflow-hidden -z-10">
                <span className="font-display text-[40vw] text-white rotate-90 leading-none">XINDO</span>
             </div>
 
-            <nav className="flex flex-col gap-0 w-full relative z-10 items-center text-center">
-              {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 + (i * 0.08), ease: [0.16, 1, 0.3, 1] }}
-                  key={link.name}
-                  className="w-full"
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`font-display font-light text-[28px] sm:text-[34px] tracking-tight block uppercase transition-colors py-1
-                      ${pathname === link.href ? 'text-[var(--color-red)]' : 'text-white hover:text-[var(--color-red)]'}
-                    `}
+            <div className="min-h-full flex flex-col px-6 pt-20 pb-10">
+              <nav className="flex flex-col gap-0 w-full relative z-10 items-center text-center">
+                {NAV_LINKS.map((link, i) => (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 + (i * 0.06), ease: [0.16, 1, 0.3, 1] }}
+                    key={link.name}
+                    className="w-full"
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="flex flex-col gap-3 items-center w-full relative z-10 border-t border-[rgba(255,255,255,0.05)] pt-6"
-            >
-              <div className="flex flex-col items-center gap-2">
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-silver)] mb-2">Connect with us</span>
-                <a href="https://wa.me/919444045544" className="font-sans text-[16px] text-white underline underline-offset-8 decoration-[var(--color-red)]/30 hover:decoration-[var(--color-red)] transition-all">WhatsApp Concierge</a>
-              </div>
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`font-display font-bold text-[24px] sm:text-[32px] tracking-tighter block uppercase transition-all py-1.5 italic
+                        ${pathname === link.href ? 'text-[var(--color-red)] scale-110' : 'text-white hover:text-[var(--color-red)]'}
+                      `}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
               
-              <Link 
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mt-2 px-8 py-3 bg-[var(--color-red)] text-[11px] font-sans uppercase tracking-[0.2em] text-white rounded-full shadow-[0_8px_24px_rgba(200,16,46,0.3)]"
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className="flex flex-col gap-5 items-center w-full relative z-10 mt-6 border-t border-[rgba(255,255,255,0.05)] pt-6 pb-2"
               >
-                Request Quote
-              </Link>
-            </motion.div>
+                <div className="flex flex-col items-center gap-1.5">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-[var(--color-silver)] mb-0.5 opacity-50">Connect with us</span>
+                  <a href="https://wa.me/919444045544" className="font-sans text-[15px] sm:text-[16px] text-white underline underline-offset-8 decoration-[var(--color-red)]/30 hover:decoration-[var(--color-red)] transition-all font-bold">WhatsApp Concierge</a>
+                </div>
+                
+                <Link 
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="mt-2 px-8 py-3.5 bg-[var(--color-red)] text-[10px] sm:text-[11px] font-sans uppercase tracking-[0.2em] text-white rounded-full shadow-[0_8px_24px_rgba(200,16,46,0.3)] font-bold active:scale-95 transition-transform"
+                >
+                  Request Quote
+                </Link>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

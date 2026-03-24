@@ -56,37 +56,37 @@ export default function Process({
     <section 
       id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
-      className={`relative bg-[var(--color-black)] py-16 sm:py-24 md:py-32 px-5 sm:px-8 md:px-12 w-full min-h-screen flex items-center overflow-hidden z-10`}
+      className={`relative bg-[var(--color-black-mid)] py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full min-h-screen flex items-center overflow-hidden z-10 industrial-texture border-y border-[var(--color-black-light)]`}
       data-section-id={id}
     >
       <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto flex flex-col items-center w-full">
         
         <div className="flex items-center gap-4 mb-24 md:mb-40">
-          <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
-          <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.25em]">{tag}</span>
-          <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
+          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+          <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">{tag}</span>
+          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
         </div>
 
         {/* Desktop Process Timeline */}
-        <div className="hidden md:grid grid-cols-4 gap-8 w-full relative">
+        <div className="hidden md:grid grid-cols-4 gap-12 w-full relative">
           {/* Connecting Line */}
-          <div className="absolute top-[8px] left-[10%] w-[80%] h-[1px] bg-[rgba(255,255,255,0.05)] z-0" />
+          <div className="absolute top-[8px] left-[10%] w-[80%] h-[1px] bg-[var(--color-black-light)] z-0" />
           <div ref={lineRef} className="absolute top-[8px] left-[10%] w-[80%] h-[1px] bg-[var(--color-red)] z-0" />
 
           {steps.map((step, idx) => (
             <div key={idx} className="group relative z-10 flex flex-col px-4 cursor-default items-center">
               {/* Step Dot */}
-              <div className="w-4 h-4 rounded-full border border-[var(--color-red)] bg-[var(--color-black)] mb-12 group-hover:bg-[var(--color-red)] group-hover:shadow-[0_0_20px_rgba(200,16,46,0.6)] transition-all duration-500 ease-out" />
+              <div className="w-5 h-5 rounded-full border-2 border-[var(--color-red)] bg-[var(--color-black)] mb-12 group-hover:bg-[var(--color-red)] group-hover:shadow-[0_0_24px_rgba(200,16,46,0.8)] transition-all duration-700 ease-[luxurious]" />
               
-              <div className="font-display text-[72px] font-extralight text-[var(--color-red)] opacity-[0.08] group-hover:opacity-20 transition-opacity mb-4 leading-none text-center">
+              <div className="font-display font-bold text-[84px] text-[var(--color-red)] opacity-[0.06] group-hover:opacity-15 transition-opacity mb-2 leading-none text-center italic tracking-tighter">
                 {step.num}
               </div>
               
-              <h3 className="font-display text-[22px] sm:text-[26px] md:text-[32px] 2xl:text-[38px] font-light text-[var(--color-white)] mb-4 text-center tracking-tight">
+              <h3 className="font-display font-bold text-[24px] sm:text-[28px] md:text-[32px] 2xl:text-[42px] text-white mb-6 text-center tracking-tight uppercase italic">
                 {step.title}
               </h3>
               
-              <p className="font-sans text-[13px] sm:text-[14px] md:text-[16px] font-light text-[var(--color-silver)] text-center px-4 leading-[1.65]">
+              <p className="font-sans text-[14px] sm:text-[15px] md:text-[17px] font-normal text-[var(--color-silver)] text-center px-4 leading-relaxed opacity-80">
                 {step.desc}
               </p>
             </div>
@@ -94,23 +94,23 @@ export default function Process({
         </div>
 
         {/* Mobile Process Timeline */}
-        <div className="md:hidden flex flex-col w-full relative pl-4">
-          <div className="absolute left-[15px] top-0 bottom-0 w-[1px] bg-[rgba(200,16,46,0.2)] z-0" />
+        <div className="md:hidden flex flex-col w-full relative pl-6">
+          <div className="absolute left-[15px] top-0 bottom-0 w-[1px] bg-[var(--color-black-light)] z-0" />
           
           {steps.map((step, idx) => (
-            <div key={idx} className="relative z-10 flex flex-row items-start mb-16 last:mb-0">
-              <div className="w-7 h-7 rounded-full border border-[var(--color-red)] bg-[#0A0A0B] flex items-center justify-center shrink-0 mt-1 shadow-[0_0_15px_rgba(200,16,46,0.2)]">
-                <div className="w-2 h-2 rounded-full bg-[var(--color-red)]" />
+            <div key={idx} className="relative z-10 flex flex-row items-start mb-20 last:mb-0">
+              <div className="w-8 h-8 rounded-full border-2 border-[var(--color-red)] bg-[var(--color-black-mid)] flex items-center justify-center shrink-0 mt-1 shadow-[0_0_20px_rgba(200,16,46,0.3)]">
+                <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-red)] animate-pulse" />
               </div>
               
               <div className="flex flex-col ml-8">
-                <div className="font-mono text-[42px] font-light text-[var(--color-red)] opacity-20 mb-2 leading-none">
+                <div className="font-display font-bold text-[56px] text-[var(--color-red)] opacity-15 mb-2 leading-none italic tracking-tighter">
                   {step.num}
                 </div>
-                <h3 className="font-display text-[28px] font-light text-[var(--color-white)] mb-3">
+                <h3 className="font-display font-bold text-[32px] text-white mb-4 uppercase italic">
                   {step.title}
                 </h3>
-                <p className="font-sans text-[16px] font-light text-[var(--color-silver)] leading-[1.7]">
+                <p className="font-sans text-[17px] font-normal text-[var(--color-silver)] leading-relaxed opacity-80">
                   {step.desc}
                 </p>
               </div>

@@ -13,13 +13,13 @@ export default function InfrastructurePage() {
       />
       
       <About 
-        id="02"
+        id="manufacturing-precision"
         tag="Strategic Capability"
         title="20,000 Sq.Ft. of Automated Precision"
         description1="Our Chennai facility employs fully automated CNC processing centers to ensure every miter, every cut, and every weld is accurate to 0.5mm. We don't believe in manual error; we believe in robotic perfection."
-        description2="From automatic PVC welding to CNC corner cleaning and EPDM gasket integration, our line is a masterclass in modern fenestration technology."
-        badgeNumber="Automated"
-        badgeText="Manufacturing Line"
+        description2="From automatic PVC welding to CNC corner cleaning and EPDM gasket integration, our production line is a technical masterclass in modern fenestration technology."
+        badgeNumber="Industry 4.0"
+        badgeText="Standard Facility"
         image="/images/about-factory.png"
       />
 
