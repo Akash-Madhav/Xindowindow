@@ -40,7 +40,7 @@ export default function Footer() {
 
           {/* Col 2: Navigation */}
           <div className="flex flex-col">
-            <h4 className="font-mono text-[11px] text-[var(--color-white)] uppercase tracking-[0.4em] mb-10 border-b-2 border-[var(--color-red-muted)] pb-4 font-bold">Infrastructure</h4>
+            <div className="font-mono text-[11px] text-[var(--color-white)] uppercase tracking-[0.4em] mb-10 border-b-2 border-[var(--color-red-muted)] pb-4 font-bold">Infrastructure</div>
             <ul className="flex flex-col gap-5">
               {[
                 { name: 'About Engineering', href: '/about' },
@@ -62,7 +62,7 @@ export default function Footer() {
 
           {/* Col 3: Systems */}
           <div className="flex flex-col">
-            <h4 className="font-mono text-[11px] text-[var(--color-white)] uppercase tracking-[0.4em] mb-10 border-b-2 border-[var(--color-red-muted)] pb-4 font-bold">Systems</h4>
+            <div className="font-mono text-[11px] text-[var(--color-white)] uppercase tracking-[0.4em] mb-10 border-b-2 border-[var(--color-red-muted)] pb-4 font-bold">Systems</div>
             <ul className="flex flex-col gap-5">
               {[
                 { name: 'Sliding Series', href: '/products#sliding' },
@@ -83,7 +83,7 @@ export default function Footer() {
 
           {/* Col 4: Operations */}
           <div className="flex flex-col">
-            <h4 className="font-mono text-[11px] text-[var(--color-white)] uppercase tracking-[0.4em] mb-10 border-b-2 border-[var(--color-red-muted)] pb-4 font-bold">Corporate</h4>
+            <div className="font-mono text-[11px] text-[var(--color-white)] uppercase tracking-[0.4em] mb-10 border-b-2 border-[var(--color-red-muted)] pb-4 font-bold">Corporate</div>
             <div className="flex flex-col gap-6">
               <a href="tel:+919444045544" className="font-mono text-[18px] text-[var(--color-white)] font-bold hover:text-[var(--color-red)] transition-colors duration-300 block">
                 +91 94440 45544
