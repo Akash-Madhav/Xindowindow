@@ -19,7 +19,7 @@ const CERTIFICATIONS = [
 
 export default function TrustSection() {
   return (
-    <section className="relative py-24 sm:py-32 bg-red-gradient border-t border-[var(--color-black-light)] industrial-texture">
+    <section className="relative py-24 sm:py-32 bg-red-gradient industrial-texture">
       <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-5 sm:px-8 md:px-16">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">

@@ -121,14 +121,15 @@ body {
 }
 
 .bg-red-gradient {
-  background: radial-gradient(circle at 50% 0%, rgba(var(--primary-rgb), 0.08) 0%, var(--color-black) 70%),
-              radial-gradient(circle at 50% 100%, rgba(var(--primary-rgb), 0.05) 0%, var(--color-black) 80%);
+  background: radial-gradient(circle at 50% -20%, rgba(var(--primary-rgb), 0.08) 0%, var(--color-black) 80%),
+              radial-gradient(circle at 50% 120%, rgba(var(--primary-rgb), 0.05) 0%, var(--color-black) 90%);
 }
 
 .bg-red-gradient-deep {
-  background: radial-gradient(circle at 50% 0%, rgba(var(--primary-rgb), 0.12) 0%, var(--color-black) 70%),
-              radial-gradient(circle at 50% 100%, rgba(var(--primary-rgb), 0.08) 0%, var(--color-black) 80%);
+  background: radial-gradient(circle at 50% -30%, rgba(var(--primary-rgb), 0.12) 0%, var(--color-black) 80%),
+              radial-gradient(circle at 50% 130%, rgba(var(--primary-rgb), 0.08) 0%, var(--color-black) 90%);
 }
+
 
 /* Typography Scales */
 .display-xl {

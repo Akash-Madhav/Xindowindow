@@ -97,7 +97,7 @@ export default function Gallery({
     <section 
       id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
-      className={`relative bg-red-gradient py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 min-h-screen flex items-center overflow-hidden z-10 industrial-texture border-y border-[var(--color-black-light)]`}
+      className={`relative bg-red-gradient py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 min-h-screen flex items-center overflow-hidden z-10 industrial-texture`}
       data-section-id={id}
     >
       {/* Background Cinematic Text */}

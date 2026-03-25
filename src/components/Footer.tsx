@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="relative bg-red-gradient-deep border-t border-[var(--color-black-light)] pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 w-full overflow-hidden z-20 industrial-texture" data-section-id="09">
+    <footer className="relative bg-red-gradient-deep pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 w-full overflow-hidden z-20 industrial-texture" data-section-id="09">
 
       {/* Background XINDO text - Massive & Technical */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none z-0">

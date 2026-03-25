@@ -56,7 +56,7 @@ export default function Process({
     <section
       id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
-      className={`relative bg-red-gradient py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full min-h-screen flex items-center overflow-hidden z-10 industrial-texture border-y border-[var(--color-black-light)]`}
+      className={`relative bg-red-gradient py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full min-h-screen flex items-center overflow-hidden z-10 industrial-texture`}
       data-section-id={id}
     >
       <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto flex flex-col items-center w-full">

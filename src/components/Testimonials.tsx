@@ -64,7 +64,7 @@ export default function Testimonials() {
   return (
     <section 
       id="testimonials"
-      className="relative bg-red-gradient py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full overflow-hidden border-t border-[var(--color-black-light)] industrial-texture"
+      className="relative bg-red-gradient py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full overflow-hidden industrial-texture"
       data-section-id="06"
     >
       

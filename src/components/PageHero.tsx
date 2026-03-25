@@ -35,7 +35,7 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
   })
 
   return (
-    <section className="relative w-full h-[60vh] sm:h-[70vh] flex items-center justify-center overflow-hidden bg-red-gradient industrial-texture border-b border-[var(--color-black-light)]">
+    <section className="relative w-full h-[60vh] sm:h-[70vh] flex items-center justify-center overflow-hidden bg-red-gradient industrial-texture">
       {/* Background Watermark - Technical Look */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-[0.03]">
         <h1 
