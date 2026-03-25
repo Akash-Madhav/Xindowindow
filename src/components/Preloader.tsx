@@ -37,7 +37,7 @@ export default function Preloader() {
             width="100"
             height="100"
             viewBox="0 0 120 120"
-            className="text-[var(--color-red)]"
+            className="text-[var(--color-primary)]"
             aria-hidden="true"
           >
             <motion.path

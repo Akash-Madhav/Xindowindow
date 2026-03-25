@@ -97,7 +97,7 @@ export default function Gallery({
     <section 
       id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
-      className={`relative bg-[var(--color-black-mid)] py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 min-h-screen flex items-center overflow-hidden z-10 industrial-texture border-y border-[var(--color-black-light)]`}
+      className={`relative bg-red-gradient py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 min-h-screen flex items-center overflow-hidden z-10 industrial-texture border-y border-[var(--color-black-light)]`}
       data-section-id={id}
     >
       {/* Background Cinematic Text */}
@@ -116,9 +116,9 @@ export default function Gallery({
       <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto relative z-10 w-full flex flex-col items-center">
         
         <div className="flex items-center gap-4 mb-20">
-          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+          <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
           <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">{tag}</span>
-          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+          <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
         </div>
         
         {/* Masonry Layout Grid */}
@@ -127,7 +127,7 @@ export default function Gallery({
             <motion.div
               key={project.id}
               layoutId={`project-img-${project.id}`}
-              className={`gallery-item group relative overflow-hidden mb-6 bg-[var(--color-black-soft)] cursor-pointer ${project.height} border border-[var(--color-black-light)] hover:border-[var(--color-red-muted)] transition-colors duration-500`}
+              className={`gallery-item group relative overflow-hidden mb-6 bg-[var(--color-black-soft)] cursor-pointer ${project.height} border border-[var(--color-black-light)] hover:border-[var(--color-primary-muted)] transition-colors duration-500`}
               onClick={() => setSelectedId(project.id)}
             >
               {/* Image filter treatments */}
@@ -147,9 +147,9 @@ export default function Gallery({
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-700 z-10 pointer-events-none" />
               
               <div className="absolute bottom-8 left-8 right-8 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[luxurious]">
-                <div className="w-8 h-[2px] bg-[var(--color-red)] mb-4" />
+                <div className="w-8 h-[2px] bg-[var(--color-primary)] mb-4" />
                 <span className="font-display font-bold text-[24px] md:text-[28px] text-white tracking-tight block mb-2 uppercase italic">{project.name}</span>
-                <span className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-[0.2em] font-bold">Showcase Profile</span>
+                <span className="font-mono text-[10px] text-[var(--color-primary)] uppercase tracking-[0.2em] font-bold">Showcase Profile</span>
               </div>
             </motion.div>
           ))}
@@ -184,7 +184,7 @@ export default function Gallery({
                   />
                 )}
                  <div className="flex flex-col items-center gap-6 relative z-10">
-                   <div className="w-16 h-px bg-[var(--color-red)] animate-pulse" />
+                   <div className="w-16 h-px bg-[var(--color-primary)] animate-pulse" />
                    <span className="text-[var(--color-silver)] font-sans uppercase tracking-widest text-[12px]">{selectedProject.name}</span>
                  </div>
               </div>

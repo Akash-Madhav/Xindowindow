@@ -48,19 +48,19 @@ export default function Navbar() {
           ${scrolled ? 'pt-4' : 'pt-6'}
         `}
       >
-        <div 
+        <div
           className={`mx-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto
-            ${scrolled 
-              ? 'w-[92%] max-w-[1200px] h-[64px] rounded-full bg-[rgba(10,10,11,0.85)] backdrop-blur-[24px] border border-[rgba(255,255,255,0.1)] shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
+            ${scrolled
+              ? 'w-[92%] max-w-[1200px] h-[64px] rounded-full bg-[rgba(10,10,11,0.85)] backdrop-blur-[24px] border border-[rgba(255,255,255,0.1)] shadow-[0_8px_32px_rgba(0,0,0,0.5)]'
               : 'w-[96%] max-w-[1400px] h-[80px] rounded-full bg-[rgba(255,255,255,0.03)] backdrop-blur-[12px] border border-[rgba(255,255,255,0.08)]'
             }
             px-8 md:px-12 flex items-center justify-between
           `}
         >
-          
+
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" aria-label="Xindo Window Home" data-cursor="link">
-            <div className="w-[36px] h-[36px] border-2 border-[var(--color-red)] flex items-center justify-center relative overflow-hidden transition-all duration-500 group-hover:bg-[var(--color-red)]">
+            <div className="w-[36px] h-[36px] border-2 border-[var(--color-primary)] flex items-center justify-center relative overflow-hidden transition-all duration-500 group-hover:bg-[var(--color-primary)]">
               <span className="font-display font-bold text-[18px] text-[var(--color-white)] italic">X</span>
             </div>
             <div className="flex flex-col text-left">
@@ -74,8 +74,8 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
               return (
-                <div 
-                  key={link.name} 
+                <div
+                  key={link.name}
                   className="relative h-full flex items-center"
                 >
                   <Link
@@ -87,13 +87,13 @@ export default function Navbar() {
                   >
                     {link.name}
                     {isActive ? (
-                      <motion.span 
+                      <motion.span
                         layoutId="activeTab"
-                        className="absolute bottom-4 left-0 w-full h-[2px] bg-[var(--color-red)]"
+                        className="absolute bottom-4 left-0 w-full h-[2px] bg-[var(--color-primary)]"
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                       />
                     ) : (
-                      <span className="absolute bottom-4 left-0 w-full h-px bg-[var(--color-red)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                      <span className="absolute bottom-4 left-0 w-full h-px bg-[var(--color-primary)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                     )}
                   </Link>
                 </div>
@@ -103,9 +103,9 @@ export default function Navbar() {
 
           {/* Right Section / Hamburger */}
           <div className="flex items-center gap-8">
-            <Link 
+            <Link
               href="/contact"
-              className="hidden lg:block px-9 py-2.5 rounded-full bg-[var(--color-red)] text-[10px] font-sans uppercase tracking-[0.14em] text-white transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_rgba(200,16,46,0.2)] font-bold border border-white/10 whitespace-nowrap"
+              className="hidden lg:block px-9 py-2.5 rounded-full bg-[var(--color-primary)] text-[10px] font-sans uppercase tracking-[0.14em] text-white transition-all hover:scale-105 active:scale-95 shadow-[0_8px_24px_rgba(200,16,46,0.2)] font-bold border border-white/10 whitespace-nowrap"
               data-cursor-button="true"
             >
               Request Quote
@@ -147,7 +147,7 @@ export default function Navbar() {
           >
             {/* Background Watermark */}
             <div className="fixed inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none select-none overflow-hidden -z-10">
-               <span className="font-display text-[40vw] text-white rotate-90 leading-none">XINDO</span>
+              <span className="font-display text-[40vw] text-white rotate-90 leading-none">XINDO</span>
             </div>
 
             <div className="min-h-full flex flex-col px-6 pt-20 pb-10">
@@ -164,7 +164,7 @@ export default function Navbar() {
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={`font-display font-bold text-[24px] sm:text-[32px] tracking-tighter block uppercase transition-all py-1.5 italic
-                        ${pathname === link.href ? 'text-[var(--color-red)] scale-110' : 'text-white hover:text-[var(--color-red)]'}
+                        ${pathname === link.href ? 'text-[var(--color-primary)] scale-110' : 'text-white hover:text-[var(--color-primary)]'}
                       `}
                     >
                       {link.name}
@@ -172,8 +172,8 @@ export default function Navbar() {
                   </motion.div>
                 ))}
               </nav>
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
@@ -181,13 +181,13 @@ export default function Navbar() {
               >
                 <div className="flex flex-col items-center gap-1.5">
                   <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-[var(--color-silver)] mb-0.5 opacity-50">Connect with us</span>
-                  <a href="https://wa.me/919444045544" className="font-sans text-[15px] sm:text-[16px] text-white underline underline-offset-8 decoration-[var(--color-red)]/30 hover:decoration-[var(--color-red)] transition-all font-bold">WhatsApp Concierge</a>
+                  <a href="https://wa.me/919444045544" className="font-sans text-[15px] sm:text-[16px] text-white underline underline-offset-8 decoration-[var(--color-primary)]/30 hover:decoration-[var(--color-primary)] transition-all font-bold">WhatsApp Concierge</a>
                 </div>
-                
-                <Link 
+
+                <Link
                   href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="mt-2 px-8 py-3.5 bg-[var(--color-red)] text-[10px] sm:text-[11px] font-sans uppercase tracking-[0.2em] text-white rounded-full shadow-[0_8px_24px_rgba(200,16,46,0.3)] font-bold active:scale-95 transition-transform"
+                  className="mt-2 px-8 py-3.5 bg-[var(--color-primary)] text-[10px] sm:text-[11px] font-sans uppercase tracking-[0.2em] text-white rounded-full shadow-[0_8px_24px_rgba(200,16,46,0.3)] font-bold active:scale-95 transition-transform"
                 >
                   Request Quote
                 </Link>

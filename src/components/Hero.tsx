@@ -60,7 +60,8 @@ export default function Hero() {
         </motion.div>
         {/* Technical Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-black)] via-[rgba(9,9,11,0.4)] to-[var(--color-black)] z-1" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(200,16,46,0.03)_0%,transparent_70%)] z-1" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.06)_0%,transparent_70%)] z-1" />
+        <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-[rgba(var(--primary-rgb),0.04)] to-transparent z-1" />
       </div>
 
       <div className="w-full max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-5 sm:px-8 md:px-16 z-20 relative flex flex-col items-center">
@@ -71,8 +72,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }} className="mb-4 sm:mb-8"
         >
-          <div className="px-5 py-2 rounded-full border border-[var(--color-red-muted)] bg-[rgba(255,255,255,0.02)] backdrop-blur-[12px] flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-red)] animate-pulse" />
+          <div className="px-5 py-2 rounded-full border border-[var(--color-primary-muted)] bg-[rgba(255,255,255,0.02)] backdrop-blur-[12px] flex items-center gap-3">
+            <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] animate-pulse" />
             <span className="font-mono text-[10px] sm:text-[11px] uppercase text-[var(--color-off-white)] tracking-[0.4em]">
               German Engineering Excellence
             </span>
@@ -83,7 +84,7 @@ export default function Hero() {
         <div className="flex flex-col items-center">
           <h1 className="font-display font-bold text-[36px] sm:text-[64px] lg:text-[100px] xl:text-[120px] 2xl:text-[156px] 3xl:text-[180px] tracking-[-0.05em] text-[var(--color-white)] leading-[0.9] flex flex-col items-center uppercase italic">
             <div ref={line1Ref} className="overflow-hidden">Engineering</div>
-            <div ref={line2Ref} className="text-[var(--color-red)] overflow-hidden">The Future</div>
+            <div ref={line2Ref} className="text-[var(--color-primary)] overflow-hidden">The Future</div>
           </h1>
 
           {/* Technical Subtext */}
@@ -104,7 +105,7 @@ export default function Hero() {
             className="mt-8 sm:mt-14 lg:mt-16 flex flex-col sm:flex-row items-center gap-6 sm:gap-10 lg:gap-14 w-full sm:w-auto"
           >
             <button
-              className="group relative overflow-hidden px-10 py-4 sm:px-12 sm:py-5 lg:px-14 bg-[var(--color-red)] text-[var(--color-white)] transition-all duration-500 w-full sm:w-auto hover:scale-[1.02] active:scale-[0.98] shadow-red"
+              className="group relative overflow-hidden px-10 py-4 sm:px-12 sm:py-5 lg:px-14 bg-[var(--color-primary)] text-[var(--color-white)] transition-all duration-500 w-full sm:w-auto hover:scale-[1.02] active:scale-[0.98] shadow-primary"
               data-cursor-button="true"
             >
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
@@ -112,11 +113,11 @@ export default function Hero() {
             </button>
             <Link
               href="/contact"
-              className="group flex items-center justify-center text-[var(--color-silver)] hover:text-[var(--color-white)] transition-all duration-300 w-[80%] sm:w-auto border-b border-transparent hover:border-[var(--color-red)] py-2"
+              className="group flex items-center justify-center text-[var(--color-silver)] hover:text-[var(--color-white)] transition-all duration-300 w-[80%] sm:w-auto border-b border-transparent hover:border-[var(--color-primary)] py-2"
               data-cursor="link"
             >
               <span className="font-sans font-semibold uppercase text-[11px] sm:text-[13px] tracking-[0.2em] mr-4 transition-all">View Specifications</span>
-              <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-2 text-[var(--color-red)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-2 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </Link>
           </motion.div>
         </div>

@@ -64,7 +64,7 @@ export default function Testimonials() {
   return (
     <section 
       id="testimonials"
-      className="relative bg-[var(--color-black)] py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full overflow-hidden border-t border-[var(--color-black-light)] industrial-texture"
+      className="relative bg-red-gradient py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full overflow-hidden border-t border-[var(--color-black-light)] industrial-texture"
       data-section-id="06"
     >
       
@@ -90,9 +90,9 @@ export default function Testimonials() {
       <div className="max-w-[1000px] 2xl:max-w-[1400px] w-full mx-auto relative z-10 flex flex-col items-center">
         
         <div className="flex items-center gap-4 mb-20">
-          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+          <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
           <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">Client Verdict</span>
-          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+          <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
         </div>
 
         <AnimatePresence mode="wait">
@@ -137,14 +137,14 @@ export default function Testimonials() {
               transition={{ delay: 0.2 + (splitWords(TESTIMONIALS[current].text).length * 0.05) + 0.5 }}
               className="flex flex-col items-center group relative"
             >
-              <span className="font-mono text-[14px] md:text-[16px] uppercase tracking-[0.3em] text-[var(--color-red)] font-bold italic">
+              <span className="font-mono text-[14px] md:text-[16px] uppercase tracking-[0.3em] text-[var(--color-primary)] font-bold italic">
                 {TESTIMONIALS[current].author}
               </span>
               <motion.div 
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 + (splitWords(TESTIMONIALS[current].text).length * 0.05) + 0.8 }}
-                className="h-[2px] w-12 bg-[var(--color-red)] mt-5 opacity-40 origin-center" 
+                className="h-[2px] w-12 bg-[var(--color-primary)] mt-5 opacity-40 origin-center" 
               />
             </motion.div>
 
@@ -157,7 +157,7 @@ export default function Testimonials() {
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-[2px] transition-all duration-300 ${current === i ? 'w-8 bg-[var(--color-red)]' : 'w-4 bg-[var(--color-silver)]'}`}
+              className={`h-[2px] transition-all duration-300 ${current === i ? 'w-8 bg-[var(--color-primary)]' : 'w-4 bg-[var(--color-silver)]'}`}
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}

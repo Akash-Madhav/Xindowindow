@@ -34,12 +34,12 @@ export default function QuoteForm() {
   }
 
   return (
-    <section id="contact-form" className="relative bg-[var(--color-black-mid)] py-12 sm:py-16 md:py-[120px] px-5 sm:px-8 md:px-12 w-full overflow-hidden" data-section-id="08">
+    <section id="contact-form" className="relative bg-red-gradient py-12 sm:py-16 md:py-[120px] px-5 sm:px-8 md:px-12 w-full overflow-hidden" data-section-id="08">
       {/* Decorative Grid BG */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
         style={{
-          backgroundImage: 'linear-gradient(rgba(200, 16, 46, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(200, 16, 46, 0.1) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(var(--primary-rgb), 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--primary-rgb), 0.1) 1px, transparent 1px)',
           backgroundSize: '40px 40px'
         }}
       />
@@ -49,8 +49,8 @@ export default function QuoteForm() {
         {/* Left Column: Form */}
         <div className="flex flex-col">
           <div className="flex items-center gap-4 mb-10">
-            <div className="w-[40px] h-[1px] bg-[var(--color-red)] opacity-40" />
-            <span className="font-mono text-[11px] uppercase text-[var(--color-red)] tracking-[0.18em]">Request Quote</span>
+            <div className="w-[40px] h-[1px] bg-[var(--color-primary)] opacity-40" />
+            <span className="font-mono text-[11px] uppercase text-[var(--color-primary)] tracking-[0.18em]">Request Quote</span>
           </div>
 
           <h2 className="font-display text-[30px] sm:text-[36px] md:text-[42px] 2xl:text-[52px] font-normal text-[var(--color-white)] mb-8 md:mb-10 leading-[1.1]">
@@ -60,51 +60,51 @@ export default function QuoteForm() {
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8 w-full max-w-[500px]">
             {/* Name */}
             <div className="relative group">
-              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Name</label>
+              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-1 tracking-widest">Name</label>
               <input 
                 {...register('name')}
                 disabled={isSubmitting || isSuccess}
-                className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors"
+                className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors"
                 placeholder="Enter your full name"
               />
-              {errors.name && <span className="text-[var(--color-red-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.name.message}</span>}
+              {errors.name && <span className="text-[var(--color-primary-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.name.message}</span>}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {/* Phone */}
               <div className="relative group">
-                <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Phone</label>
+                <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-1 tracking-widest">Phone</label>
                 <input 
                   {...register('phone')}
                   type="tel"
                   disabled={isSubmitting || isSuccess}
-                  className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors"
+                  className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors"
                   placeholder="+91"
                 />
-                {errors.phone && <span className="text-[var(--color-red-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.phone.message}</span>}
+                {errors.phone && <span className="text-[var(--color-primary-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.phone.message}</span>}
               </div>
 
               {/* Email */}
               <div className="relative group">
-                <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-1 tracking-widest">Email</label>
+                <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-1 tracking-widest">Email</label>
                 <input 
                   {...register('email')}
                   type="email"
                   disabled={isSubmitting || isSuccess}
-                  className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors"
+                  className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors"
                   placeholder="your@email.com"
                 />
-                {errors.email && <span className="text-[var(--color-red-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.email.message}</span>}
+                {errors.email && <span className="text-[var(--color-primary-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.email.message}</span>}
               </div>
             </div>
 
             {/* Product Type (Select) */}
             <div className="relative group">
-              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-2 tracking-[0.3em] font-bold opacity-60">System Category</label>
+              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-2 tracking-[0.3em] font-bold opacity-60">System Category</label>
               <select 
                 {...register('productType')}
                 disabled={isSubmitting || isSuccess}
-                className="w-full bg-transparent border-b border-[var(--color-black-light)] py-4 font-sans text-[15px] font-normal text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors appearance-none rounded-none cursor-pointer"
+                className="w-full bg-transparent border-b border-[var(--color-black-light)] py-4 font-sans text-[15px] font-normal text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors appearance-none rounded-none cursor-pointer"
               >
                 <option value="" className="bg-[var(--color-black-mid)] text-[var(--color-silver)]">Select an option</option>
                 <option value="sliding" className="bg-[var(--color-black-mid)]">Sliding Windows & Doors</option>
@@ -113,17 +113,17 @@ export default function QuoteForm() {
                 <option value="accessories" className="bg-[var(--color-black-mid)]">Accessories & Meshes</option>
               </select>
               <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[var(--color-silver)] mt-3">▼</div>
-              {errors.productType && <span className="text-[var(--color-red)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.productType.message}</span>}
+              {errors.productType && <span className="text-[var(--color-primary)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.productType.message}</span>}
             </div>
 
             {/* Message */}
             <div className="relative group">
-              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-red)] mb-2 tracking-[0.3em] font-bold opacity-60">Technical Requirements (Optional)</label>
+              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-2 tracking-[0.3em] font-bold opacity-60">Technical Requirements (Optional)</label>
               <textarea 
                 {...register('message')}
                 disabled={isSubmitting || isSuccess}
                 rows={3}
-                className="w-full bg-transparent border-b border-[var(--color-black-light)] py-4 font-sans text-[15px] font-normal text-[var(--color-white)] outline-none focus:border-[var(--color-red)] transition-colors resize-none"
+                className="w-full bg-transparent border-b border-[var(--color-black-light)] py-4 font-sans text-[15px] font-normal text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors resize-none"
                 placeholder="Mention specific wind-load or acoustic needs..."
               />
             </div>
@@ -132,7 +132,7 @@ export default function QuoteForm() {
               type="submit"
               disabled={isSubmitting || isSuccess}
               data-cursor-button="true"
-              className={`relative w-full overflow-hidden mt-6 group flex items-center justify-center py-6 border ${isSuccess ? 'border-[#3A7A58] text-[#3A7A58]' : 'border-[var(--color-red)] text-[var(--color-white)] bg-[var(--color-red)]'} transition-all duration-500`}
+              className={`relative w-full overflow-hidden mt-6 group flex items-center justify-center py-6 border ${isSuccess ? 'border-[#3A7A58] text-[#3A7A58]' : 'border-[var(--color-primary)] text-[var(--color-white)] bg-[var(--color-primary)]'} transition-all duration-500`}
             >
               {!isSuccess && <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[luxurious] z-0" />}
               
@@ -159,7 +159,7 @@ export default function QuoteForm() {
           
           <div className="flex flex-col gap-16">
             <div>
-              <div className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-[0.3em] mb-4 font-bold">Base of Operations</div>
+              <div className="font-mono text-[10px] text-[var(--color-primary)] uppercase tracking-[0.3em] mb-4 font-bold">Base of Operations</div>
               <p className="font-sans font-normal text-[18px] leading-relaxed text-[var(--color-silver)] max-w-[320px] italic">
                 No. 115/62, Canal Bank Road,<br/>
                 CIT Nagar, Chennai — 600035, India
@@ -167,14 +167,14 @@ export default function QuoteForm() {
             </div>
 
             <div>
-              <div className="font-mono text-[10px] text-[var(--color-red)] uppercase tracking-[0.3em] mb-4 font-bold">Direct Line</div>
+              <div className="font-mono text-[10px] text-[var(--color-primary)] uppercase tracking-[0.3em] mb-4 font-bold">Direct Line</div>
               <a 
                 href="tel:+919444045544" 
                 data-cursor="link"
                 className="font-display font-bold text-[32px] md:text-[44px] text-[var(--color-white)] inline-block group italic tracking-tighter"
               >
                  +91 94440 45544
-                 <span className="block mt-2 w-0 h-[2px] bg-[var(--color-red)] group-hover:w-full transition-all duration-500" />
+                 <span className="block mt-2 w-0 h-[2px] bg-[var(--color-primary)] group-hover:w-full transition-all duration-500" />
               </a>
             </div>
 

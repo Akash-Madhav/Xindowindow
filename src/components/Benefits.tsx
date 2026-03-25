@@ -119,13 +119,13 @@ export default function Benefits({
     <section 
       id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
-      className={`relative bg-[var(--color-black-mid)] py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full overflow-hidden z-10 industrial-texture border-y border-[var(--color-black-light)]`}
+      className={`relative bg-red-gradient py-20 sm:py-32 md:py-40 px-5 sm:px-8 md:px-16 w-full overflow-hidden z-10 industrial-texture border-y border-[var(--color-black-light)]`}
       data-section-id={id}
     >
       {/* Blueprint SVG Background (Cinematic overlay) */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.06] flex items-center justify-center">
         <svg width="120%" height="120%" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" fill="none">
-          <g stroke="var(--color-red)" strokeWidth="0.75" strokeDasharray="4000">
+          <g stroke="var(--color-primary)" strokeWidth="0.75" strokeDasharray="4000">
             <rect ref={svgLinesRef} x="2.5%" y="5%" width="95%" height="90%" />
             <line x1="500" y1="30" x2="500" y2="570" />
             <line x1="25" y1="300" x2="975" y2="300" />
@@ -137,9 +137,9 @@ export default function Benefits({
       <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto relative z-10 flex flex-col items-center w-full">
         
         <div className="flex items-center gap-4 mb-10">
-          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+          <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
           <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">{tag}</span>
-          <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+          <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
         </div>
 
         <h2 ref={headerRef} className="font-display font-bold text-[32px] sm:text-[44px] md:text-[60px] 2xl:text-[76px] tracking-tight text-[var(--color-white)] text-center mb-16 sm:mb-24 min-h-[60px] max-w-[900px] uppercase italic">
@@ -155,15 +155,15 @@ export default function Benefits({
           {items.map((benefit, i) => (
             <div 
               key={i} 
-              className="benefit-card group relative bg-[var(--color-black-mid)] p-10 sm:p-12 md:p-14 lg:p-16 flex flex-col gap-8 hover:bg-[var(--color-black-soft)] transition-all duration-700 ease-[luxurious] transform-style-3d origin-center border border-transparent hover:border-[var(--color-red-muted)]"
+              className="benefit-card group relative bg-[var(--color-black-mid)] p-10 sm:p-12 md:p-14 lg:p-16 flex flex-col gap-8 hover:bg-[var(--color-black-soft)] transition-all duration-700 ease-[luxurious] transform-style-3d origin-center border border-transparent hover:border-[var(--color-primary-muted)]"
             >
-              <div className="font-mono text-[28px] text-[var(--color-red)] opacity-30 group-hover:opacity-100 transition-all duration-500 font-bold italic">0{i+1}</div>
+              <div className="font-mono text-[28px] text-[var(--color-primary)] opacity-30 group-hover:opacity-100 transition-all duration-500 font-bold italic">0{i+1}</div>
               <div className="flex flex-col gap-4">
                 <h3 className="font-display font-bold text-[22px] sm:text-[24px] md:text-[32px] text-[var(--color-white)] leading-tight uppercase tracking-tight">{benefit.title}</h3>
                 <p className="font-sans text-[14px] md:text-[15px] text-[var(--color-silver)] uppercase tracking-[0.12em] leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">{benefit.desc}</p>
               </div>
               <div className="absolute top-12 right-12">
-                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[var(--color-red)] opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[var(--color-primary)] opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </div>
             </div>
           ))}

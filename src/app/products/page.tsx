@@ -5,7 +5,7 @@ import Benefits from '@/components/Benefits'
 
 export default function ProductsPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
+    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <PageHero 
         title="Systems Portfolio" 
         subtitle="Uncompromising engineering precision in every profile. Explore our ranges from high-performance sliding systems to grand architectural focal points."

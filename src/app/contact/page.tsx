@@ -5,7 +5,7 @@ import QuoteForm from '@/components/QuoteForm'
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
+    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <PageHero 
         title="Connect with Us" 
         subtitle="Ready to transform your vision into an architectural masterpiece? Our experts are here to guide your technical and aesthetic choices."

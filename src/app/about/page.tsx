@@ -6,7 +6,7 @@ import Process from '@/components/Process'
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
+    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <PageHero 
         title="Our Heritage" 
         subtitle="Bridging Indo-German architectural excellence since inception. We don't just build windows; we engineer views and secure legacies."

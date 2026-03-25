@@ -14,12 +14,12 @@ const CLIENTS = [
 
 export default function ClientsMarquee() {
   return (
-    <section className="bg-[var(--color-black)] py-[80px] w-full relative overflow-hidden flex flex-col items-center" data-section-id="07">
+    <section className="bg-red-gradient py-[80px] w-full relative overflow-hidden flex flex-col items-center" data-section-id="07">
       
       <div className="flex items-center gap-4 mb-20">
-        <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+        <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
         <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">Strategic Partners</span>
-        <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+        <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
       </div>
 
       <div 
@@ -34,7 +34,7 @@ export default function ClientsMarquee() {
           {CLIENTS.map((client, i) => (
             <div 
               key={`c1-${i}`}
-              className="marquee-item px-8 py-4 border border-transparent hover:border-[var(--color-red-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
+              className="marquee-item px-8 py-4 border border-transparent hover:border-[var(--color-primary-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
             >
               {client}
             </div>
@@ -45,7 +45,7 @@ export default function ClientsMarquee() {
           {CLIENTS.map((client, i) => (
             <div 
               key={`c2-${i}`}
-              className="marquee-item px-8 py-4 border border-transparent hover:border-[var(--color-red-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
+              className="marquee-item px-8 py-4 border border-transparent hover:border-[var(--color-primary-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
             >
               {client}
             </div>

@@ -35,7 +35,7 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
   })
 
   return (
-    <section className="relative w-full h-[60vh] sm:h-[70vh] flex items-center justify-center overflow-hidden bg-[var(--color-black-mid)] industrial-texture border-b border-[var(--color-black-light)]">
+    <section className="relative w-full h-[60vh] sm:h-[70vh] flex items-center justify-center overflow-hidden bg-red-gradient industrial-texture border-b border-[var(--color-black-light)]">
       {/* Background Watermark - Technical Look */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-[0.03]">
         <h1 
@@ -54,18 +54,18 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
           className="flex flex-col items-center"
         >
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-10 sm:w-12 h-[2px] bg-[var(--color-red)]" />
+            <div className="w-10 sm:w-12 h-[2px] bg-[var(--color-primary)]" />
             <span className="font-mono text-[9px] sm:text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-bold opacity-60">System Registry</span>
-            <div className="w-10 sm:w-12 h-[2px] bg-[var(--color-red)]" />
+            <div className="w-10 sm:w-12 h-[2px] bg-[var(--color-primary)]" />
           </div>
 
           <h1 ref={titleRef} className="font-display font-bold text-[36px] sm:text-[52px] md:text-[72px] 2xl:text-[96px] 3xl:text-[120px] leading-[0.95] text-white tracking-tighter uppercase italic mb-8">
             {title}
           </h1>
           
-          <div ref={lineRef} className="w-12 sm:w-16 h-[3px] bg-[var(--color-red)] mb-8 origin-center" />
+          <div ref={lineRef} className="w-12 sm:w-16 h-[3px] bg-[var(--color-primary)] mb-8 origin-center" />
 
-          <p className="font-sans font-normal text-[14px] sm:text-[17px] md:text-[19px] 2xl:text-[22px] 3xl:text-[28px] text-[var(--color-silver)] max-w-[500px] sm:max-w-[700px] 2xl:max-w-none opacity-80 leading-relaxed italic border-l-2 border-[var(--color-red-muted)] pl-6 sm:pl-8 mx-auto text-left">
+          <p className="font-sans font-normal text-[14px] sm:text-[17px] md:text-[19px] 2xl:text-[22px] 3xl:text-[28px] text-[var(--color-silver)] max-w-[500px] sm:max-w-[700px] 2xl:max-w-none opacity-80 leading-relaxed italic border-l-2 border-[var(--color-primary-muted)] pl-6 sm:pl-8 mx-auto text-left">
             {subtitle}
           </p>
         </motion.div>

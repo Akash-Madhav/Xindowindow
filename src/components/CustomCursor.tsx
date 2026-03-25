@@ -42,8 +42,8 @@ export default function CustomCursor() {
             dotRef.current.style.opacity = '0'
             ringRef.current.style.width = '48px'
             ringRef.current.style.height = '48px'
-            ringRef.current.style.backgroundColor = 'var(--color-red)'
-            ringRef.current.style.borderColor = 'var(--color-red)'
+            ringRef.current.style.backgroundColor = 'var(--color-primary)'
+            ringRef.current.style.borderColor = 'var(--color-primary)'
             ringRef.current.innerHTML = ''
             ringRef.current.style.animation = 'none'
           } else if (state === 'image') {
@@ -51,7 +51,7 @@ export default function CustomCursor() {
             ringRef.current.style.width = '64px'
             ringRef.current.style.height = '64px'
             ringRef.current.style.backgroundColor = 'transparent'
-            ringRef.current.style.borderColor = 'var(--color-red)'
+            ringRef.current.style.borderColor = 'var(--color-primary)'
             ringRef.current.innerHTML = '<div style="width:100%; height:100%; animation: spin 4s linear infinite;"><span style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);" class="text-[9px] font-mono text-white uppercase">VIEW</span></div>'
             ringRef.current.style.animation = 'none'
           } else if (state === 'button') {
@@ -70,7 +70,7 @@ export default function CustomCursor() {
             ringRef.current.style.height = '32px'
             ringRef.current.style.borderRadius = '50%'
             ringRef.current.style.backgroundColor = 'transparent'
-            ringRef.current.style.borderColor = 'var(--color-red)'
+            ringRef.current.style.borderColor = 'var(--color-primary)'
             ringRef.current.innerHTML = ''
             ringRef.current.style.animation = 'none'
           }
@@ -117,9 +117,8 @@ export default function CustomCursor() {
       {/* Ring */}
       <div
         ref={ringRef}
-        className="xindo-cursor fixed top-0 left-0 w-8 h-8 rounded-full border-[1.5px] border-[var(--color-red)] pointer-events-none z-[9998] transition-[width,height,background-color,border-color,border-radius] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-center"
+        className="xindo-cursor fixed top-0 left-0 w-8 h-8 rounded-full border-[1.5px] border-[var(--color-primary)] pointer-events-none z-[9998] transition-[width,height,background-color,border-color,border-radius] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-center"
       />
     </>
   )
 }
-

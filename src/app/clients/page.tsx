@@ -6,7 +6,7 @@ import Testimonials from '@/components/Testimonials'
 
 export default function ClientsPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
+    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <PageHero 
         title="Our Strategic Partners" 
         subtitle="Trusted by India&apos;s leading developers and visionary architects. Our client list is a reflection of our commitment to quality."

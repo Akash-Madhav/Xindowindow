@@ -10,7 +10,7 @@ import Testimonials from '@/components/Testimonials'
 
 export default function Home() {
   return (
-    <main className="min-h-[100svh] bg-[var(--color-black)] w-full overflow-x-hidden selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
+    <main className="min-h-[100svh] bg-[var(--color-black)] w-full overflow-x-hidden selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <Hero />
       
       <About 

@@ -2,10 +2,10 @@
 
 ## COLOR PALETTE
 - **Primary Background**: `#0A0A0B` (deep black)
-- **Brand Accent**: `#C8102E` (Xindo red)
-- **Red Hover/Bright**: `#E8213F`
-- **Red Deep/Pressed**: `#9C0C22`
-- **Red Muted**: `#6B1020`
+- **Primary Brand Color**: `#C8102E` (Xindo red / --primary)
+- **Primary Bright**: `#E8213F` (--primary-bright)
+- **Primary Deep**: `#9C0C22` (--primary-deep)
+- **Primary Muted**: `#6B1020` (--primary-muted)
 - **Pure White**: `#FAFAFA`
 - **Off-white**: `#E8E8E6`
 - **Silver/Muted Text**: `#9A9A98`
@@ -16,9 +16,9 @@
 - **Background**: `rgba(255, 255, 255, 0.04)`
 - **Hover Background**: `rgba(255, 255, 255, 0.07)`
 - **Border**: `rgba(255, 255, 255, 0.08)`
-- **Red Glass Border**: `rgba(200, 16, 46, 0.30)`
+- **Red Glass Border**: `rgba(var(--primary-rgb), 0.30)`
 - **Backdrop Filter**: `blur(20px)`
-- **Shadow**: `0 8px 32px rgba(0,0,0,0.5)`
+- **Shadow**: `var(--shadow-primary)`
 
 ## TYPOGRAPHY
 - **Display/Headings**: Cormorant Garamond (300, 400, 500, 600)

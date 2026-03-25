@@ -57,7 +57,7 @@ export default function About({
     <section 
       id={id.toLowerCase().replace(/\s+/g, '-')}
       ref={containerRef}
-      className={`relative w-full min-h-screen bg-[var(--color-black)] py-20 sm:py-32 px-5 sm:px-8 md:px-16 flex items-center overflow-hidden industrial-texture`}
+      className={`relative w-full min-h-screen bg-red-gradient py-20 sm:py-32 px-5 sm:px-8 md:px-16 flex items-center overflow-hidden industrial-texture`}
       data-section-id={id}
     >
       <div className={`max-w-[1400px] 2xl:max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32 items-center ${reverse ? 'md:flex-row-reverse' : ''}`}>
@@ -65,7 +65,7 @@ export default function About({
         {/* Content Column */}
         <div ref={leftColRef} className={`flex flex-col opacity-0 ${reverse ? 'md:order-2' : ''}`}>
           <div className="flex items-center gap-4 mb-10">
-            <div className="w-[48px] h-[2px] bg-[var(--color-red)]" />
+            <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
             <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">{tag}</span>
           </div>
 
@@ -78,7 +78,7 @@ export default function About({
               {description1}
             </p>
             {description2 && (
-              <p className="font-sans font-normal text-[16px] sm:text-[18px] md:text-[20px] leading-[1.7] text-[var(--color-silver)] max-w-[640px] opacity-80 border-l-2 border-[var(--color-red-muted)] pl-8 italic">
+              <p className="font-sans font-normal text-[16px] sm:text-[18px] md:text-[20px] leading-[1.7] text-[var(--color-silver)] max-w-[640px] opacity-80 border-l-2 border-[var(--color-primary-muted)] pl-8 italic">
                 {description2}
               </p>
             )}
@@ -102,10 +102,10 @@ export default function About({
             className="group flex items-center text-[var(--color-white)] transition-all duration-300 w-fit"
             data-cursor="link"
           >
-            <span className="font-sans font-bold uppercase text-[13px] tracking-[0.25em] mr-6 group-hover:text-[var(--color-red)] transition-colors">Engineering Dossier</span>
+            <span className="font-sans font-bold uppercase text-[13px] tracking-[0.25em] mr-6 group-hover:text-[var(--color-primary)] transition-colors">Engineering Dossier</span>
             <div className="relative flex items-center">
-              <div className="w-12 h-[2px] bg-[var(--color-red)] group-hover:w-20 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-              <svg className="w-5 h-5 -ml-1 text-[var(--color-red)] transition-transform group-hover:translate-x-3 duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <div className="w-12 h-[2px] bg-[var(--color-primary)] group-hover:w-20 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+              <svg className="w-5 h-5 -ml-1 text-[var(--color-primary)] transition-transform group-hover:translate-x-3 duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </button>
         </div>
@@ -122,7 +122,7 @@ export default function About({
                <Image src={image} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover transition-transform duration-[2.5s] hover:scale-110 contrast-[1.05] grayscale-[0.2]" alt={title} />
             ) : (
                <div className="w-full h-full bg-[var(--color-black-soft)] flex items-center justify-center">
-                  <div className="w-24 h-24 border-2 border-[var(--color-red-muted)] rounded-none animate-pulse rotate-45" />
+                  <div className="w-24 h-24 border-2 border-[var(--color-primary-muted)] rounded-none animate-pulse rotate-45" />
                </div>
             )}
           </div>
@@ -130,10 +130,10 @@ export default function About({
           {/* Technical Badge */}
           <div className="absolute -left-6 md:-left-16 -bottom-8 md:-bottom-12 z-30 bg-[var(--color-black-soft)] border border-[var(--color-black-light)] p-8 md:p-12 shadow-2xl flex items-center gap-8 backdrop-blur-xl">
             <div className="flex flex-col">
-              <span className="font-display text-[56px] md:text-[88px] text-[var(--color-red)] leading-none font-bold italic tracking-tighter">{badgeNumber}</span>
+              <span className="font-display text-[56px] md:text-[88px] text-[var(--color-primary)] leading-none font-bold italic tracking-tighter">{badgeNumber}</span>
               <span className="font-mono text-[10px] uppercase text-[var(--color-silver)] tracking-[0.3em] font-medium opacity-50 -mt-1">Technical Precision</span>
             </div>
-            <span className="font-mono uppercase text-[11px] md:text-[12px] tracking-[0.2em] text-[var(--color-white)] leading-tight max-w-[120px] font-semibold border-l border-[var(--color-red-muted)] pl-8 py-2">
+            <span className="font-mono uppercase text-[11px] md:text-[12px] tracking-[0.2em] text-[var(--color-white)] leading-tight max-w-[120px] font-semibold border-l border-[var(--color-primary-muted)] pl-8 py-2">
               {badgeText}
             </span>
           </div>

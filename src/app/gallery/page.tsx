@@ -4,7 +4,7 @@ import Gallery from '@/components/Gallery'
 
 export default function GalleryPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-red)] selection:text-[var(--color-white)]">
+    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <PageHero 
         title="The Gallery" 
         subtitle="A visual testament to architectural grandeur. Explore our portfolio of luxury residences and high-profile commercial landmarks."
