@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import productData from '@/data/product-registry.json'
 
 const { CATEGORIES, PRODUCT_REGISTRY } = productData as { 
-  CATEGORIES: { id: string, name: string, tag: string }[], 
+  CATEGORIES: { id: string, name: string, tag: string, description: string }[], 
   PRODUCT_REGISTRY: Record<string, string[]> 
 }
 
@@ -17,6 +18,8 @@ export default function TechnicalUI() {
     setActiveCategory(activeCategory === catName ? null : catName)
     setSelectedProduct(null)
   }
+
+  const activeCategoryData = CATEGORIES.find(c => c.name === activeCategory)
 
   return (
     <section className="relative bg-red-gradient py-24 sm:py-32 px-5 sm:px-8 md:px-16 flex flex-col items-center industrial-texture overflow-hidden min-h-[800px]">
@@ -31,12 +34,28 @@ export default function TechnicalUI() {
         {/* Left: Category Selector (Uiverse Component) */}
         <div className="flex flex-col gap-8 shrink-0">
           <div className="max-w-[300px]">
-            <h2 className="font-display font-bold text-[32px] md:text-[44px] text-white leading-tight uppercase italic mb-6 tracking-tighter">
-              Precision <br /> 
-              <span className="text-[var(--color-primary)]">Inventory</span>
+            <h2 className="font-display font-bold text-[32px] md:text-[44px] text-white leading-[0.9] uppercase italic mb-6 tracking-tighter">
+              {activeCategory ? (
+                <>
+                  {activeCategory.split(' ')[0]} <br />
+                  <span className="text-[var(--color-primary)]">{activeCategory.split(' ').slice(1).join(' ')}</span>
+                  <div className="mt-4 flex items-center gap-3">
+                    <div className="w-12 h-[2px] bg-[var(--color-primary)]" />
+                    <span className="font-mono text-[12px] text-white tracking-[0.2em] font-bold not-italic">
+                      {PRODUCT_REGISTRY[activeCategory]?.length || 0} SYSTEMS REGISTERED
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  Precision <br /> 
+                  <span className="text-[var(--color-primary)]">Inventory</span>
+                </>
+              )}
             </h2>
-            <p className="font-sans text-[14px] text-[var(--color-silver)] opacity-60 leading-relaxed border-l border-[var(--color-primary-muted)] pl-6">
-              Select a technical category to deploy its specific engineering registry. Millimetric data for professional deployment.
+
+            <p className="font-sans text-[14px] text-[var(--color-silver)] opacity-60 leading-relaxed border-l border-[var(--color-primary-muted)] pl-6 min-h-[60px]">
+              {activeCategoryData ? activeCategoryData.description : "Select a technical category to deploy its specific engineering registry. Millimetric data for professional deployment."}
             </p>
           </div>
 
@@ -50,10 +69,10 @@ export default function TechnicalUI() {
                 `}
                 onClick={() => handleCategoryClick(cat.name)}
               >
-                <span className={`panel-text min-w-[18em] p-[0.5em] text-center uppercase text-[var(--color-primary)] font-mono text-[10px] font-[700] whitespace-nowrap transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
+                <span className={`panel-text min-w-[20em] p-[0.5em] text-center uppercase text-[var(--color-primary)] font-mono text-[10px] font-[700] whitespace-nowrap transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
                   ${activeCategory === cat.name ? 'rotate-0 opacity-100 tracking-[0.25em]' : 'rotate-[-90deg] opacity-60 tracking-[0.15em] group-hover:rotate-0 group-hover:opacity-100 group-hover:tracking-[0.25em]'}
                 `}>
-                  {cat.name}
+                  {cat.name} ({PRODUCT_REGISTRY[cat.name]?.length || 0})
                 </span>
                 
                 {activeCategory === cat.name && (
@@ -96,11 +115,13 @@ export default function TechnicalUI() {
                     
                     {/* Image Area (Placeholder for premium window image) */}
                     <div className="w-full h-40 bg-[var(--color-black)] mb-6 flex items-center justify-center overflow-hidden border border-[var(--color-black-light)] group-hover:border-[var(--color-primary-muted)] transition-colors">
-                      <div className="w-full h-full opacity-40 group-hover:opacity-60 grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <img 
+                      <div className="relative w-full h-full opacity-40 group-hover:opacity-60 grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <Image 
                           src={`https://images.unsplash.com/photo-1510000218930-bc500989047b?auto=format&fit=crop&q=80&w=400&v=${idx}`} 
                           alt={prod}
-                          className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 400px"
+                          className="object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
                         />
                       </div>
                     </div>
@@ -160,13 +181,15 @@ export default function TechnicalUI() {
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-20 items-center">
-                <div className="relative">
-                  <img 
+                <div className="relative aspect-[4/3] w-full">
+                  <Image 
                     src="https://images.unsplash.com/photo-1510000218930-bc500989047b?auto=format&fit=crop&q=80&w=800" 
                     alt={selectedProduct}
-                    className="w-full h-auto border border-[var(--color-black-light)]"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 800px"
+                    className="object-cover border border-[var(--color-black-light)]"
                   />
-                  <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[var(--color-primary)] flex items-center justify-center text-white font-display text-[24px] font-bold italic rotate-12">
+                  <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[var(--color-primary)] flex items-center justify-center text-white font-display text-[24px] font-bold italic rotate-12 z-10">
                     XINDO
                   </div>
                 </div>

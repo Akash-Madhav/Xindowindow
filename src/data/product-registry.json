@@ -1,58 +1,78 @@
 {
   "CATEGORIES": [
-    { "id": "veka", "name": "VEKA (UPVC)", "tag": "German Vinyl Systems" },
-    { "id": "aluk", "name": "ALUK / ALUMINIUM", "tag": "System Aluminium" },
-    { "id": "totalis", "name": "TOTALIS", "tag": "High-Performance" },
-    { "id": "xindo", "name": "XINDO (SLEEK)", "tag": "Slim & Sleek Series" }
+    { 
+      "id": "veka", 
+      "name": "VEKA (UPVC)", 
+      "tag": "German Vinyl Systems",
+      "description": "Premium German-engineered uPVC profiles designed for extreme durability and tropical climate resistance. Featuring multi-chambered technology for superior thermal and acoustic insulation."
+    },
+    { 
+      "id": "aluk", 
+      "name": "ALUK / ALUMINIUM", 
+      "tag": "System Aluminium",
+      "description": "High-performance architectural aluminum systems combining sleek aesthetics with structural integrity. Ideal for expansive glass surfaces and modern minimalist designs."
+    },
+    { 
+      "id": "totalis", 
+      "name": "TOTALIS", 
+      "tag": "High-Performance",
+      "description": "Specialized high-end fenestration solutions for unique architectural requirements. Engineered for maximum security, weather-tightness, and aesthetic versatility."
+    },
+    { 
+      "id": "xindo", 
+      "name": "XINDO (SLEEK)", 
+      "tag": "Slim & Sleek Series",
+      "description": "Ultra-slim profile systems designed for maximum transparency and minimal sightlines. The pinnacle of modern engineering for luxury residential and commercial spaces."
+    }
   ],
   "PRODUCT_REGISTRY": {
     "VEKA (UPVC)": [
-      "2 TRACK 2 PANEL SLIDING WINDOW WITH ADAPTIVE GRILL",
-      "3 TRACK 3 PANEL SLIDING WINDOW",
-      "2.5 TRACK SLIDING WITH MESH",
-      "3 TRACK SLIDING WITH MESH",
-      "I50 SERIES (FROSTED)",
-      "UPVC LOUVERS",
-      "VENTILATORS",
-      "VILLA WINDOW (TWIN SASH)",
-      "FRENCH WINDOW WITH ARCHITRAVE",
-      "OPENABLE WITH ADAPTIVE GRILL AND PLEATED MESH",
-      "TILT & TURN",
-      "MONORAIL L WINDOW",
-      "UPVC GREY WITH PRIVACY SWITCHABLE FILM AND MOTORIZED TOP HUNG OPTION",
-      "VERTICAL SLIDING",
-      "UPVC SLIDING & FIXING WITH GEORGIAN BAR",
-      "UPVC FRENCH SLIDING DOOR WITH MESH & INBUILT GRILL",
-      "OPENABLE WINDOW DG (WITH GEORGIAN BAR)",
-      "FRENCH OPENABLE DOOR WITH GEORGIAN BAR",
-      "SEAMLESS DOOR",
-      "EED DOOR",
-      "HIGH DENSITY COMPOSITE SKIN DOOR",
-      "3 TRACK 6 PANEL UPVC SLIDING WITH NUMBER LOCK"
+      "VEKA ELITE SLIDING: 2 TRACK 2 PANEL",
+      "VEKA GRAND SLIDING: 3 TRACK 3 PANEL",
+      "VEKA HYBRID: 2.5 TRACK SLIDING WITH MESH",
+      "VEKA PANORAMIC: 3 TRACK SLIDING WITH MESH",
+      "VEKA I50 SERIES (FROSTED)",
+      "VEKA INDUSTRIAL LOUVERS",
+      "VEKA AERATING VENTILATORS",
+      "VEKA VILLA SASH (TWIN SASH)",
+      "VEKA FRENCH ARCHITRAVE WINDOW",
+      "VEKA ADAPTIVE OPENABLE WITH PLEATED MESH",
+      "VEKA PRECISION TILT & TURN",
+      "VEKA MONORAIL L WINDOW",
+      "VEKA GREY: PRIVACY SWITCHABLE FILM",
+      "VEKA VERTICAL SLIDING",
+      "VEKA GEORGIAN BAR SLIDING",
+      "VEKA FRENCH SLIDING DOOR: INBUILT GRILL",
+      "VEKA OPENABLE DG (GEORGIAN BAR)",
+      "VEKA FRENCH OPENABLE DOOR",
+      "VEKA SEAMLESS DOOR",
+      "VEKA EED DOOR",
+      "VEKA HIGH DENSITY COMPOSITE SKIN",
+      "VEKA 3 TRACK 6 PANEL WITH NUMBER LOCK"
     ],
     "ALUK / ALUMINIUM": [
-      "INFINEO CASEMENT",
-      "SLIDING AND FOLDING (2 OPTIONS)",
-      "REGULAR SLIDING SERIES",
-      "TOP HUNG",
-      "TILT & TURN",
-      "JULIET WINDOW",
-      "SC95",
-      "INFINEO SLIDING",
-      "OPENABLE DOOR WITH THRESHOLD CONCEALED"
+      "ALUK INFINEO CASEMENT",
+      "ALUK ARCHITECTURAL SLIDING & FOLDING",
+      "ALUK REGULAR SLIDING SERIES",
+      "ALUK PRECISION TOP HUNG",
+      "ALUK TILT & TURN",
+      "ALUK JULIET WINDOW",
+      "ALUK SC95 SYSTEM",
+      "ALUK INFINEO SLIDING",
+      "ALUK OPENABLE DOOR: CONCEALED THRESHOLD"
     ],
     "TOTALIS": [
-      "REGULAR SLIDING WINDOW",
-      "REGULAR SLIDING DOOR",
-      "OPENABLE DOOR WITHOUT THRESHOLD"
+      "TOTALIS REGULAR SLIDING WINDOW",
+      "TOTALIS REGULAR SLIDING DOOR",
+      "TOTALIS OPENABLE DOOR: ZERO THRESHOLD"
     ],
     "XINDO (SLEEK)": [
-      "SLIDING AND FOLDING DOOR",
-      "OPENABLE DOOR",
-      "INVISIBLE TOP GUIDED SLIDING DOOR (3 OPTIONS)",
-      "FIXED AND SLIDING WITH BALCONY HANDRAILS",
-      "SLIDING DOOR WITH MESH (2 OPTIONS)",
-      "X12 SLEEK OFFICE PARTITION"
+      "XINDO SLEEK SLIDING & FOLDING",
+      "XINDO PRECISION OPENABLE DOOR",
+      "XINDO INVISIBLE TOP-GUIDED SLIDING",
+      "XINDO FIXED & SLIDING: BALCONY HANDRAILS",
+      "XINDO SLIDING DOOR WITH MESH",
+      "XINDO X12 OFFICE PARTITION"
     ]
   }
 }

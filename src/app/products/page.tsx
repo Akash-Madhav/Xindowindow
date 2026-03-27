@@ -16,10 +16,42 @@ export default function ProductsPage() {
         <Products 
           id="02"
           products={[
-            { id: 'sliding-lux', name: 'Elite Sliding', type: 'Panoramic Systems', watermark: 'PANORAMIC', links: ['Slim Profile', 'Triple Track', 'Self-Lubricating'], desc: 'Our Elite Sliding series offers virtually unobstructed views with some of the slimmest sightlines in the industry.', image: '/images/sliding.png' },
-            { id: 'casement-lux', name: 'Master Casement', type: 'Acoustic Barrier', watermark: 'ACOUSTIC', links: ['Multi-Acoustic Seal', 'Heavy Duty Hinges', 'Dual Action'], desc: 'Engineered specifically for noise reduction in high-density urban environments without sacrificing elegance.', image: '/images/casement.png' },
-            { id: 'special-lux', name: 'Custom Studio', type: 'Architectural Bespoke', watermark: 'BESPOKE', links: ['Arched Frames', 'Compound Miters', 'Bifold Systems'], desc: 'When the design demands unique geometries, our Custom Studio delivers precision-engineered solutions.', image: '/images/tilt_turn.png' },
-            { id: 'hardware-lux', name: 'Signature Hardware', type: 'Swiss-German Components', watermark: 'KINETIC', links: ['Multi-Point Locking', 'Anti-Corrosive Handles', 'Friction Stays'], desc: 'The unseen excellence that ensures your windows operate with frictionless grace for decades.', image: '/images/hardware.png' }
+            { 
+              id: 'veka-lux', 
+              name: 'VEKA (UPVC)', 
+              type: 'German Vinyl Systems', 
+              watermark: 'VEKA', 
+              links: ['Multi-Chambered', 'Tropical Variant', 'Acoustic Glass'], 
+              desc: 'Premium German-engineered uPVC profiles designed for extreme durability and tropical climate resistance. Featuring multi-chambered technology for superior thermal and acoustic insulation.', 
+              image: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&q=80&w=800' 
+            },
+            { 
+              id: 'aluk-lux', 
+              name: 'ALUK / ALUMINIUM', 
+              type: 'System Aluminium', 
+              watermark: 'ALUK', 
+              links: ['Architectural', 'Structural', 'Minimalist'], 
+              desc: 'High-performance architectural aluminum systems combining sleek aesthetics with structural integrity. Ideal for expansive glass surfaces and modern minimalist designs.', 
+              image: 'https://images.unsplash.com/photo-1510000218930-bc500989047b?auto=format&fit=crop&q=80&w=800' 
+            },
+            { 
+              id: 'totalis-lux', 
+              name: 'TOTALIS', 
+              type: 'High-Performance', 
+              watermark: 'TOTALIS', 
+              links: ['Security', 'Weather-Tight', 'Versatile'], 
+              desc: 'Specialized high-end fenestration solutions for unique architectural requirements. Engineered for maximum security, weather-tightness, and aesthetic versatility.', 
+              image: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&q=80&w=800' 
+            },
+            { 
+              id: 'xindo-lux', 
+              name: 'XINDO (SLEEK)', 
+              type: 'Slim & Sleek Series', 
+              watermark: 'SLEEK', 
+              links: ['Max Transparency', 'Luxury', 'Commercial'], 
+              desc: 'Ultra-slim profile systems designed for maximum transparency and minimal sightlines. The pinnacle of modern engineering for luxury residential and commercial spaces.', 
+              image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800' 
+            }
           ]}
         />
       </div>

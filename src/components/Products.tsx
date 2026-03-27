@@ -16,10 +16,42 @@ interface ProductItem {
 }
 
 const DEFAULT_PRODUCTS = [
-  { id: 'sliding', name: 'Sliding', type: 'Windows / Doors', watermark: 'SLIDING', links: ['2-Track', '3-Track', 'Multi-Track'], desc: 'Engineered for seamless operation and maximum natural light.', image: '/images/sliding.png' },
-  { id: 'casement', name: 'Casement', type: 'Windows / Doors', watermark: 'CASEMENT', links: ['Open Out', 'Open In', 'Top Hung'], desc: 'Superior acoustic insulation and advanced multi-point security.', image: '/images/casement.png' },
-  { id: 'special', name: 'Special', type: 'Architectural', watermark: 'SPECIAL', links: ['Tilt & Turn', 'Slide & Fold', 'Arch'], desc: 'Bespoke European designs for unique architectural requirements.', image: '/images/tilt_turn.png' },
-  { id: 'accessories', name: 'Accessories', type: 'Hardware', watermark: 'HARDWARE', links: ['Fiber Mesh', 'SS Mesh', 'Premium Handles'], desc: 'Precision-crafted hardware guaranteeing long-lasting performance.', image: '/images/hardware.png' }
+  { 
+    id: 'veka', 
+    name: 'VEKA (UPVC)', 
+    type: 'German Vinyl Systems', 
+    watermark: 'VEKA', 
+    links: ['Thermal Insul', 'Acoustic Seal', 'Tropical Proof'], 
+    desc: 'Premium German-engineered uPVC profiles designed for extreme durability and tropical climate resistance. Featuring multi-chambered technology for superior thermal and acoustic insulation.', 
+    image: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&q=80&w=800' 
+  },
+  { 
+    id: 'aluk', 
+    name: 'ALUK / ALUMINIUM', 
+    type: 'System Aluminium', 
+    watermark: 'ALUK', 
+    links: ['Architectural', 'Minimalist', 'Structural'], 
+    desc: 'High-performance architectural aluminum systems combining sleek aesthetics with structural integrity. Ideal for expansive glass surfaces and modern minimalist designs.', 
+    image: 'https://images.unsplash.com/photo-1510000218930-bc500989047b?auto=format&fit=crop&q=80&w=800' 
+  },
+  { 
+    id: 'totalis', 
+    name: 'TOTALIS', 
+    type: 'High-Performance', 
+    watermark: 'TOTALIS', 
+    links: ['Security Max', 'Weather Tight', 'Versatile'], 
+    desc: 'Specialized high-end fenestration solutions for unique architectural requirements. Engineered for maximum security, weather-tightness, and aesthetic versatility.', 
+    image: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&q=80&w=800' 
+  },
+  { 
+    id: 'xindo', 
+    name: 'XINDO (SLEEK)', 
+    type: 'Slim & Sleek Series', 
+    watermark: 'SLEEK', 
+    links: ['Max Vision', 'Luxury Fit', 'Commercial'], 
+    desc: 'Ultra-slim profile systems designed for maximum transparency and minimal sightlines. The pinnacle of modern engineering for luxury residential and commercial spaces.', 
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800' 
+  }
 ]
 
 interface ProductsProps {

@@ -5,7 +5,7 @@ import Process from '@/components/Process'
 
 export default function InfrastructurePage() {
   return (
-    <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
+    <main className="min-h-screen bg-red-gradient selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <PageHero 
         title="The Infrastructure" 
         subtitle="State-of-the-art manufacturing facility powered by German robotics and local craftsmanship. Witness the precision behind Xindo."
