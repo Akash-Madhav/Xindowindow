@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, Variants } from 'framer-motion'
 import Image from 'next/image'
 
 export default function ExperienceCenter({ id = "experience-center" }: { id?: string }) {
@@ -28,7 +28,7 @@ export default function ExperienceCenter({ id = "experience-center" }: { id?: st
     }
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
