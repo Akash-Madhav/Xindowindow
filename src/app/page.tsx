@@ -2,7 +2,7 @@
 
 import Hero from '@/components/Hero'
 import About from '@/components/About'
-import Products from '@/components/Products'
+import ExperienceCenter from '@/components/ExperienceCenter'
 import Benefits from '@/components/Benefits'
 import TrustSection from '@/components/TrustSection'
 import Testimonials from '@/components/Testimonials'
@@ -24,8 +24,8 @@ export default function Home() {
         image="/images/about.png"
       />
 
-      <Products 
-        id="featured-collections"
+      <ExperienceCenter 
+        id="experience-center"
       />
 
       <Benefits 

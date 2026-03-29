@@ -1,7 +1,6 @@
 import PageHero from '@/components/PageHero'
 import Products from '@/components/Products'
 import Benefits from '@/components/Benefits'
-import TechnicalUI from '@/components/TechnicalUI'
 
 export default function ProductsPage() {
   return (
@@ -55,8 +54,6 @@ export default function ProductsPage() {
           ]}
         />
       </div>
-
-      <TechnicalUI />
 
       <Benefits 
         id="03"
