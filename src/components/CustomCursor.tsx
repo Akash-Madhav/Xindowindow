@@ -107,17 +107,25 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Hidden on touch/coarse-pointer devices (phone, tablet, TV remote) via CSS */}
-      <style>{`@media (pointer: coarse) { .xindo-cursor { display: none !important; } }`}</style>
+      <style>{`
+        @media (pointer: fine) {
+          * {
+            cursor: none !important;
+          }
+        }
+        @media (pointer: coarse) {
+          .xindo-cursor { display: none !important; }
+        }
+      `}</style>
       {/* Dot */}
       <div
         ref={dotRef}
-        className="xindo-cursor fixed top-0 left-0 w-2 h-2 bg-[var(--color-white)] rounded-full pointer-events-none z-[9999] transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] mix-blend-difference"
+        className="xindo-cursor fixed top-0 left-0 w-2 h-2 bg-[var(--color-white)] rounded-full pointer-events-none z-[10005] transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] mix-blend-difference"
       />
       {/* Ring */}
       <div
         ref={ringRef}
-        className="xindo-cursor fixed top-0 left-0 w-8 h-8 rounded-full border-[1.5px] border-[var(--color-primary)] pointer-events-none z-[9998] transition-[width,height,background-color,border-color,border-radius] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-center"
+        className="xindo-cursor fixed top-0 left-0 w-8 h-8 rounded-full border-[1.5px] border-[var(--color-primary)] pointer-events-none z-[10004] transition-[width,height,background-color,border-color,border-radius] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-center"
       />
     </>
   )

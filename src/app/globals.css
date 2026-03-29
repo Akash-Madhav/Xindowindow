@@ -225,3 +225,24 @@ p {
     margin-right: 40px;
   }
 }
+
+/* Custom Scrollbar Styling (Technical Red) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 0px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(200, 16, 46, 0.4);
+  border-radius: 20px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 16, 46, 0.8);
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200, 16, 46, 0.4) transparent;
+  overflow-x: hidden !important;
+}

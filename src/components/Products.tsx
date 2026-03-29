@@ -132,7 +132,7 @@ export default function Products({
       if (modalScrollRef.current) {
         const lenis = new Lenis({
           wrapper: modalScrollRef.current,
-          lerp: 0.1, // Softer for technical feel
+          lerp: 0.1, 
           smoothWheel: true,
         })
 
@@ -145,7 +145,7 @@ export default function Products({
         const ctx = gsap.context(() => {
           gsap.from('.product-card', {
             y: 30,
-            opacity: 0,
+            opacity: 0, // Fades on card entrance is still fine for entrance, but the *viewing* (modal block) shouldn't fade.
             duration: 1.2,
             stagger: 0.04,
             ease: 'power4.out',
@@ -194,27 +194,6 @@ export default function Products({
 
   return (
     <>
-      <style jsx global>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 5px;
-          height: 0px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(200, 16, 46, 0.4);
-          border-radius: 20px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(200, 16, 46, 0.8);
-        }
-        .custom-scrollbar {
-          scrollbar-width: thin;
-          scrollbar-color: rgba(200, 16, 46, 0.4) transparent;
-          overflow-x: hidden !important;
-        }
-      `}</style>
 
       <section
         id={id.toLowerCase().replace(/\s+/g, '-')}
@@ -266,10 +245,11 @@ export default function Products({
           <div className="fixed inset-0 z-[9999] flex items-center justify-center p-0 sm:p-10 md:p-16 overflow-hidden">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => { setSelectedSystemName(null); setSelectedProductName(null) }} className="absolute inset-0 bg-[var(--color-black)]/96 backdrop-blur-3xl pointer-events-auto transition-all duration-500" />
             
+            {/* Modal Container: Removed Initial Opacity Fading */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.99, y: 30 }} 
-              animate={{ opacity: 1, scale: 1, y: 0 }} 
-              exit={{ opacity: 0, scale: 0.99, y: 30 }} 
+              initial={{ scale: 0.99, y: 30 }} 
+              animate={{ scale: 1, y: 0 }} 
+              exit={{ scale: 0.99, y: 30 }} 
               className="relative w-full h-[100dvh] sm:h-[85vh] sm:max-w-[1440px] bg-red-gradient-deep border-y sm:border border-[rgba(255,255,255,0.05)] overflow-hidden flex flex-col industrial-texture sm:rounded-sm shadow-[0_0_120px_rgba(0,0,0,0.9)]"
             >
               
@@ -282,7 +262,7 @@ export default function Products({
                   </div>
                   <h2 className="font-display font-bold text-[28px] sm:text-[42px] text-white leading-[0.85] uppercase italic tracking-tighter">
                     {selectedProductName ? selectedProductName : selectedSystemName} 
-                    <span className="text-[var(--color-primary)] ml-4 opacity-70 font-medium tracking-normal text-[20px] sm:text-[28px]">{selectedProductName ? "V4.0" : "Registry"}</span>
+                    <span className="text-[var(--color-primary)] ml-4 opacity-70 font-medium tracking-normal text-[20px] sm:text-[28px]">{selectedProductName ? "SPEC" : "Registry"}</span>
                   </h2>
                 </div>
 
@@ -303,7 +283,13 @@ export default function Products({
               <div ref={modalScrollRef} className="flex-1 overflow-y-auto custom-scrollbar pointer-events-auto no-x-scroll">
                 <AnimatePresence mode="wait">
                   {!selectedProductName ? (
-                    <motion.div key="grid" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.6 }} className="p-8 sm:p-14 product-card-container">
+                    <motion.div key="grid" 
+                      initial={{ scale: 0.98 }} 
+                      animate={{ scale: 1 }} 
+                      exit={{ x: -100 }} 
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} 
+                      className="p-8 sm:p-14 product-card-container"
+                    >
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {productData.PRODUCT_REGISTRY[selectedSystemName as keyof typeof productData.PRODUCT_REGISTRY]?.map((prod, idx) => (
                           <div key={prod} onClick={() => setSelectedProductName(prod)} className="product-card group relative bg-[rgba(20,20,22,0.4)] border border-[rgba(255,255,255,0.03)] hover:border-[var(--color-primary-muted)] p-8 transition-all duration-700 cursor-pointer overflow-hidden backdrop-blur-sm">
@@ -320,11 +306,11 @@ export default function Products({
                     </motion.div>
                   ) : (
                     <motion.div key="detail" 
-                      initial={{ opacity: 0, x: 50, filter: 'blur(20px)' }} 
-                      animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }} 
-                      exit={{ opacity: 0, x: 50, filter: 'blur(20px)' }} 
+                      initial={{ x: 100 }} 
+                      animate={{ x: 0 }} 
+                      exit={{ x: 100 }} 
                       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
-                      className="p-8 sm:p-16 lg:p-24 bg-[var(--color-black)]/60 min-h-full flex items-center"
+                      className="p-8 sm:p-16 lg:p-24 bg-[var(--color-black)] min-h-full flex items-center relative z-10"
                     >
                       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center w-full max-w-[1300px] mx-auto">
                         {/* Detail Left: Technical Image */}
@@ -334,7 +320,7 @@ export default function Products({
                             <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[var(--color-white)]/5 to-[var(--color-black)]/40" />
                           </div>
                           {/* Fixed Badge Position */}
-                          <div className="absolute top-4 left-4 bg-[var(--color-primary)]/80 backdrop-blur-xl px-4 py-2 border border-white/10">
+                          <div className="absolute top-4 left-4 bg-[var(--color-primary)] px-4 py-2 border border-white/10 shadow-xl">
                             <span className="font-display font-bold text-white text-[14px] italic">XINDO-ALPHA</span>
                           </div>
                           <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b border-l border-[var(--color-primary)] opacity-40 pointer-events-none" />
@@ -350,10 +336,10 @@ export default function Products({
                           
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-12 mb-16">
                             {Object.entries(getProductSpecs(selectedProductName)).map(([label, value], i) => (
-                              <motion.div key={label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + (i*0.08) }} className="flex flex-col border-l border-[rgba(255,255,255,0.1)] pl-8 group cursor-default hover:border-[var(--color-primary)] transition-colors">
+                              <div key={label} className="flex flex-col border-l border-[rgba(255,255,255,0.1)] pl-8 group cursor-default hover:border-[var(--color-primary)] transition-colors">
                                 <span className="font-mono text-[9px] uppercase text-[var(--color-silver)] opacity-40 tracking-widest mb-3 font-bold">{label}</span>
                                 <span className="text-white font-display text-[22px] font-semibold italic group-hover:translate-x-2 transition-transform duration-500">{value}</span>
-                              </motion.div>
+                              </div>
                             ))}
                           </div>
 
@@ -369,7 +355,7 @@ export default function Products({
               </div>
 
               {/* Optimized Footer Status */}
-              <div className="px-8 sm:px-12 py-5 bg-[var(--color-black)]/80 border-t border-[rgba(255,255,255,0.05)] flex items-center justify-between gap-8 relative z-30">
+              <div className="px-8 sm:px-12 py-5 bg-[var(--color-black)] border-t border-[rgba(255,255,255,0.05)] flex items-center justify-between gap-8 relative z-30">
                 <div className="flex items-center gap-10 font-mono text-[9px] tracking-[0.3em] text-[var(--color-silver)] opacity-30">
                   <span className="hidden md:flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse" /> REGISTRY: 2026.04-V4.2</span>
                   <span className="hidden xl:inline">STANDARDS: DIN 18055 / ASTM-REG</span>
