@@ -35,37 +35,37 @@ export default function PageHero({ title, subtitle, bgText }: PageHeroProps) {
   })
 
   return (
-    <section className="relative w-full h-[60vh] sm:h-[70vh] flex items-center justify-center overflow-hidden bg-red-gradient industrial-texture">
+    <section className="relative w-full min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center overflow-hidden bg-red-gradient industrial-texture pt-32 sm:pt-40 pb-20">
       {/* Background Watermark - Technical Look */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-[0.03]">
         <h1 
-          className="font-display font-bold text-[22vw] lg:text-[16vw] text-transparent tracking-tighter uppercase whitespace-nowrap italic"
+          className="font-display font-bold text-[30vw] sm:text-[22vw] lg:text-[16vw] text-transparent tracking-tighter uppercase whitespace-nowrap italic"
           style={{ WebkitTextStroke: '1px var(--color-white)' }}
         >
           {bgText || title}
         </h1>
       </div>
 
-      <div className="relative z-10 text-center px-6 max-w-[1000px] 2xl:max-w-[1400px] 3xl:max-w-[1800px]">
+      <div className="relative z-10 text-center px-6 max-w-[1000px] 2xl:max-w-[1400px] 3xl:max-w-[1800px] w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center"
         >
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-10 sm:w-12 h-[2px] bg-[var(--color-primary)]" />
-            <span className="font-mono text-[9px] sm:text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-bold opacity-60">System Registry</span>
-            <div className="w-10 sm:w-12 h-[2px] bg-[var(--color-primary)]" />
+          <div className="flex items-center gap-4 mb-6 sm:mb-8">
+            <div className="w-8 sm:w-12 h-[2px] bg-[var(--color-primary)]" />
+            <span className="font-mono text-[8px] sm:text-[11px] uppercase text-[var(--color-silver)] tracking-[0.3em] sm:tracking-[0.4em] font-bold opacity-60">System Registry</span>
+            <div className="w-8 sm:w-12 h-[2px] bg-[var(--color-primary)]" />
           </div>
 
-          <h1 ref={titleRef} className="font-display font-bold text-[36px] sm:text-[52px] md:text-[72px] 2xl:text-[96px] 3xl:text-[120px] leading-[0.95] text-white tracking-tighter uppercase italic mb-8">
+          <h1 ref={titleRef} className="font-display font-bold text-[32px] sm:text-[52px] md:text-[72px] 2xl:text-[96px] 3xl:text-[120px] leading-[0.95] text-white tracking-tighter uppercase italic mb-6 sm:mb-8">
             {title}
           </h1>
           
-          <div ref={lineRef} className="w-12 sm:w-16 h-[3px] bg-[var(--color-primary)] mb-8 origin-center" />
+          <div ref={lineRef} className="w-12 sm:w-16 h-[3px] bg-[var(--color-primary)] mb-6 sm:mb-8 origin-center" />
 
-          <p className="font-sans font-normal text-[14px] sm:text-[17px] md:text-[19px] 2xl:text-[22px] 3xl:text-[28px] text-[var(--color-silver)] max-w-[500px] sm:max-w-[700px] 2xl:max-w-none opacity-80 leading-relaxed italic border-l-2 border-[var(--color-primary-muted)] pl-6 sm:pl-8 mx-auto text-left">
+          <p className="font-sans font-normal text-[14px] sm:text-[17px] md:text-[19px] 2xl:text-[22px] 3xl:text-[28px] text-[var(--color-silver)] max-w-[450px] sm:max-w-[700px] 2xl:max-w-none opacity-80 leading-relaxed italic border-l-2 border-[var(--color-primary-muted)] pl-5 sm:pl-8 mx-auto text-left">
             {subtitle}
           </p>
         </motion.div>

@@ -1,78 +1,129 @@
 'use client'
-
-import { motion } from 'framer-motion'
-
+ 
+import React, { useRef } from 'react'
+import { gsap } from '@/lib/gsap-config'
+import { useGSAP } from '@gsap/react'
+ 
 const CLIENT_LOGOS = [
-  { name: 'Developer A', logo: '/images/logos/client1.png' },
-  { name: 'Developer B', logo: '/images/logos/client2.png' },
-  { name: 'Developer C', logo: '/images/logos/client3.png' },
-  { name: 'Developer D', logo: '/images/logos/client4.png' },
-  { name: 'Architect E', logo: '/images/logos/client5.png' },
-  { name: 'Architect F', logo: '/images/logos/client6.png' }
+  { name: 'Architectural Digest', detail: 'Feature Design' },
+  { name: 'Lumière Foundry', detail: 'Precision Partner' },
+  { name: 'De-Tech Systems', detail: 'Hardware Core' },
+  { name: 'Glaze Dynamics', detail: 'Surface Tech' },
+  { name: 'Form-X Group', detail: 'Structural Node' },
+  { name: 'Vantage Build', detail: 'Implementation' }
 ]
-
+ 
 const CERTIFICATIONS = [
-  { name: 'ISO 9001:2015', detail: 'Quality Management' },
-  { name: 'DIN Standard', detail: 'German Engineering' },
-  { name: 'GS Certified', detail: 'Safety & Quality' }
+  { id: '01', name: 'ISO 9001:2015', detail: 'Global Quality Management Protocol' },
+  { id: '02', name: 'DIN EN 12608', detail: 'German Technical Profile Standard' },
+  { id: '03', name: 'GS CERTIFIED', detail: 'Safety & Material Validation' }
 ]
-
+ 
 export default function TrustSection() {
+  const containerRef = useRef<HTMLDivElement>(null)
+ 
+  useGSAP(() => {
+    if (!containerRef.current) return
+ 
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 75%',
+      }
+    })
+ 
+    tl.fromTo('.partner-box', 
+      { opacity: 0, scale: 0.95 },
+      { opacity: 1, scale: 1, stagger: 0.08, duration: 1, ease: 'power4.out' }
+    )
+ 
+    tl.fromTo('.cert-item',
+      { x: 30, opacity: 0 },
+      { x: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'luxurious' },
+      "-=0.6"
+    )
+  }, { scope: containerRef })
+ 
   return (
-    <section className="relative py-24 sm:py-32 bg-red-gradient industrial-texture">
-      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-5 sm:px-8 md:px-16">
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-
-          {/* Logo Marquee / Grid */}
-          <div className="flex flex-col gap-12">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-[2px] bg-[var(--color-primary)]" />
-              <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">Strategic Partners</span>
+    <section 
+      ref={containerRef}
+      className="relative py-32 md:py-48 bg-[var(--color-black)] overflow-hidden industrial-texture"
+    >
+      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-6 md:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 lg:gap-32">
+          
+          {/* Partners Column - 7 Cols */}
+          <div className="lg:col-span-7 flex flex-col gap-16">
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-6">
+                <div className="w-12 h-[1px] bg-[var(--color-primary)]" />
+                <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">Strategic Nodes</span>
+              </div>
+              <h2 className="font-display font-black text-[42px] md:text-[64px] text-white leading-[0.95] uppercase italic tracking-tighter">
+                Ecosystem <br />
+                <span className="text-[var(--color-primary)]">Collaboration.</span>
+              </h2>
             </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12">
+ 
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-[1px] bg-white/5 border border-white/5">
               {CLIENT_LOGOS.map((client, i) => (
-                <div key={i} className="group relative aspect-video flex items-center justify-center bg-[var(--color-black-soft)] border border-[var(--color-black-light)] grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500 p-6">
-                  {/* Placeholder for actual logos */}
-                  <span className="font-display font-bold text-[14px] text-[var(--color-white)] tracking-widest uppercase opacity-20 group-hover:opacity-100 transition-opacity">{client.name}</span>
-                  <div className="absolute inset-0 border border-[var(--color-primary-muted)] opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-500" />
+                <div 
+                  key={i} 
+                  className="partner-box group relative aspect-video flex flex-col items-center justify-center bg-[var(--color-black)] hover:bg-[var(--color-black-soft)] transition-all duration-700 p-8 overflow-hidden"
+                >
+                  <span className="font-display font-black text-[12px] md:text-[14px] text-white tracking-[0.4em] uppercase opacity-20 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700">{client.name}</span>
+                  <span className="font-mono text-[8px] uppercase text-[var(--color-primary)] tracking-widest opacity-0 group-hover:opacity-60 mt-4 transition-opacity">{client.detail}</span>
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-0 transition-all duration-1000" />
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Certifications & Quality */}
-          <div className="flex flex-col gap-12">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-[2px] bg-[var(--color-primary)]" />
-              <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">Technical Standards</span>
+ 
+          {/* Certifications Column - 5 Cols */}
+          <div className="lg:col-span-5 flex flex-col gap-16">
+            <div className="flex items-center gap-6">
+              <div className="w-12 h-[1px] bg-[var(--color-primary)]" />
+              <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">Validation</span>
             </div>
-
-            <div className="flex flex-col gap-6">
+ 
+            <div className="flex flex-col gap-8">
               {CERTIFICATIONS.map((cert, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1, duration: 0.8 }}
-                  className="flex items-center justify-between p-8 bg-[var(--color-black-soft)] border-l-2 border-[var(--color-primary)] hover:bg-[var(--color-black-mid)] transition-colors group"
+                  className="cert-item group relative p-10 bg-[var(--color-black-soft)] border-l-2 border-[var(--color-primary)] transition-all duration-500 hover:pl-14"
                 >
-                  <div className="flex flex-col">
-                    <span className="font-display font-bold text-[20px] sm:text-[24px] text-[var(--color-white)] uppercase tracking-tight italic">{cert.name}</span>
-                    <span className="font-mono text-[10px] uppercase text-[var(--color-silver)] tracking-[0.2em] mt-1 opacity-60">{cert.detail}</span>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[11px] text-[var(--color-primary)] font-black opacity-40">PRTCL-{cert.id}</span>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+                    </div>
+                    <h3 className="font-display font-black text-[24px] md:text-[32px] text-white leading-none uppercase italic tracking-tighter group-hover:text-[var(--color-primary)] transition-colors">{cert.name}</h3>
+                    <p className="font-sans font-medium text-[13px] md:text-[15px] text-[var(--color-silver)] uppercase tracking-widest opacity-40 group-hover:opacity-80 transition-opacity">{cert.detail}</p>
                   </div>
-                  <div className="w-12 h-12 flex items-center justify-center border border-[var(--color-black-light)] group-hover:border-[var(--color-primary-muted)] transition-colors">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[var(--color-primary)]" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-                  </div>
-                </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
               ))}
             </div>
+ 
+            {/* Efficiency Mark */}
+            <div className="mt-auto pt-16 border-t border-white/5 flex items-center justify-between">
+               <div className="flex flex-col">
+                  <span className="font-display text-[48px] font-black text-white italic leading-none">99.8%</span>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-2">TECHNICAL UPTIME</span>
+               </div>
+               <div className="w-[1px] h-12 bg-white/10" />
+               <div className="flex flex-col text-right">
+                  <span className="font-display text-[48px] font-black text-white italic leading-none">GER</span>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-2">CORE PROTOCOL</span>
+               </div>
+            </div>
           </div>
-
+ 
         </div>
-
       </div>
+ 
+      {/* Background Ambience */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(200,16,46,0.03)_0%,transparent_70%)] pointer-events-none" />
     </section>
   )
 }

@@ -1,114 +1,140 @@
 'use client'
-
+ 
 import Link from 'next/link'
-
+ 
 export default function Footer() {
   return (
-    <footer className="relative bg-red-gradient-deep pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 w-full overflow-hidden z-20 industrial-texture" data-section-id="09">
+    <footer className="relative bg-[var(--color-black)] pt-20 sm:pt-32 pb-16 w-full z-20 border-t border-white/5 overflow-x-hidden" data-section-id="09">
 
-      {/* Background XINDO text - Massive & Technical */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none z-0">
+      {/* Absolute Cinematic Watermark */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none z-0 opacity-[0.015] w-full text-center overflow-hidden">
         <span
-          className="font-display font-bold text-[180px] md:text-[320px] leading-none text-transparent tracking-[-0.05em] opacity-[0.02] text-center w-full whitespace-nowrap italic"
-          style={{ WebkitTextStroke: '1px var(--color-white)' }}
+          className="font-display font-black text-[120px] sm:text-[200px] md:text-[450px] leading-none text-transparent tracking-[-0.05em] uppercase italic inline-block"
+          style={{ WebkitTextStroke: '1px md:WebkitTextStroke: 2px var(--color-white)' }}
         >
           XINDO
         </span>
       </div>
 
-      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-5 sm:px-8 md:px-16 relative z-10 flex flex-col">
+      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-6 sm:px-10 md:px-16 relative z-10 flex flex-col">
 
-        {/* 4-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 mb-32">
+        {/* Main Grid Structure */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 sm:gap-20 lg:gap-12 xl:gap-16 mb-24 sm:mb-40">
 
-          {/* Col 1: Brand & Ethos */}
-          <div className="flex flex-col">
-            <Link href="/" className="flex items-center gap-4 mb-8 w-fit group">
-              <div className="w-[44px] h-[44px] border-2 border-[var(--color-primary)] flex items-center justify-center group-hover:bg-[var(--color-primary)] transition-all duration-300">
-                <span className="font-display font-bold text-[22px] text-[var(--color-white)] italic">X</span>
+          {/* Brand & Mission - 4 Cols */}
+          <div className="lg:col-span-4 flex flex-col gap-10 min-w-0">
+            <Link href="/" className="flex items-center gap-4 sm:gap-6 w-fit group">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 border-2 border-[var(--color-primary)] flex items-center justify-center group-hover:bg-[var(--color-primary)] transition-all duration-500">
+                <span className="font-display font-black text-[18px] sm:text-[24px] text-white italic">X</span>
               </div>
-              <span className="font-display font-bold text-[18px] md:text-[20px] text-[var(--color-white)] uppercase tracking-tight italic">Xindo Window</span>
+              <span className="font-display font-black text-[18px] sm:text-[20px] text-white uppercase italic tracking-tighter">Xindo Window</span>
             </Link>
-            <p className="font-sans font-normal text-[15px] leading-[1.7] text-[var(--color-silver)] mb-10 opacity-80 italic border-l border-[var(--color-primary-muted)] pl-6">
-              Engineering the absolute benchmark in fenestration systems for the modern industrial age.
+            
+            <p className="font-sans font-medium text-[15px] sm:text-[16px] leading-[1.8] text-[var(--color-silver)] opacity-60 italic border-l-2 border-[var(--color-primary)] pl-6 sm:pl-10">
+              Engineering the absolute benchmark in high-value fenestration systems. Architectural precision crafted for the future of Indian living.
             </p>
-            <div className="px-5 py-2.5 w-fit border border-[var(--color-black-light)] bg-[var(--color-black-soft)] backdrop-blur-md flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--color-white)] font-bold">Indo-German Strategic Alliance</span>
+
+            <div className="flex flex-col gap-4 mt-4">
+              <div className="flex items-center gap-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] animate-pulse" />
+                <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.5em] text-[var(--color-white)] font-black italic">System Online: release 1.02</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)]" />
+                <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.5em] text-[var(--color-white)] font-black italic">Quality Index: certified</span>
+              </div>
             </div>
           </div>
 
-          {/* Col 2: Navigation */}
-          <div className="flex flex-col">
-            <div className="font-mono text-[11px] text-[var(--color-white)] uppercase tracking-[0.4em] mb-10 border-b-2 border-[var(--color-primary-muted)] pb-4 font-bold">Infrastructure</div>
-            <ul className="flex flex-col gap-5">
-              {[
-                { name: 'About Engineering', href: '/about' },
-                { name: 'Technical Standards', href: '/about#quality-standards' },
-                { name: 'Production Plant', href: '/infrastructure' },
-                { name: 'Project Gallery', href: '/gallery' },
-                { name: 'Client Records', href: '/#testimonials' },
-                { name: 'Technical Careers', href: '/contact#contact-form' }
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="font-sans font-semibold text-[13px] text-[var(--color-silver)] hover:text-[var(--color-white)] hover:translate-x-2 transition-all duration-300 uppercase tracking-widest flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-[var(--color-primary-muted)] rounded-full opacity-0 group-hover:opacity-100" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Navigation Sections - 5 Cols */}
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-12 sm:gap-10 min-w-0">
+            <div className="flex flex-col gap-8 sm:gap-10">
+              <span className="font-mono text-[11px] text-[var(--color-primary)] uppercase tracking-[0.6em] font-black italic">Infrastructure</span>
+              <ul className="flex flex-col gap-5 sm:gap-6">
+                {[
+                  { name: 'Engineering', href: '/about' },
+                  { name: 'Standards', href: '/about#quality' },
+                  { name: 'Plant', href: '/infrastructure' },
+                  { name: 'Gallery', href: '/gallery' },
+                  { name: 'Technical', href: '/contact' }
+                ].map((l) => (
+                  <li key={l.name}>
+                    <Link href={l.href} className="font-sans font-black text-[12px] sm:text-[13px] text-[var(--color-silver)] hover:text-white hover:translate-x-3 transition-all duration-500 uppercase tracking-widest flex items-center gap-4 group">
+                      <div className="w-0 h-[1.5px] bg-[var(--color-primary)] group-hover:w-4 transition-all" />
+                      {l.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-col gap-8 sm:gap-10">
+              <span className="font-mono text-[11px] text-[var(--color-primary)] uppercase tracking-[0.6em] font-black italic">Systems</span>
+              <ul className="flex flex-col gap-5 sm:gap-6">
+                {[
+                  { name: 'Sliding', href: '/products#sliding' },
+                  { name: 'Casement', href: '/products#casement' },
+                  { name: 'Special', href: '/products#special' },
+                  { name: 'Hardware', href: '/products#hardware' },
+                  { name: 'Aluminum', href: '/products#aluminum' }
+                ].map((l) => (
+                  <li key={l.name}>
+                    <Link href={l.href} className="font-sans font-black text-[12px] sm:text-[13px] text-[var(--color-silver)] hover:text-white hover:translate-x-3 transition-all duration-500 uppercase tracking-widest flex items-center gap-4 group">
+                      <div className="w-0 h-[1.5px] bg-[var(--color-primary)] group-hover:w-4 transition-all" />
+                      {l.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Col 3: Systems */}
-          <div className="flex flex-col">
-            <div className="font-mono text-[11px] text-[var(--color-white)] uppercase tracking-[0.4em] mb-10 border-b-2 border-[var(--color-primary-muted)] pb-4 font-bold">Systems</div>
-            <ul className="flex flex-col gap-5">
-              {[
-                { name: 'Sliding Series', href: '/products#sliding' },
-                { name: 'Performance Casement', href: '/products#casement' },
-                { name: 'Architectural Special', href: '/products#special' },
-                { name: 'Precision Hardware', href: '/products#accessories' },
-                { name: 'Aluminum Systems', href: '/products#aluminum' },
-                { name: 'Technical Glass', href: '/products#glass' }
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="font-sans font-semibold text-[13px] text-[var(--color-silver)] hover:text-[var(--color-white)] hover:translate-x-2 transition-all duration-300 uppercase tracking-widest flex items-center gap-2">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 4: Operations */}
-          <div className="flex flex-col">
-            <div className="font-mono text-[11px] text-[var(--color-white)] uppercase tracking-[0.4em] mb-10 border-b-2 border-[var(--color-primary-muted)] pb-4 font-bold">Corporate</div>
-            <div className="flex flex-col gap-6">
-              <a href="tel:+919444045544" className="font-mono text-[18px] text-[var(--color-white)] font-bold hover:text-[var(--color-primary)] transition-colors duration-300 block">
+          {/* Operations Hub - 3 Cols */}
+          <div className="lg:col-span-3 flex flex-col gap-8 min-w-0 overflow-hidden">
+            <span className="font-mono text-[11px] text-[var(--color-primary)] uppercase tracking-[0.6em] font-black italic">Operations</span>
+            <div className="flex flex-col gap-8">
+              <a href="tel:+919444045544" className="font-display text-[20px] lg:text-[24px] xl:text-[28px] text-white font-black italic hover:text-[var(--color-primary)] transition-colors tracking-tight">
                 +91 94440 45544
               </a>
-              <a href="https://wa.me/919444045544" className="font-sans font-bold text-[13px] text-[var(--color-primary)] hover:text-[var(--color-white)] uppercase tracking-[0.2em] transition-all duration-300 block border border-[var(--color-primary-muted)] p-4 text-center">
-                Request Engineering Quote
+              <a 
+                href="https://wa.me/919444045544" 
+                className="group relative bg-[var(--color-primary)] text-white text-center py-5 sm:py-6 px-6 font-sans font-black text-[10px] xl:text-[11px] uppercase tracking-[0.3em] xl:tracking-[0.4em] shadow-primary overflow-hidden"
+              >
+                <span className="relative z-10 italic">Request Protocol</span>
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
               </a>
-              <p className="font-sans font-normal text-[14px] leading-[1.7] text-[var(--color-silver)] mt-4 opacity-70">
-                Corporate HQ:<br />
-                No. 115/62, Canal Bank Road,<br />
-                CIT Nagar, Chennai — 600035
-              </p>
+              <div className="flex flex-col gap-2 opacity-40">
+                <span className="font-mono text-[10px] text-white uppercase tracking-widest font-black">Corporate HQ</span>
+                <p className="font-sans text-[12px] sm:text-[13px] text-[var(--color-silver)] font-medium leading-relaxed italic break-words">
+                  No. 115/62, Canal Bank Road,<br />
+                  CIT Nagar, Chennai — 600035
+                </p>
+              </div>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Bar: Regulatory & Legal */}
-        <div className="border-t border-[var(--color-black-light)] pt-10 flex flex-col md:flex-row items-center justify-between gap-6 w-full">
-          <span className="font-mono text-[10px] text-[var(--color-silver)] uppercase tracking-widest opacity-50">© 2026 XINDO WINDOW PVT LTD | ALL RIGHTS RESERVED</span>
-          <div className="flex gap-8">
-            <span className="font-mono text-[10px] text-[var(--color-primary)] uppercase tracking-[0.3em] font-bold">GS-9001 Certified Plant</span>
-            <span className="font-mono text-[10px] text-[var(--color-silver)] uppercase tracking-[0.3em] opacity-50">German Technical Heritage</span>
+        {/* Footer Regulatory Bottom */}
+        <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row items-center justify-between gap-10">
+          <div className="flex flex-col items-center md:items-start gap-2">
+             <span className="font-mono text-[8px] sm:text-[9px] text-[var(--color-silver)] uppercase tracking-[0.4em] opacity-30 font-black text-center md:text-left">© 2026 XINDO WINDOW PRIVATE LIMITED</span>
+             <span className="font-mono text-[8px] sm:text-[9px] text-[var(--color-primary)] uppercase tracking-[0.4em] font-black italic">GERMAN TECHNICAL HERITAGE</span>
+          </div>
+          
+          <div className="flex items-center gap-8 sm:gap-12">
+            <div className="flex flex-col items-center md:items-end gap-1">
+               <span className="font-display text-[14px] sm:text-[16px] text-white font-black italic">GS-9001</span>
+               <span className="font-mono text-[7px] sm:text-[8px] text-[var(--color-silver)] uppercase tracking-widest opacity-30">CERTIFIED</span>
+            </div>
+            <div className="w-[1px] h-10 bg-white/10" />
+            <div className="flex flex-col items-center md:items-end gap-1">
+               <span className="font-display text-[14px] sm:text-[16px] text-white font-black italic">LUMI-AIR</span>
+               <span className="font-mono text-[7px] sm:text-[8px] text-[var(--color-silver)] uppercase tracking-widest opacity-30">AIR-TIGHT PROTOCOL</span>
+            </div>
           </div>
         </div>
+
       </div>
     </footer>
   )

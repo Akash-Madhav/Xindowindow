@@ -181,50 +181,36 @@ p {
   @apply font-sans font-bold uppercase text-[11px] sm:text-[12px] lg:text-[13px] 2xl:text-[15px] leading-[1.2] tracking-[0.25em] hover:text-[var(--color-primary)] transition-all;
 }
 
-/* 3XL (TV/Ultra-wide) Support */
-@media (min-width: 1920px) {
-  .display-xl {
-    font-size: 200px;
-  }
+/* 3XL (QHD/2K) Support */
+@media (min-width: 2000px) {
+  .display-xl { font-size: 180px; }
+  .display-l { font-size: 140px; }
+  h1 { font-size: 110px; }
+  h2 { font-size: 84px; }
+  h3 { font-size: 56px; }
+  .body-l { font-size: 28px; }
+  p { font-size: 22px; }
+  .stat { font-size: 160px; }
+}
 
-  .display-l {
-    font-size: 160px;
-  }
-
-  h1 {
-    font-size: 120px;
-  }
-
-  h2 {
-    font-size: 96px;
-  }
-
-  h3 {
-    font-size: 64px;
-  }
-
-  h4 {
-    font-size: 48px;
-  }
-
-  .body-l {
-    font-size: 32px;
-  }
-
-  p {
-    font-size: 26px;
-  }
-
-  .stat {
-    font-size: 180px;
-  }
-
+/* 4K (Ultra HD) Support */
+@media (min-width: 3800px) {
+  .display-xl { font-size: 240px; }
+  .display-l { font-size: 180px; }
+  h1 { font-size: 140px; }
+  h2 { font-size: 112px; }
+  h3 { font-size: 72px; }
+  h4 { font-size: 56px; }
+  .body-l { font-size: 36px; }
+  p { font-size: 28px; }
+  .stat { font-size: 220px; }
   .marquee-item {
-    font-size: 44px;
-    margin-left: 40px;
-    margin-right: 40px;
+    font-size: 56px;
+    margin-left: 60px;
+    margin-right: 60px;
   }
 }
+
 
 /* Custom Scrollbar Styling (Technical Red) */
 .custom-scrollbar::-webkit-scrollbar {

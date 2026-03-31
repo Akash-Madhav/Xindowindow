@@ -7,6 +7,8 @@ import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroller from "@/components/SmoothScroller";
 import Footer from "@/components/Footer";
+import { RevealProvider } from "@/components/RevealProvider";
+import { RevealWrapper } from "@/components/RevealWrapper";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -30,8 +32,29 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Xindo Window | Premium uPVC Windows & Doors Manufacturer — Chennai, India",
-  description: "India's leading Indo-German uPVC windows and doors manufacturer. Sliding, casement, and special windows with 10-year warranty. Trusted by Chennai's top developers.",
+  metadataBase: new URL("https://xindowindow.com"),
+  title: {
+    default: "Xindo Window | Premium Indo-German uPVC Fenestration",
+    template: "%s | Xindo Window"
+  },
+  description: "India's leading Indo-German uPVC windows and doors manufacturer. Sliding, casement, and special systems with 10-year warranty. Engineered for architectural precision.",
+  keywords: ["uPVC Windows", "uPVC Doors", "Indo-German Fenestration", "Chennai Windows", "Premium Windows"],
+  authors: [{ name: "Xindo Window" }],
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://xindowindow.com",
+    siteName: "Xindo Window",
+    title: "Xindo Window | Premium uPVC Systems",
+    description: "Architectural precision fenestration systems powered by German technology.",
+    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "Xindo Window Premium Systems" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Xindo Window | Premium uPVC Systems",
+    description: "Architectural precision fenestration systems powered by German technology.",
+    images: ["/images/og-image.png"]
+  }
 };
 
 export default function RootLayout({
@@ -53,13 +76,17 @@ export default function RootLayout({
           </svg>
         </div>
         <CustomCursor />
-        <SmoothScroller>
-          <Preloader />
-          <Navbar />
-          {children}
-          <Footer />
-          <WhatsAppFloat />
-        </SmoothScroller>
+        <RevealProvider>
+          <SmoothScroller>
+            <Preloader />
+            <RevealWrapper>
+              <Navbar />
+              {children}
+              <Footer />
+            </RevealWrapper>
+            <WhatsAppFloat />
+          </SmoothScroller>
+        </RevealProvider>
       </body>
     </html>
   );

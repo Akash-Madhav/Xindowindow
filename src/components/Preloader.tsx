@@ -1,72 +1,147 @@
 'use client'
-
-import { useEffect, useState } from 'react'
+ 
+import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-
+import { gsap } from '@/lib/gsap-config'
+import { useReveal } from './RevealProvider'
+ 
+const LOADING_STEPS = [
+  "SYSTEM ARCHITECTURE: ONLINE",
+  "GERMAN PRECISION CORE: INITIALIZING",
+  "THERMAL DYNAMICS: ANALYSING",
+  "XINDO ELITE ASSET: READ"
+]
+ 
 export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true)
-
+  const [loadingStep, setLoadingStep] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const progressRef = useRef<HTMLDivElement>(null)
+  const logoPathRef = useRef<SVGPathElement>(null)
+  const { triggerReveal } = useReveal()
+ 
   useEffect(() => {
-    const hasLoaded = sessionStorage.getItem('xindo-preloader-done')
+    const hasLoaded = sessionStorage.getItem('xindo-preloader-done-premium')
     if (hasLoaded) {
-      Promise.resolve().then(() => setIsLoading(false))
+      setTimeout(() => {
+        setIsLoading(false)
+        triggerReveal() // Instantly reveal if already loaded in this session
+      }, 0)
       return
     }
-
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-      sessionStorage.setItem('xindo-preloader-done', 'true')
-    }, 2000) // Stay longer to cover hydration better
-
-    return () => clearTimeout(timer)
+ 
+    // Cycle through technical loading steps
+    const stepInterval = setInterval(() => {
+      setLoadingStep(prev => (prev < LOADING_STEPS.length - 1 ? prev + 1 : prev))
+    }, 400)
+ 
+    // GSAP Timeline for the visual sequence
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setTimeout(() => {
+          setIsLoading(false)
+          triggerReveal()
+          sessionStorage.setItem('xindo-preloader-done-premium', 'true')
+        }, 300)
+      }
+    })
+ 
+    // Initial Logo Draw
+    tl.fromTo(logoPathRef.current, 
+      { strokeDashoffset: 400, strokeDasharray: 400 },
+      { strokeDashoffset: 0, duration: 1.5, ease: 'expo.inOut' }
+    )
+ 
+    // Progress Bar Fill
+    tl.fromTo(progressRef.current,
+      { scaleX: 0 },
+      { scaleX: 1, duration: 1.8, ease: 'luxurious' },
+      "-=1.2"
+    )
+ 
+    return () => {
+      clearInterval(stepInterval)
+      tl.kill()
+    }
   }, [])
-
+ 
   return (
     <AnimatePresence>
       {isLoading && (
         <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }} // 600ms unmount fade
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-black)]"
-            aria-live="polite"
-            role="status"
-            aria-label="Loading"
+          ref={containerRef}
+          initial={{ opacity: 1 }}
+          exit={{ 
+            y: '-100%', 
+            transition: { duration: 1, ease: [0.77, 0, 0.175, 1] } 
+          }}
+          className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-[#09090B] overflow-hidden"
         >
-          <svg
-            width="100"
-            height="100"
-            viewBox="0 0 120 120"
-            className="text-[var(--color-primary)]"
-            aria-hidden="true"
-          >
-            <motion.path
-              d="M30,30 L90,90 M90,30 L30,90"
-              stroke="currentColor"
-              strokeWidth="6"
-              strokeLinecap="square"
-              fill="transparent"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{
-                duration: 1.2, 
-                ease: [0.16, 1, 0.3, 1] 
-              }}
-            />
-            {/* Box around the X - more industrial */}
-            <motion.rect
-              x="15" y="15" width="90" height="90"
-              stroke="currentColor"
-              strokeWidth="3"
-              fill="transparent"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.3 }}
-              transition={{
-                duration: 1.2,
-                ease: [0.16, 1, 0.3, 1]
-              }}
-            />
-          </svg>
+          {/* Internal Texture Layer */}
+          <div className="absolute inset-0 industrial-texture opacity-20 pointer-events-none" />
+          
+          {/* Content Wrapper to handle precise centering */}
+          <div className="relative z-10 flex flex-col items-center justify-center -translate-y-6 sm:-translate-y-10">
+            {/* Central Technical Logo */}
+            <div className="relative mb-16">
+              <svg width="120" height="120" viewBox="0 0 120 120" className="text-[var(--color-primary)]">
+                <path
+                  ref={logoPathRef}
+                  d="M30,30 L90,90 M90,30 L30,90"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="butt"
+                  fill="none"
+                />
+                <motion.rect
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.1 }}
+                  x="10" y="10" width="100" height="100"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  fill="none"
+                />
+              </svg>
+              
+              {/* Spinning Aura */}
+              <div className="absolute inset-[-40px] border border-[var(--color-primary)]/10 rounded-full animate-[spin_10s_linear_infinite]" />
+              <div className="absolute inset-[-20px] border border-[var(--color-white)]/5 rounded-full animate-[spin_6s_linear_infinite_reverse]" />
+            </div>
+
+            {/* Status Indicators */}
+            <div className="flex flex-col items-center gap-4">
+              <div className="h-4 overflow-hidden flex flex-col items-center">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={loadingStep}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="font-mono text-[9px] sm:text-[11px] text-[var(--color-silver)] uppercase tracking-[0.5em] font-black"
+                  >
+                    {LOADING_STEPS[loadingStep]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+              {/* Minimal Progress Bar */}
+              <div className="w-[200px] h-[1px] bg-white/10 relative mt-4">
+                <div 
+                  ref={progressRef}
+                  className="absolute inset-0 bg-[var(--color-primary)] origin-left"
+                />
+              </div>
+
+              <div className="mt-8 flex gap-6">
+                <span className="font-mono text-[8px] text-[var(--color-primary)] opacity-40 uppercase tracking-widest">A-SYS 1.0</span>
+                <span className="font-mono text-[8px] text-[var(--color-primary)] opacity-40 uppercase tracking-widest">DE-TECH GRID</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Ambient Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(200,16,46,0.05)_0%,transparent_70%)] pointer-events-none" />
         </motion.div>
       )}
     </AnimatePresence>

@@ -41,3 +41,20 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# AI Agent Artifacts & Brain Data
+.agents/
+.gemini/
+brain/
+artifacts/
+AGENTS.md
+CLAUDE.md
+JOBS.md
+SKILLS.md
+SKILLS.md.meta
+skills-lock.json
+implementation_plan.md
+task.md
+walkthrough.md
+*.glb.meta
+tmp/

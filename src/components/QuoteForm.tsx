@@ -1,193 +1,165 @@
 'use client'
-
-import { useState } from 'react'
+ 
+import { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-
+import { gsap } from '@/lib/gsap-config'
+import { useGSAP } from '@gsap/react'
+ 
 const formSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters.'),
-  phone: z.string().min(10, 'Please enter a valid phone number.'),
-  email: z.string().email('Please enter a valid email address.'),
-  productType: z.string().min(1, 'Please select a product type.'),
+  name: z.string().min(2, 'Identification required.'),
+  phone: z.string().min(10, 'Technical contact required.'),
+  email: z.string().email('Invalid registry format.'),
+  productType: z.string().min(1, 'Selection required.'),
   message: z.string().optional(),
 })
-
+ 
 export default function QuoteForm() {
+  const containerRef = useRef<HTMLDivElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-
+ 
   const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   })
-
+ 
+  useGSAP(() => {
+    if (!containerRef.current) return
+    
+    gsap.fromTo('.form-element',
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.1, duration: 1, ease: 'luxurious', scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 80%',
+      }}
+    )
+  }, { scope: containerRef })
+ 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true)
-    // For logging/tracking in development if needed
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Form data:', data)
-    }
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    await new Promise(resolve => setTimeout(resolve, 2000))
     setIsSubmitting(false)
     setIsSuccess(true)
   }
-
+ 
   return (
-    <section id="contact-form" className="relative bg-red-gradient py-12 sm:py-16 md:py-[120px] px-5 sm:px-8 md:px-12 w-full overflow-hidden" data-section-id="08">
-      {/* Decorative Grid BG */}
-      <div 
-        className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(var(--primary-rgb), 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--primary-rgb), 0.1) 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }}
-      />
-
-      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative z-10">
+    <section ref={containerRef} className="relative bg-[var(--color-black)] py-32 px-6 md:px-16 w-full overflow-hidden industrial-texture">
+      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
         
-        {/* Left Column: Form */}
-        <div className="flex flex-col">
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-[40px] h-[1px] bg-[var(--color-primary)] opacity-40" />
-            <span className="font-mono text-[11px] uppercase text-[var(--color-primary)] tracking-[0.18em]">Request Quote</span>
+        {/* Left: Contact Info - 5 Cols */}
+        <div className="lg:col-span-5 flex flex-col gap-16">
+          <div className="flex flex-col gap-4 sm:gap-6">
+            <div className="flex items-center gap-4 sm:gap-6">
+              <div className="w-8 sm:w-12 h-[1px] bg-[var(--color-primary)]" />
+              <span className="font-mono text-[9px] sm:text-[10px] uppercase text-[var(--color-primary)] tracking-[0.4em] sm:tracking-[0.6em] font-black italic">Channel 08</span>
+            </div>
+            <h2 className="font-display font-black text-[38px] sm:text-[54px] md:text-[88px] text-white leading-[0.9] sm:leading-[0.85] uppercase italic tracking-tighter">
+              Initiate <br className="hidden sm:block" />
+              <span className="text-[var(--color-primary)]">Protocol.</span>
+            </h2>
           </div>
-
-          <h2 className="font-display text-[30px] sm:text-[36px] md:text-[42px] 2xl:text-[52px] font-normal text-[var(--color-white)] mb-8 md:mb-10 leading-[1.1]">
-            Build Your Vision With Us
-          </h2>
-
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8 w-full max-w-[500px]">
-            {/* Name */}
-            <div className="relative group">
-              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-1 tracking-widest">Name</label>
+ 
+          <div className="flex flex-col gap-12">
+             <div className="flex flex-col gap-3 md:gap-4">
+                <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-30 font-black">Direct Line</span>
+                <a href="tel:+919444045544" className="font-display text-[26px] sm:text-[32px] md:text-[42px] text-white font-black italic tracking-tighter hover:text-[var(--color-primary)] transition-colors">+91 94440 45544</a>
+             </div>
+             
+             <div className="flex flex-col gap-4">
+                <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-30 font-black">Technical Hub</span>
+                <p className="font-sans text-[16px] md:text-[18px] text-[var(--color-silver)] font-medium leading-relaxed italic opacity-80 max-w-sm">
+                   No. 115/62, Canal Bank Road,<br />
+                   CIT Nagar, Chennai — 600035
+                </p>
+             </div>
+ 
+             <div className="pt-12 border-t border-white/5 flex gap-10">
+                <div className="flex flex-col">
+                   <span className="font-display text-[24px] text-white font-black italic">24H</span>
+                   <span className="font-mono text-[8px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-1">RESPONSE TIME</span>
+                </div>
+                <div className="flex flex-col">
+                   <span className="font-display text-[24px] text-white font-black italic">GLB</span>
+                   <span className="font-mono text-[8px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-1">STANDARDS</span>
+                </div>
+             </div>
+          </div>
+        </div>
+ 
+        {/* Right: Technical Form - 7 Cols */}
+        <div className="lg:col-span-7 bg-[var(--color-black-soft)] border border-white/5 p-10 md:p-16 lg:p-20 shadow-3xl relative overflow-hidden backdrop-blur-3xl">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12 relative z-10">
+            
+            <div className="form-element flex flex-col gap-4">
+              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">PRTCL_IDENT: FULL NAME</label>
               <input 
                 {...register('name')}
-                disabled={isSubmitting || isSuccess}
-                className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors"
-                placeholder="Enter your full name"
+                placeholder="INITIALIZE NAME"
+                className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic placeholder:opacity-10 outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight"
               />
-              {errors.name && <span className="text-[var(--color-primary-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.name.message}</span>}
+              {errors.name && <span className="font-mono text-[9px] text-[var(--color-primary)] uppercase tracking-widest">{errors.name.message}</span>}
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              {/* Phone */}
-              <div className="relative group">
-                <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-1 tracking-widest">Phone</label>
+ 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="form-element flex flex-col gap-4">
+                <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">PRTCL_COMM: PHONE</label>
                 <input 
                   {...register('phone')}
-                  type="tel"
-                  disabled={isSubmitting || isSuccess}
-                  className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors"
-                  placeholder="+91"
+                  placeholder="+91-0000"
+                  className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic placeholder:opacity-10 outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight"
                 />
-                {errors.phone && <span className="text-[var(--color-primary-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.phone.message}</span>}
               </div>
-
-              {/* Email */}
-              <div className="relative group">
-                <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-1 tracking-widest">Email</label>
+              <div className="form-element flex flex-col gap-4">
+                <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">PRTCL_REG: EMAIL</label>
                 <input 
                   {...register('email')}
-                  type="email"
-                  disabled={isSubmitting || isSuccess}
-                  className="w-full bg-transparent border-b border-[#2E2E33] py-3 font-sans text-[15px] font-light text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors"
-                  placeholder="your@email.com"
+                  placeholder="USER@NETWORK"
+                  className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic placeholder:opacity-10 outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight"
                 />
-                {errors.email && <span className="text-[var(--color-primary-bright)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.email.message}</span>}
               </div>
             </div>
-
-            {/* Product Type (Select) */}
-            <div className="relative group">
-              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-2 tracking-[0.3em] font-bold opacity-60">System Category</label>
+ 
+            <div className="form-element flex flex-col gap-4">
+              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">SYS_SELECT: CATEGORY</label>
               <select 
                 {...register('productType')}
-                disabled={isSubmitting || isSuccess}
-                className="w-full bg-transparent border-b border-[var(--color-black-light)] py-4 font-sans text-[15px] font-normal text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors appearance-none rounded-none cursor-pointer"
+                className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight appearance-none cursor-pointer"
               >
-                <option value="" className="bg-[var(--color-black-mid)] text-[var(--color-silver)]">Select an option</option>
-                <option value="sliding" className="bg-[var(--color-black-mid)]">Sliding Windows & Doors</option>
-                <option value="casement" className="bg-[var(--color-black-mid)]">Casement Windows & Doors</option>
-                <option value="special" className="bg-[var(--color-black-mid)]">Special Architectural Systems</option>
-                <option value="accessories" className="bg-[var(--color-black-mid)]">Accessories & Meshes</option>
+                <option value="" className="bg-[var(--color-black)]">Select System</option>
+                <option value="sliding" className="bg-[var(--color-black)]">Sliding Systems</option>
+                <option value="casement" className="bg-[var(--color-black)]">Casement Systems</option>
+                <option value="special" className="bg-[var(--color-black)]">Technical Special</option>
               </select>
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[var(--color-silver)] mt-3">▼</div>
-              {errors.productType && <span className="text-[var(--color-primary)] font-sans text-[12px] absolute -bottom-5 left-0" aria-live="polite">{errors.productType.message}</span>}
             </div>
-
-            {/* Message */}
-            <div className="relative group">
-              <label className="block font-mono text-[10px] uppercase text-[var(--color-silver)] transition-colors group-focus-within:text-[var(--color-primary)] mb-2 tracking-[0.3em] font-bold opacity-60">Technical Requirements (Optional)</label>
+ 
+            <div className="form-element flex flex-col gap-4">
+              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">PRTCL_DATA: REQUIREMENTS</label>
               <textarea 
                 {...register('message')}
-                disabled={isSubmitting || isSuccess}
+                placeholder="DESCRIBE ARCHITECTURAL INTENT..."
                 rows={3}
-                className="w-full bg-transparent border-b border-[var(--color-black-light)] py-4 font-sans text-[15px] font-normal text-[var(--color-white)] outline-none focus:border-[var(--color-primary)] transition-colors resize-none"
-                placeholder="Mention specific wind-load or acoustic needs..."
+                className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic placeholder:opacity-10 outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight resize-none"
               />
             </div>
-
+ 
             <button 
               type="submit"
               disabled={isSubmitting || isSuccess}
+              className="group relative bg-[var(--color-primary)] text-white font-sans text-[12px] font-black uppercase tracking-[0.4em] py-8 px-16 shadow-primary overflow-hidden transition-all active:scale-95 disabled:bg-white/10"
               data-cursor-button="true"
-              className={`relative w-full overflow-hidden mt-6 group flex items-center justify-center py-6 border ${isSuccess ? 'border-[#3A7A58] text-[#3A7A58]' : 'border-[var(--color-primary)] text-[var(--color-white)] bg-[var(--color-primary)]'} transition-all duration-500`}
             >
-              {!isSuccess && <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[luxurious] z-0" />}
-              
-              <span className={`relative z-10 font-mono uppercase text-[12px] tracking-[0.3em] font-bold transition-colors ${isSuccess ? 'text-[#3A7A58]' : 'group-hover:text-black'}`}>
-                {isSubmitting ? (
-                  <span className="flex items-center gap-3">
-                    <span className="w-4 h-4 border-2 border-transparent border-t-white group-hover:border-t-black rounded-full animate-spin" />
-                    Processing Request
-                  </span>
-                ) : isSuccess ? (
-                  <span className="flex items-center gap-2">✓ Technical request received.</span>
-                ) : (
-                  "Request Quote "
-                )}
+              <span className="relative z-10 flex items-center justify-center gap-6 italic">
+                {isSubmitting ? "Processing Protocol..." : isSuccess ? "Protocol Received" : "Execute Request"}
+                {!isSubmitting && !isSuccess && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" className="group-hover:translate-x-4 transition-transform duration-500"><path d="M5 12h14M12 5l7 7-7 7"/></svg>}
               </span>
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
             </button>
           </form>
-        </div>
-
-        {/* Right Column: Contact Info */}
-        <div className="flex flex-col w-full h-full lg:pl-20 mt-12 md:mt-0 pt-16 md:pt-0 border-t md:border-t-0 border-[var(--color-black-light)]">
-          
-          <div className="font-mono text-[10px] uppercase text-[var(--color-silver)] tracking-[0.4em] mb-12 font-bold opacity-60">Corporate Command Center</div>
-          
-          <div className="flex flex-col gap-16">
-            <div>
-              <div className="font-mono text-[10px] text-[var(--color-primary)] uppercase tracking-[0.3em] mb-4 font-bold">Base of Operations</div>
-              <p className="font-sans font-normal text-[18px] leading-relaxed text-[var(--color-silver)] max-w-[320px] italic">
-                No. 115/62, Canal Bank Road,<br/>
-                CIT Nagar, Chennai — 600035, India
-              </p>
-            </div>
-
-            <div>
-              <div className="font-mono text-[10px] text-[var(--color-primary)] uppercase tracking-[0.3em] mb-4 font-bold">Direct Line</div>
-              <a 
-                href="tel:+919444045544" 
-                data-cursor="link"
-                className="font-display font-bold text-[32px] md:text-[44px] text-[var(--color-white)] inline-block group italic tracking-tighter"
-              >
-                 +91 94440 45544
-                 <span className="block mt-2 w-0 h-[2px] bg-[var(--color-primary)] group-hover:w-full transition-all duration-500" />
-              </a>
-            </div>
-
-            <div className="mt-4">
-               <a 
-                href="https://wa.me/919444045544" 
-                target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-4 py-4 px-8 bg-[rgba(37,211,102,0.1)] border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-500 font-mono text-[12px] uppercase tracking-[0.3em] font-bold"
-               >
-                 <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.68 4.61 1.86 6.496L4 29l7.697-1.835A12.93 12.93 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.98 9.98 0 01-5.12-1.404l-.37-.222-3.8.906.938-3.7-.24-.38A9.96 9.96 0 016 15c0-5.523 4.477-10 10-10zm-3.285 5.5c-.19 0-.498.072-.76.358-.26.287-1 .977-1 2.383 0 1.406 1.023 2.764 1.166 2.955.143.19 2.008 3.073 4.877 4.196 2.414.95 2.873.762 3.39.713.52-.048 1.666-.68 1.904-1.336.237-.656.237-1.217.166-1.336-.07-.12-.262-.19-.548-.334-.286-.143-1.666-.822-1.926-.916-.26-.094-.45-.142-.64.143-.19.284-.73.915-.896 1.105-.166.19-.333.214-.618.07-.286-.143-1.205-.443-2.295-1.414-.85-.754-1.42-1.686-1.59-1.97-.165-.285-.017-.44.127-.583.13-.13.286-.333.428-.5.143-.166.19-.285.285-.476.096-.19.048-.357-.024-.5-.07-.143-.63-1.527-.868-2.094-.225-.548-.463-.48-.63-.49-.165-.01-.356-.013-.546-.013z"/></svg>
-                 WhatsApp Concierge
-               </a>
-            </div>
+ 
+          {/* Form Watermark */}
+          <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 pointer-events-none opacity-[0.03] overflow-hidden">
+             <span className="font-display text-[80px] md:text-[144px] font-black italic leading-none">X-08</span>
           </div>
         </div>
       </div>

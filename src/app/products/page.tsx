@@ -31,7 +31,7 @@ export default function ProductsPage() {
               watermark: 'ALUK', 
               links: ['Architectural', 'Structural', 'Minimalist'], 
               desc: 'High-performance architectural aluminum systems combining sleek aesthetics with structural integrity. Ideal for expansive glass surfaces and modern minimalist designs.', 
-              image: 'https://images.unsplash.com/photo-1510000218930-bc500989047b?auto=format&fit=crop&q=80&w=800' 
+              image: 'https://images.unsplash.com/photo-1509391366360-fe5172a182ad?auto=format&fit=crop&q=80&w=800' 
             },
             { 
               id: 'totalis-lux', 

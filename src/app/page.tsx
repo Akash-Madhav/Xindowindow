@@ -1,13 +1,12 @@
 'use client'
-
+ 
 import Hero from '@/components/Hero'
 import About from '@/components/About'
 import ExperienceCenter from '@/components/ExperienceCenter'
 import Benefits from '@/components/Benefits'
 import TrustSection from '@/components/TrustSection'
 import Testimonials from '@/components/Testimonials'
-
-
+ 
 export default function Home() {
   return (
     <main className="min-h-[100svh] bg-[var(--color-black)] w-full overflow-x-hidden selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
@@ -23,19 +22,19 @@ export default function Home() {
         badgeText="Year Warranty"
         image="/images/about.png"
       />
-
+ 
       <ExperienceCenter 
         id="experience-center"
       />
-
+ 
       <Benefits 
         id="premium-benefits"
         tag="The Premium Choice"
-        title="Nine Reasons Architects Choose Xindo"
+        title="Absolute Benchmarks of Engineering"
       />
-
+ 
       <TrustSection />
-
+ 
       <Testimonials />
     </main>
   )

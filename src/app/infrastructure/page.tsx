@@ -1,7 +1,12 @@
-'use client'
+import type { Metadata } from 'next'
 import PageHero from '@/components/PageHero'
 import About from '@/components/About'
 import Process from '@/components/Process'
+
+export const metadata: Metadata = {
+  title: "Infrastructure & Manufacturing",
+  description: "Explore our 20,000 sq.ft. automated uPVC manufacturing facility in Chennai. German precision, robotic accuracy, and architectural quality standards.",
+}
 
 export default function InfrastructurePage() {
   return (
