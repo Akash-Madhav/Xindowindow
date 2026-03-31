@@ -59,7 +59,7 @@ export default function TrustSection() {
                 <div className="w-12 h-[1px] bg-[var(--color-primary)]" />
                 <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">Strategic Nodes</span>
               </div>
-              <h2 className="font-display font-black text-[42px] md:text-[64px] text-white leading-[0.95] uppercase italic tracking-tighter">
+              <h2 className="font-display font-black text-[32px] md:text-[44px] lg:text-[52px] xl:text-[64px] text-white leading-[0.95] uppercase italic tracking-tight">
                 Ecosystem <br />
                 <span className="text-[var(--color-primary)]">Collaboration.</span>
               </h2>

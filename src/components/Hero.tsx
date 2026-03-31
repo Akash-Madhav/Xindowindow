@@ -15,7 +15,6 @@ export default function Hero() {
   const headlineWordsRef = useRef<(HTMLDivElement | null)[]>([])
   const subtextRef = useRef<HTMLParagraphElement>(null)
   const ctAsRef = useRef<HTMLDivElement>(null)
-  const statsRef = useRef<(HTMLDivElement | null)[]>([])
  
   useGSAP(() => {
     if (!containerRef.current) return
@@ -50,12 +49,6 @@ export default function Hero() {
       '-=0.6'
     )
  
-    // Stats Strip
-    tl.fromTo(statsRef.current,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.1, duration: 1, ease: 'luxurious' },
-      '-=0.4'
-    )
  
     // 2. Parallax Background
     gsap.to([bgImageRef.current, videoRef.current], {
@@ -180,27 +173,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Bottom: Dynamic Trust Units - now in-flow */}
-        <div className="w-full flex justify-center items-end gap-10 sm:gap-20 lg:gap-32 3xl:gap-48 mt-16 sm:mt-24 lg:mt-32">
-          {[
-            { num: '34+', label: 'Technical Nodes' },
-            { num: '48dB', label: 'Acoustic Seal' },
-            { num: 'GER', label: 'Design Core' }
-          ].map((stat, i) => (
-            <div
-              key={i}
-              ref={el => { statsRef.current[i] = el }}
-              className="opacity-0 flex flex-col items-center text-center"
-            >
-              <div className="font-display text-[28px] sm:text-[56px] lg:text-[88px] 2xl:text-[112px] 3xl:text-[144px] text-[var(--color-white)] font-black italic tracking-tighter leading-none mb-3 tabular-nums">
-                {stat.num}
-              </div>
-              <div className="font-mono text-[9px] lg:text-[11px] 2xl:text-[13px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black opacity-30">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Technical Watermark */}
