@@ -11,38 +11,38 @@ import { WPProductItem } from '@/lib/wp-types'
 const DEFAULT_PRODUCTS: WPProductItem[] = [
   { 
     id: 'veka', 
-    name: 'VEKA (UPVC)', 
+    title: 'VEKA (UPVC)', 
     type: 'German Precision Vinyl', 
     watermark: 'VEKA', 
-    links: ['Multi-Chambered', 'Acoustic I-50', 'Tropical Grade'], 
-    desc: 'Uncompromising German-engineered uPVC profiles. Designed for hyper-durability and extreme tropical resistance, featuring advanced multi-chambered technology for ultimate insulation.', 
+    specs: ['Multi-Chambered', 'Acoustic I-50', 'Tropical Grade'], 
+    description: 'Uncompromising German-engineered uPVC profiles. Designed for hyper-durability and extreme tropical resistance, featuring advanced multi-chambered technology for ultimate insulation.', 
     image: '/images/sliding.png' 
   },
   { 
     id: 'aluk', 
-    name: 'ALUK / ALUMINIUM', 
+    title: 'ALUK / ALUMINIUM', 
     type: 'Architectural System Aluminium', 
     watermark: 'ALUK', 
-    links: ['Infineo Series', 'SC95 Minimalist', 'Structural Glazing'], 
-    desc: 'High-performance architectural aluminum systems. Combining sleek, ultra-slim aesthetics with unyielding structural integrity for expansive modern focal points.', 
+    specs: ['Infineo Series', 'SC95 Minimalist', 'Structural Glazing'], 
+    description: 'High-performance architectural aluminum systems. Combining sleek, ultra-slim aesthetics with unyielding structural integrity for expansive modern focal points.', 
     image: '/images/casement.png' 
   },
   { 
     id: 'totalis', 
-    name: 'TOTALIS', 
+    title: 'TOTALIS', 
     type: 'Elite Performance Fenestration', 
     watermark: 'TOTALIS', 
-    links: ['Zero-Threshold', 'Max Security', 'Weather-Tight'], 
-    desc: 'Bespoke high-end fenestration solutions for unique architectural requirements. Engineered for zero-threshold transitions and maximum security architectural deployment.', 
+    specs: ['Zero-Threshold', 'Max Security', 'Weather-Tight'], 
+    description: 'Bespoke high-end fenestration solutions for unique architectural requirements. Engineered for zero-threshold transitions and maximum security architectural deployment.', 
     image: '/images/tilt_turn.png' 
   },
   { 
     id: 'xindo', 
-    name: 'XINDO (SLEEK)', 
+    title: 'XINDO (SLEEK)', 
     type: 'Ultra-Slim Luxury Series', 
     watermark: 'SLEEK', 
-    links: ['Invisible Frame', 'X12 Partition', 'Grand Panoramic'], 
-    desc: 'The pinnacle of minimalist engineering. Ultra-slim profile systems designed for maximum transparency and zero-sightline luxury residential and commercial spaces.', 
+    specs: ['Invisible Frame', 'X12 Partition', 'Grand Panoramic'], 
+    description: 'The pinnacle of minimalist engineering. Ultra-slim profile systems designed for maximum transparency and zero-sightline luxury residential and commercial spaces.', 
     image: '/images/hardware.png' 
   }
 ]
@@ -179,7 +179,7 @@ export default function Products({
                     fill 
                     sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 800px" 
                     className="object-cover grayscale-[0.5] contrast-[1.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[3s]" 
-                    alt={prod.name} 
+                    alt={prod.title} 
                   />
                   {/* Technical Chip */}
                   <div className="absolute top-10 left-10 z-20 flex flex-col gap-2">
@@ -197,15 +197,15 @@ export default function Products({
                   </div>
 
                   <h2 className="font-display font-black text-[48px] md:text-[88px] 2xl:text-[120px] text-white leading-[0.85] uppercase italic mb-12 tracking-tighter">
-                    {prod.name}
+                    {prod.title}
                   </h2>
 
                   <p className="font-sans font-medium text-[15px] md:text-[18px] 2xl:text-[24px] text-[var(--color-silver)] leading-relaxed mb-16 max-w-xl opacity-60 italic border-l-2 border-[var(--color-primary)] pl-10">
-                    {prod.desc}
+                    {prod.description}
                   </p>
 
                   <button 
-                    onClick={() => setSelectedSystemName(prod.name)}
+                    onClick={() => setSelectedSystemName(prod.title)}
                     className="group flex items-center gap-10"
                     data-cursor-button="true"
                   >

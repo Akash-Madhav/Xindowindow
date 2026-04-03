@@ -45,7 +45,7 @@ export default async function Home() {
  
       <TrustSection data={homeData.trustSection} />
  
-      <Testimonials items={homeData.testimonials} />
+      <Testimonials tag={homeData.testimonials.tag} items={homeData.testimonials.items} />
  
       <ClientsMarquee 
         tag={homeData.clientsMarquee.tag}

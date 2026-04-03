@@ -76,11 +76,14 @@ export interface WPAboutData {
  
 export interface WPExperienceCenterData {
   tag: string;
-  title: string;
+  title1: string;
+  title2: string;
   description: string;
   image: string;
   watermark: string;
   ambientLabel: string;
+  ctaText?: string;
+  stats?: { id: string; label: string; value: string; detail?: string }[];
 }
  
 export interface WPBenefitsData {
@@ -143,6 +146,8 @@ export type WPProductItem = {
   id: string;
   title: string;
   description: string;
+  type: string;
+  watermark: string;
   image: string;
   specs: string[];
 };

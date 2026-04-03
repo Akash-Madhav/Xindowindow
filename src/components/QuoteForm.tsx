@@ -135,12 +135,12 @@ export default function QuoteForm({ data }: QuoteFormProps) {
             </div>
  
             <div className="form-element flex flex-col gap-4">
-              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">{labels?.category}</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">{labels?.type}</label>
               <select 
                 {...register('productType')}
                 className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight appearance-none cursor-pointer"
               >
-                <option value="" className="bg-[var(--color-black)]">{labels?.placeholderCategory}</option>
+                <option value="" className="bg-[var(--color-black)]">{labels?.placeholderType}</option>
                 <option value="sliding" className="bg-[var(--color-black)]">Sliding Systems</option>
                 <option value="casement" className="bg-[var(--color-black)]">Casement Systems</option>
                 <option value="special" className="bg-[var(--color-black)]">Technical Special</option>
@@ -164,7 +164,7 @@ export default function QuoteForm({ data }: QuoteFormProps) {
               data-cursor-button="true"
             >
               <span className="relative z-10 flex items-center justify-center gap-6 italic">
-                {isSubmitting ? labels?.submitting : isSuccess ? labels?.success : labels?.submit}
+                {isSubmitting ? 'PROCESSING...' : isSuccess ? 'COMMENCED' : labels?.submit}
                 {!isSubmitting && !isSuccess && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" className="group-hover:translate-x-4 transition-transform duration-500"><path d="M5 12h14M12 5l7 7-7 7"/></svg>}
               </span>
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />

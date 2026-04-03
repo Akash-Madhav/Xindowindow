@@ -88,6 +88,8 @@ export const FALLBACK_PRODUCTS: WPProductItem[] = [
   {
     id: "01",
     title: "Elite Series",
+    type: "Premium Structural",
+    watermark: "ELITE",
     description: "Multi-chambered systems with titan-strength reinforcement. Engineered for high-rise acoustic values.",
     image: "/images/product-1.png",
     specs: ["70mm Depth", "U-Value 1.1", "40dB Insulation"]
@@ -125,11 +127,17 @@ export const FALLBACK_HOME_DATA: WPHomePageData = {
   },
   experienceCenter: {
     tag: "Physical Verification",
-    title: "Tactile Precision.",
+    title1: "Tactile",
+    title2: "Precision.",
     description: "Visit our state-of-the-art facility to experience the mechanical superiority of Xindo systems firsthand.",
     image: "/images/experience-center.png",
     watermark: "X-CENTER",
-    ambientLabel: AUTHENTICITY_LABEL
+    ambientLabel: AUTHENTICITY_LABEL,
+    ctaText: "SCHEDULE FACILITY TOUR",
+    stats: [
+      { id: "01", label: "SHOWROOM", value: "3D", detail: "Virtual Model" },
+      { id: "02", label: "TOLERANCE", value: "±0.1", detail: "MM Precision" }
+    ]
   },
   benefits: {
     tag: "THE PREMIUM CHOICE",

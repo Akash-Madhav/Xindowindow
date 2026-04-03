@@ -30,7 +30,7 @@ export default async function ClientsPage() {
       />
  
       <div className="py-24">
-        <Testimonials items={data.testimonials} />
+        <Testimonials tag={data.testimonials.tag} items={data.testimonials.items} />
       </div>
     </main>
   )
