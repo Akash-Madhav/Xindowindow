@@ -245,20 +245,15 @@ export const FALLBACK_ABOUT_DATA: WPAboutPageData = {
   benefits: FALLBACK_HOME_DATA.benefits
 };
  
-let cachedWPData: any = null;
-
 async function fetchAllWPData() {
-  if (cachedWPData) return cachedWPData;
-  
   const apiUrl = process.env.WORDPRESS_API_URL || 'http://localhost/wordpress/wp-json';
   try {
     const res = await fetch(`${apiUrl}/xindo/v1/data`, {
-      next: { revalidate: 30 } // Revalidate every 30 seconds
+      cache: 'no-store' // Fetches immediately on every load (bypasses Next.js cache)
     });
     
     if (res.ok) {
-      cachedWPData = await res.json();
-      return cachedWPData;
+      return await res.json();
     }
   } catch (error) {
     console.error('WP Headless Fetch Error:', error);
