@@ -1,0 +1,23 @@
+[
+    {
+        "key": "group_global_settings",
+        "title": "Global Settings",
+        "fields": [
+            {
+                "key": "field_brand_name",
+                "label": "Brand Name",
+                "name": "brandName",
+                "type": "text"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "global-settings"
+                }
+            ]
+        ]
+    }
+]

@@ -9,6 +9,8 @@ import SmoothScroller from "@/components/SmoothScroller";
 import Footer from "@/components/Footer";
 import { RevealProvider } from "@/components/RevealProvider";
 import { RevealWrapper } from "@/components/RevealWrapper";
+import { getGlobalSettings } from "@/lib/wordpress";
+import { WordPressProvider } from "@/lib/WordPressProvider";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -57,11 +59,13 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const globalSettings = await getGlobalSettings();
+
   return (
     <html lang="en" className="dark">
       <body
@@ -76,17 +80,19 @@ export default function RootLayout({
           </svg>
         </div>
         <CustomCursor />
-        <RevealProvider>
-          <SmoothScroller>
-            <Preloader />
-            <RevealWrapper>
-              <Navbar />
-              {children}
-              <Footer />
-            </RevealWrapper>
-            <WhatsAppFloat />
-          </SmoothScroller>
-        </RevealProvider>
+        <WordPressProvider settings={globalSettings}>
+          <RevealProvider>
+            <SmoothScroller>
+              <Preloader />
+              <RevealWrapper>
+                <Navbar />
+                {children}
+                <Footer />
+              </RevealWrapper>
+              <WhatsAppFloat />
+            </SmoothScroller>
+          </RevealProvider>
+        </WordPressProvider>
       </body>
     </html>
   );
