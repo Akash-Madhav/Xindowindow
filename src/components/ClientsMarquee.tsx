@@ -6,18 +6,8 @@ interface ClientsMarqueeProps {
 }
 
 export default function ClientsMarquee({
-  tag = "Strategic Partners",
-  clients = [
-    'Royal Splendour Developers',
-    'Pacifica Companies',
-    'KG Foundations Pvt. Ltd.',
-    'Janani Homes',
-    'Jain Housing',
-    'Endee Shelters',
-    'Elegant Constructions',
-    'Arun Excello',
-    'Pacifica Aurum'
-  ]
+  tag,
+  clients = []
 }: ClientsMarqueeProps) {
   return (
     <section className="bg-red-gradient py-[80px] w-full relative overflow-hidden flex flex-col items-center" data-section-id="07">

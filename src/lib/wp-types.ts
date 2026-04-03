@@ -1,16 +1,12 @@
-export interface WPNavLink {
+// Shared Types for WordPress Integration
+ 
+export interface WPNavMenuLink {
   name: string;
   href: string;
 }
-
-export interface WPCertification {
-  id?: string;
-  name: string;
-  detail: string;
-}
-
+ 
 export interface WPGlobalSettings {
-  navLinks: WPNavLink[];
+  navLinks: WPNavMenuLink[];
   brandName: string;
   brandSubtitle: string;
   navCtaText: string;
@@ -20,20 +16,37 @@ export interface WPGlobalSettings {
   footerBrandDescription: string;
   footerSystemStatus: string;
   footerQualityIndex: string;
-  footerNavInfrastructure: WPNavLink[];
-  footerNavSystems: WPNavLink[];
+  footerNavInfrastructure: WPNavMenuLink[];
+  footerNavSystems: WPNavMenuLink[];
   footerPhone: string;
   footerWhatsappUrl: string;
   footerCtaText: string;
   footerAddress: string;
   footerCopyright: string;
   footerHeritageTagline: string;
-  footerCertifications: WPCertification[];
-
+  footerCertifications: { id: string; name: string; detail: string }[];
+ 
   whatsappUrl: string;
   whatsappTooltip: string;
+  navDirectoryLabel: string;
+  navTechnicalDeskLabel: string;
+  brandWatermark: string;
+  footerInfrastructureLabel: string;
+  footerSystemsLabel: string;
+  footerOperationsLabel: string;
+  footerHqLabel: string;
+  preloaderSteps: string[];
+  preloaderSystemLabel: string;
+  preloaderGridLabel: string;
+  whatsappAriaLabel: string;
+  whatsappDefaultMessage: string;
+  seoTitle: string;
+  seoDescription: string;
+  seoKeywords: string[];
+  ogImage: string;
+  favicon: string;
 }
-
+ 
 export interface WPHeroData {
   chipText: string;
   headlineLine1: string[];
@@ -47,7 +60,7 @@ export interface WPHeroData {
   watermark1: string;
   watermark2: string;
 }
-
+ 
 export interface WPAboutData {
   tag: string;
   title: string;
@@ -56,29 +69,31 @@ export interface WPAboutData {
   badgeNumber: string;
   badgeText: string;
   image: string;
+  badgeStatusLabel?: string;
+  ctaLabel?: string;
+  stats?: { id: string; label: string; value: string; detail: string }[];
 }
-
-export interface WPProductItem {
-  id: string;
-  name: string;
-  type: string;
-  watermark: string;
-  links: string[];
-  desc: string;
-  image?: string;
-}
-
+ 
 export interface WPExperienceCenterData {
   tag: string;
-  title1: string;
-  title2: string;
+  title: string;
   description: string;
-  stats: { label: string; value: string }[];
-  ctaText: string;
   image: string;
   watermark: string;
+  ambientLabel: string;
 }
-
+ 
+export interface WPBenefitsData {
+  tag: string;
+  title: string;
+  items: { 
+    id: string; 
+    label: string; 
+    value: string; 
+    detail: string; 
+  }[];
+}
+ 
 export interface WPTrustSectionData {
   tag: string;
   title1: string;
@@ -87,76 +102,129 @@ export interface WPTrustSectionData {
   certifications: { id: string; name: string; detail: string }[];
   efficiencyMetric: string;
   protocolMetric: string;
+  validationTag?: string;
+  uptimeLabel?: string;
+  protocolLabel?: string;
 }
-
+ 
 export interface WPQuoteFormData {
   tag: string;
   titleLine1: string;
   titleLine2: string;
+  description: string;
+  watermark: string;
+  submitText: string;
+  successTitle: string;
+  successMessage: string;
   phone: string;
   address: string;
   responseStatus: string;
   standardStatus: string;
+  formLabels: {
+    name: string;
+    email: string;
+    phone: string;
+    project: string;
+    type: string;
+    message: string;
+    submit: string;
+    placeholderName: string;
+    placeholderEmail: string;
+    placeholderPhone: string;
+    placeholderProject: string;
+    placeholderType: string;
+    placeholderMessage: string;
+  };
 }
+ 
+export type WPProductRegistry = Record<string, string[]>;
+export type WPTestimonialItem = { author: string; text: string };
+export type WPProductItem = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  specs: string[];
+};
 
+export interface WPClientsMarqueeData {
+  tag: string;
+  clients: string[];
+}
+ 
 export interface WPHomePageData {
   hero: WPHeroData;
   about: WPAboutData;
   experienceCenter: WPExperienceCenterData;
+  benefits: WPBenefitsData;
   products: WPProductItem[];
+  registry: WPProductRegistry;
   trustSection: WPTrustSectionData;
-  quoteForm: WPQuoteFormData;
-  testimonials: { author: string; text: string }[];
-  clientsMarquee: { tag: string; clients: string[] };
-}
-
-export interface WPAboutPageData {
-  hero: {
-    title: string;
-    subtitle: string;
-    bgText: string;
+  testimonials: {
+    tag: string;
+    items: WPTestimonialItem[];
   };
-  about: WPAboutData;
-  process: { tag: string; steps: { num: string; title: string; desc: string }[] };
-  benefits: { tag: string; title: string; items: { title: string; desc: string }[] };
-}
-
-export interface WPGalleryItem {
-  id: number;
-  name: string;
-  height: string;
-  image: string;
-  location: string;
-  system: string;
-}
-
-export interface WPInfrastructurePageData {
-  hero: { title: string; subtitle: string; bgText: string };
-  about: WPAboutData;
-  process: { tag: string; steps: { num: string; title: string; desc: string }[] };
-}
-
-export interface WPGalleryPageData {
-  hero: { title: string; subtitle: string; bgText: string };
-  gallery: { tag: string; title: string; items: WPGalleryItem[] };
-}
-
-export interface WPContactPageData {
-  hero: { title: string; subtitle: string; bgText: string };
+  clientsMarquee: WPClientsMarqueeData;
   quoteForm: WPQuoteFormData;
+}
+ 
+export interface WPAboutPageData {
+  hero: WPHeroData;
+  about: WPAboutData;
+  process: {
+    tag: string;
+    steps: {
+      id: string;
+      title: string;
+      desc: string;
+      status: string;
+    }[];
+  };
+  benefits: WPBenefitsData;
+}
+ 
+export interface WPProductsPageData {
+  hero: WPHeroData;
+  products: WPProductItem[];
+  registry: WPProductRegistry;
+  benefits: WPBenefitsData;
+}
+ 
+export interface WPInfrastructurePageData {
+  hero: WPHeroData;
+  tag: string;
+  title: string;
+  description: string;
+  watermark: string;
+  stats: { id: string; label: string; value: string; detail: string }[];
+}
+ 
+export interface WPGalleryPageData {
+  hero: WPHeroData;
+  categories: { id: string; name: string }[];
+  projects: { 
+    id: string; 
+    name: string; 
+    categoryId: string; 
+    image: string; 
+    detail: string 
+  }[];
+}
+ 
+export interface WPContactPageData {
+  hero: WPHeroData;
   about: WPAboutData;
   documentation: { title: string; desc: string };
+  quoteForm: WPQuoteFormData;
 }
-
+ 
 export interface WPClientsPageData {
-  hero: { title: string; subtitle: string; bgText: string };
+  hero: WPHeroData;
   about: WPAboutData;
-  clientsMarquee: { tag: string; clients: string[] };
-  testimonials: { author: string; text: string }[];
-}
-
-export interface WPProductsPageData {
-  hero: { title: string; subtitle: string; bgText: string };
-  products: WPProductItem[];
-  benefits: { tag: string; title: string; items: { title: string; desc: string }[] };
+  clientsMarquee: WPClientsMarqueeData;
+  testimonials: {
+    tag: string;
+    items: WPTestimonialItem[];
+  };
+  partners: { name: string; logo: string; detail: string }[];
 }

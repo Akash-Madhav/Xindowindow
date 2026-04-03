@@ -21,19 +21,17 @@ export default function ExperienceCenter({
   const flareRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<(HTMLDivElement | null)[]>([])
 
-  // Fallbacks
-  const tag = data?.tag || "The Showcase"
-  const title1 = data?.title1 || "Architectural"
-  const title2 = data?.title2 || "Symphony."
-  const description = data?.description || "Step into 1:1 scale precision. Our Experience Center isn't just a showroom; it's a laboratory of acoustic and thermal performance, where the future of high-value infrastructure is felt."
-  const stats = data?.stats || [
-    { label: 'Acoustic Seal', value: '-48.2dB' },
-    { label: 'System Class', value: 'LUMI-01' },
-    { label: 'Interaction', value: 'Full-Scale' }
-  ]
-  const ctaText = data?.ctaText || "Private Tour"
-  const bgImage = data?.image || "/images/experience-center.png"
-  const watermark = data?.watermark || "X-CENTER"
+  // Fallbacks are now handled by the server component passing data, 
+  // but we keep local mapping for safety.
+  const tag = data?.tag || ""
+  const title1 = data?.title1 || ""
+  const title2 = data?.title2 || ""
+  const description = data?.description || ""
+  const stats = data?.stats || []
+  const ctaText = data?.ctaText || ""
+  const bgImage = data?.image || ""
+  const watermark = data?.watermark || ""
+  const ambientLabel = data?.ambientLabel || ""
  
   useGSAP(() => {
     if (!containerRef.current) return
@@ -163,7 +161,7 @@ export default function ExperienceCenter({
       <div className="absolute bottom-20 right-20 hidden xl:block opacity-[0.05] pointer-events-none select-none">
         <div className="flex flex-col items-end">
            <span className="font-display text-[120px] leading-none font-black italic">{watermark}</span>
-           <span className="font-mono text-[14px] tracking-[1em] mr-[-1em]">AUTHENTICITY REGISTERED</span>
+           <span className="font-mono text-[14px] tracking-[1em] mr-[-1em]">{ambientLabel}</span>
         </div>
       </div>
     </section>

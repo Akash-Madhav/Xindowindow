@@ -1,4 +1,4 @@
-import PageHero from '@/components/PageHero'
+import Hero from '@/components/Hero'
 import About from '@/components/About'
 import ClientsMarquee from '@/components/ClientsMarquee'
 import Testimonials from '@/components/Testimonials'
@@ -6,14 +6,10 @@ import { getClientsPageData } from '@/lib/wordpress'
  
 export default async function ClientsPage() {
   const data = await getClientsPageData();
-
+ 
   return (
     <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
-      <PageHero 
-        title={data.hero.title}
-        subtitle={data.hero.subtitle}
-        bgText={data.hero.bgText}
-      />
+      <Hero data={data.hero} />
       
       <About 
         id="partnership-vision"
@@ -25,6 +21,7 @@ export default async function ClientsPage() {
         badgeText={data.about.badgeText}
         reverse={true}
         image={data.about.image}
+        badgeStatusLabel={data.about.badgeStatusLabel}
       />
  
       <ClientsMarquee 
@@ -32,7 +29,9 @@ export default async function ClientsPage() {
         clients={data.clientsMarquee.clients}
       />
  
-      <Testimonials items={data.testimonials} />
+      <div className="py-24">
+        <Testimonials items={data.testimonials} />
+      </div>
     </main>
   )
 }

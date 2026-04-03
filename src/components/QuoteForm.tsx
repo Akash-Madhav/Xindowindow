@@ -56,6 +56,7 @@ export default function QuoteForm({ data }: QuoteFormProps) {
     setIsSubmitting(false)
     setIsSuccess(true)
   }
+   const labels = data?.formLabels;
  
   return (
     <section ref={containerRef} className="relative bg-[var(--color-black)] py-32 px-6 md:px-16 w-full overflow-hidden industrial-texture">
@@ -86,7 +87,7 @@ export default function QuoteForm({ data }: QuoteFormProps) {
                    {address}
                 </p>
              </div>
-  
+   
              <div className="pt-12 border-t border-white/5 flex gap-10">
                 <div className="flex flex-col">
                    <span className="font-display text-[24px] text-white font-black italic">{responseStatus.split(' ')[0]}</span>
@@ -105,10 +106,10 @@ export default function QuoteForm({ data }: QuoteFormProps) {
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12 relative z-10">
             
             <div className="form-element flex flex-col gap-4">
-              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">PRTCL_IDENT: FULL NAME</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">{labels?.name}</label>
               <input 
                 {...register('name')}
-                placeholder="INITIALIZE NAME"
+                placeholder={labels?.placeholderName}
                 className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic placeholder:opacity-10 outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight"
               />
               {errors.name && <span className="font-mono text-[9px] text-[var(--color-primary)] uppercase tracking-widest">{errors.name.message}</span>}
@@ -116,30 +117,30 @@ export default function QuoteForm({ data }: QuoteFormProps) {
  
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="form-element flex flex-col gap-4">
-                <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">PRTCL_COMM: PHONE</label>
+                <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">{labels?.phone}</label>
                 <input 
                   {...register('phone')}
-                  placeholder="+91-0000"
+                  placeholder={labels?.placeholderPhone}
                   className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic placeholder:opacity-10 outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight"
                 />
               </div>
               <div className="form-element flex flex-col gap-4">
-                <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">PRTCL_REG: EMAIL</label>
+                <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">{labels?.email}</label>
                 <input 
                   {...register('email')}
-                  placeholder="USER@NETWORK"
+                  placeholder={labels?.placeholderEmail}
                   className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic placeholder:opacity-10 outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight"
                 />
               </div>
             </div>
  
             <div className="form-element flex flex-col gap-4">
-              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">SYS_SELECT: CATEGORY</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">{labels?.category}</label>
               <select 
                 {...register('productType')}
                 className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight appearance-none cursor-pointer"
               >
-                <option value="" className="bg-[var(--color-black)]">Select System</option>
+                <option value="" className="bg-[var(--color-black)]">{labels?.placeholderCategory}</option>
                 <option value="sliding" className="bg-[var(--color-black)]">Sliding Systems</option>
                 <option value="casement" className="bg-[var(--color-black)]">Casement Systems</option>
                 <option value="special" className="bg-[var(--color-black)]">Technical Special</option>
@@ -147,10 +148,10 @@ export default function QuoteForm({ data }: QuoteFormProps) {
             </div>
  
             <div className="form-element flex flex-col gap-4">
-              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">PRTCL_DATA: REQUIREMENTS</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-40 font-black italic">{labels?.message}</label>
               <textarea 
                 {...register('message')}
-                placeholder="DESCRIBE ARCHITECTURAL INTENT..."
+                placeholder={labels?.placeholderMessage}
                 rows={3}
                 className="bg-transparent border-b border-white/10 py-5 font-display text-[20px] md:text-[24px] text-white font-black italic placeholder:opacity-10 outline-none focus:border-[var(--color-primary)] transition-colors uppercase tracking-tight resize-none"
               />
@@ -163,12 +164,13 @@ export default function QuoteForm({ data }: QuoteFormProps) {
               data-cursor-button="true"
             >
               <span className="relative z-10 flex items-center justify-center gap-6 italic">
-                {isSubmitting ? "Processing Protocol..." : isSuccess ? "Protocol Received" : "Execute Request"}
+                {isSubmitting ? labels?.submitting : isSuccess ? labels?.success : labels?.submit}
                 {!isSubmitting && !isSuccess && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" className="group-hover:translate-x-4 transition-transform duration-500"><path d="M5 12h14M12 5l7 7-7 7"/></svg>}
               </span>
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
             </button>
           </form>
+
  
           {/* Form Watermark */}
           <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 pointer-events-none opacity-[0.03] overflow-hidden">

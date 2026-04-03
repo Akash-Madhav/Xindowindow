@@ -12,25 +12,17 @@ interface TrustSectionProps {
 export default function TrustSection({ data }: TrustSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Fallbacks
-  const tag = data?.tag || "Strategic Nodes"
-  const title1 = data?.title1 || "Ecosystem"
-  const title2 = data?.title2 || "Collaboration."
-  const logos = data?.logos || [
-    { name: 'Architectural Digest', detail: 'Feature Design' },
-    { name: 'Lumière Foundry', detail: 'Precision Partner' },
-    { name: 'De-Tech Systems', detail: 'Hardware Core' },
-    { name: 'Glaze Dynamics', detail: 'Surface Tech' },
-    { name: 'Form-X Group', detail: 'Structural Node' },
-    { name: 'Vantage Build', detail: 'Implementation' }
-  ]
-  const certifications = data?.certifications || [
-    { id: '01', name: 'ISO 9001:2015', detail: 'Global Quality Management Protocol' },
-    { id: '02', name: 'DIN EN 12608', detail: 'German Technical Profile Standard' },
-    { id: '03', name: 'GS CERTIFIED', detail: 'Safety & Material Validation' }
-  ]
-  const efficiencyMetric = data?.efficiencyMetric || "99.8%"
-  const protocolMetric = data?.protocolMetric || "GER"
+  // Fallbacks are now data-driven
+  const tag = data?.tag || ""
+  const title1 = data?.title1 || ""
+  const title2 = data?.title2 || ""
+  const logos = data?.logos || []
+  const certifications = data?.certifications || []
+  const efficiencyMetric = data?.efficiencyMetric || ""
+  const protocolMetric = data?.protocolMetric || ""
+  const validationTag = data?.validationTag || ""
+  const uptimeLabel = data?.uptimeLabel || ""
+  const protocolLabel = data?.protocolLabel || ""
  
   useGSAP(() => {
     if (!containerRef.current) return
@@ -76,7 +68,7 @@ export default function TrustSection({ data }: TrustSectionProps) {
             </div>
  
             <div className="grid grid-cols-2 md:grid-cols-3 gap-[1px] bg-white/5 border border-white/5">
-              {logos.map((client, i) => (
+              {logos.map((client: any, i: number) => (
                 <div 
                   key={i} 
                   className="partner-box group relative aspect-video flex flex-col items-center justify-center bg-[var(--color-black)] hover:bg-[var(--color-black-soft)] transition-all duration-700 p-8 overflow-hidden"
@@ -93,11 +85,11 @@ export default function TrustSection({ data }: TrustSectionProps) {
           <div className="lg:col-span-5 flex flex-col gap-16">
             <div className="flex items-center gap-6">
               <div className="w-12 h-[1px] bg-[var(--color-primary)]" />
-              <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">Validation</span>
+              <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">{validationTag}</span>
             </div>
  
             <div className="flex flex-col gap-8">
-              {certifications.map((cert, i) => (
+              {certifications.map((cert: any, i: number) => (
                 <div
                   key={i}
                   className="cert-item group relative p-10 bg-[var(--color-black-soft)] border-l-2 border-[var(--color-primary)] transition-all duration-500 hover:pl-14"
@@ -119,12 +111,12 @@ export default function TrustSection({ data }: TrustSectionProps) {
             <div className="mt-auto pt-16 border-t border-white/5 flex items-center justify-between">
                <div className="flex flex-col">
                   <span className="font-display text-[48px] font-black text-white italic leading-none">{efficiencyMetric}</span>
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-2">TECHNICAL UPTIME</span>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-2">{uptimeLabel}</span>
                </div>
                <div className="w-[1px] h-12 bg-white/10" />
                <div className="flex flex-col text-right">
                   <span className="font-display text-[48px] font-black text-white italic leading-none">{protocolMetric}</span>
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-2">CORE PROTOCOL</span>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-2">{protocolLabel}</span>
                </div>
             </div>
           </div>

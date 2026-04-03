@@ -6,19 +6,9 @@ import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLenis } from 'lenis/react'
-import productData from '@/data/product-registry.json'
+import { WPProductItem } from '@/lib/wp-types'
 
-interface ProductItem {
-  id: string
-  name: string
-  type: string
-  watermark: string
-  links: string[]
-  desc: string
-  image?: string
-}
-
-const DEFAULT_PRODUCTS = [
+const DEFAULT_PRODUCTS: WPProductItem[] = [
   { 
     id: 'veka', 
     name: 'VEKA (UPVC)', 
@@ -59,12 +49,14 @@ const DEFAULT_PRODUCTS = [
 
 interface ProductsProps {
   id?: string
-  products?: ProductItem[]
+  products?: WPProductItem[]
+  registry?: Record<string, string[]>
 }
 
 export default function Products({
   id = "03",
-  products = DEFAULT_PRODUCTS
+  products = DEFAULT_PRODUCTS,
+  registry = {}
 }: ProductsProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
@@ -318,7 +310,7 @@ export default function Products({
                         transition={{ duration: 0.35 }}
                         className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-white/5 border border-white/5"
                       >
-                        {productData.PRODUCT_REGISTRY[selectedSystemName as keyof typeof productData.PRODUCT_REGISTRY]?.map((prod, idx) => (
+                        {registry[selectedSystemName as keyof typeof registry]?.map((prod: string, idx: number) => (
                           <div 
                             key={prod} 
                             onClick={() => setSelectedProductName(prod)}

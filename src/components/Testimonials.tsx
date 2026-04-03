@@ -3,36 +3,32 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
-
+ 
 interface Testimonial {
   author: string;
   text: string;
 }
-
+ 
 interface TestimonialsProps {
-  tag?: string;
-  items?: Testimonial[];
+  tag: string;
+  items: Testimonial[];
 }
  
 export default function Testimonials({
-  tag = "Channel 06: Client Feedback",
-  items = [
-    { author: 'Arul O', text: "FAST DELIVERY AND WINTECH PROFILE PRECISION. XINDO REPRESENTS THE ABSOLUTE BENCHMARK IN FENESTRATION." },
-    { author: 'Bharathi ChandraSekhar', text: "EXCEPTIONAL ARCHITECTURAL EXECUTION. COMPLICATED DESIGN CHALLENGES MET WITH TECHNICAL MASTERY." },
-    { author: 'Hari Babu R', text: "OFFICE INFRASTRUCTURE UPGRADED WITH SUPERIOR QUALITY. RELIABLE, REASONABLE, AND REMARKABLE." },
-    { author: 'Vijayalakshmanan S', text: "CUSTOMIZED TO PERFECTION. THE MODULAR PRECISION MEETS EVERY SPECIFICATION OF MY VISION." }
-  ]
+  tag,
+  items = []
 }: TestimonialsProps) {
   const [current, setCurrent] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const quoteRef = useRef<HTMLDivElement>(null)
  
   const nextSlide = useCallback(() => {
+    if (items.length === 0) return
     setCurrent(prev => (prev + 1) % items.length)
   }, [items.length])
  
   useGSAP(() => {
-    if (!quoteRef.current) return
+    if (!quoteRef.current || items.length === 0) return
  
     gsap.fromTo(quoteRef.current.querySelectorAll('.word'),
       { y: 20, opacity: 0 },
@@ -41,9 +37,12 @@ export default function Testimonials({
   }, { dependencies: [current], scope: containerRef })
  
   useEffect(() => {
+    if (items.length === 0) return
     const timer = setInterval(nextSlide, 8000)
     return () => clearInterval(timer)
-  }, [nextSlide])
+  }, [nextSlide, items.length])
+ 
+  if (items.length === 0) return null;
  
   return (
     <section 
@@ -74,10 +73,10 @@ export default function Testimonials({
                 ))}
              </h2>
  
-             <div className="flex flex-col items-center gap-6">
-                <span className="font-mono text-[12px] md:text-[14px] uppercase tracking-[0.4em] text-[var(--color-primary)] font-black italic">{items[current].author}</span>
-                <div className="w-12 h-[2px] bg-[var(--color-primary)] shadow-primary" />
-             </div>
+              <div className="flex flex-col items-center gap-6">
+                 <span className="font-mono text-[12px] md:text-[14px] uppercase tracking-[0.4em] text-[var(--color-primary)] font-black italic">{items[current].author}</span>
+                 <div className="w-12 h-[2px] bg-[var(--color-primary)] shadow-primary" />
+              </div>
           </div>
         </div>
  

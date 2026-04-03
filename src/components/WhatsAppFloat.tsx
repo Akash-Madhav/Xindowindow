@@ -7,28 +7,26 @@ import { SiWhatsapp } from '@icons-pack/react-simple-icons'
 import { useWordPress } from '@/lib/WordPressProvider'
 
 export default function WhatsAppFloat() {
-  const { whatsappUrl, whatsappTooltip } = useWordPress()
+  const { whatsappUrl, whatsappTooltip, whatsappAriaLabel, whatsappDefaultMessage } = useWordPress()
   const [visible, setVisible] = useState(false)
   const [pulse, setPulse] = useState(false)
 
   useEffect(() => {
-    // Entrance delay 1800ms
-    const timer = setTimeout(() => {
-      setVisible(true)
-    }, 1800)
-
-    // Pulse triggers after 8s inactivity
+    const timer = setTimeout(() => setVisible(true), 1800)
     const pulseTimer = setTimeout(() => {
       setPulse(true)
-      // Pulse duration is 1.2s * 3 = 3.6s
       setTimeout(() => setPulse(false), 3600)
     }, 8000)
-
     return () => {
       clearTimeout(timer)
       clearTimeout(pulseTimer)
     }
   }, [])
+
+  // Build dynamic URL if message is provided
+  const finalWhatsappUrl = whatsappUrl && whatsappDefaultMessage 
+    ? `${whatsappUrl}?text=${encodeURIComponent(whatsappDefaultMessage)}`
+    : whatsappUrl
 
   return (
     <AnimatePresence>
@@ -40,16 +38,16 @@ export default function WhatsAppFloat() {
           className="fixed z-[450] right-5 bottom-[calc(80px+env(safe-area-inset-bottom))] md:right-8 md:bottom-8"
         >
           <Link
-            href={whatsappUrl || "https://wa.me/919444045544?text=Hi%2C%20I%27m%20interested%20in%20Xindo%20Windows%20and%20Doors.%20I%27d%20like%20to%20know%20more%20about%20your%20products."}
+            href={finalWhatsappUrl || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Chat with us on WhatsApp"
+            aria-label={whatsappAriaLabel}
             className="group flex flex-row items-center"
             data-cursor-button="true"
           >
             {/* Tooltip for desktop only */}
             <span className="hidden md:block opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 font-mono text-[10px] uppercase text-[var(--color-white)] mr-3 pointer-events-none">
-              {whatsappTooltip || "Chat on WhatsApp"}
+              {whatsappTooltip}
             </span>
 
             {/* Button */}

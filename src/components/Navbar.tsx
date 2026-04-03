@@ -8,7 +8,17 @@ import Link from 'next/link'
 import { useWordPress } from '@/lib/WordPressProvider'
  
 export default function Navbar() {
-  const { navLinks, brandName, brandSubtitle, navCtaText, navMobilePhone, navMobileCtaText } = useWordPress()
+  const { 
+    navLinks, 
+    brandName, 
+    brandSubtitle, 
+    navCtaText, 
+    navMobilePhone, 
+    navMobileCtaText,
+    navDirectoryLabel,
+    navTechnicalDeskLabel,
+    brandWatermark
+  } = useWordPress()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
@@ -23,7 +33,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
  
-  // GSAP reveal for mobile menu items
   useEffect(() => {
     if (mobileMenuOpen && navItemsRef.current.length > 0) {
       gsap.fromTo(navItemsRef.current,
@@ -33,7 +42,6 @@ export default function Navbar() {
     }
   }, [mobileMenuOpen])
  
-  // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -141,7 +149,7 @@ export default function Navbar() {
             <div className="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-[var(--color-primary-muted)]/20 to-transparent pointer-events-none" />
             
             <div className="relative z-10 flex flex-col h-full px-10 pt-32 pb-20">
-              <span className="font-mono text-[10px] text-[var(--color-primary)] uppercase tracking-[0.6em] mb-12 opacity-60">Directory</span>
+              <span className="font-mono text-[10px] text-[var(--color-primary)] uppercase tracking-[0.6em] mb-12 opacity-60">{navDirectoryLabel}</span>
               
               <nav className="flex flex-col gap-6">
                 {navLinks.map((link, i) => (
@@ -165,8 +173,8 @@ export default function Navbar() {
  
               <div className="mt-auto pt-10 border-t border-white/5 flex flex-col gap-10">
                 <div className="flex flex-col gap-3">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-30">Technical Desk</span>
-                  <a href={`tel:+91${navMobilePhone.replace(/\s/g, '')}`} className="font-display font-bold text-[24px] text-white">{navMobilePhone}</a>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-30">{navTechnicalDeskLabel}</span>
+                  <a href={`tel:+91${navMobilePhone.replace(/\s+/g, '')}`} className="font-display font-bold text-[24px] text-white">{navMobilePhone}</a>
                 </div>
                 
                 <Link
@@ -181,7 +189,7 @@ export default function Navbar() {
  
             {/* Watermark */}
             <div className="absolute -bottom-10 -right-10 opacity-[0.03] select-none pointer-events-none">
-              <span className="font-display text-[50vw] leading-none font-bold rotate-12">{brandName.split(' ')[0].toUpperCase()}</span>
+              <span className="font-display text-[50vw] leading-none font-bold rotate-12">{brandWatermark}</span>
             </div>
           </motion.div>
         )}

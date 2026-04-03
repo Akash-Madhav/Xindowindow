@@ -11,61 +11,61 @@ import { RevealProvider } from "@/components/RevealProvider";
 import { RevealWrapper } from "@/components/RevealWrapper";
 import { getGlobalSettings } from "@/lib/wordpress";
 import { WordPressProvider } from "@/lib/WordPressProvider";
-
+ 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
-
+ 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   display: "swap",
 });
-
+ 
 const spaceMono = Space_Mono({
   variable: "--font-space-mono",
   subsets: ["latin"],
   weight: ["400", "700"],
   display: "swap",
 });
-
-export const metadata: Metadata = {
-  metadataBase: new URL("https://xindowindow.com"),
-  title: {
-    default: "Xindo Window | Premium Indo-German uPVC Fenestration",
-    template: "%s | Xindo Window"
-  },
-  description: "India's leading Indo-German uPVC windows and doors manufacturer. Sliding, casement, and special systems with 10-year warranty. Engineered for architectural precision.",
-  keywords: ["uPVC Windows", "uPVC Doors", "Indo-German Fenestration", "Chennai Windows", "Premium Windows"],
-  authors: [{ name: "Xindo Window" }],
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: "https://xindowindow.com",
-    siteName: "Xindo Window",
-    title: "Xindo Window | Premium uPVC Systems",
-    description: "Architectural precision fenestration systems powered by German technology.",
-    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "Xindo Window Premium Systems" }]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Xindo Window | Premium uPVC Systems",
-    description: "Architectural precision fenestration systems powered by German technology.",
-    images: ["/images/og-image.png"]
-  }
-};
-
+ 
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getGlobalSettings();
+  
+  return {
+    metadataBase: new URL("https://xindowindow.com"),
+    title: {
+      default: settings.seoTitle,
+      template: `%s | ${settings.brandName}`
+    },
+    description: settings.seoDescription,
+    keywords: settings.seoKeywords,
+    icons: {
+      icon: settings.favicon
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_IN",
+      url: "https://xindowindow.com",
+      siteName: settings.brandName,
+      title: settings.seoTitle,
+      description: settings.seoDescription,
+      images: [{ url: settings.ogImage, width: 1200, height: 630, alt: settings.brandName }]
+    }
+  };
+}
+ 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const globalSettings = await getGlobalSettings();
-
+ 
   return (
     <html lang="en" className="dark">
       <body

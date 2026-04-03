@@ -21,18 +21,17 @@ export default function Hero({ data }: HeroProps) {
   const subtextRef = useRef<HTMLParagraphElement>(null)
   const ctAsRef = useRef<HTMLDivElement>(null)
  
-  // Fallbacks
-  const chipText = data?.chipText || "System Release 1.02"
-  const line1 = data?.headlineLine1 || ["Engineering"]
-  const line2 = data?.headlineLine2 || ["The", "Future"]
-  const subtext = data?.subtext || "Crafting high-value industrial infrastructure through state-of-the-art German uPVC technology. Architectural precision designed for the future of Indian living."
-  const ctaPrimary = data?.ctaPrimaryText || "Configure Project"
-  const ctaSecondary = data?.ctaSecondaryText || "Facility Tour"
-  const ctaSecondaryLink = data?.ctaSecondaryLink || "/infrastructure"
-  const videoUrl = data?.videoUrl || "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4"
-  const bgImage = data?.bgImage || "/images/hero-bg.png"
-  const watermark1 = data?.watermark1 || "XINDO"
-  const watermark2 = data?.watermark2 || "PRECISION"
+  const chipText = data?.chipText || ""
+  const line1 = data?.headlineLine1 || []
+  const line2 = data?.headlineLine2 || []
+  const subtext = data?.subtext || ""
+  const ctaPrimary = data?.ctaPrimaryText || ""
+  const ctaSecondary = data?.ctaSecondaryText || ""
+  const ctaSecondaryLink = data?.ctaSecondaryLink || ""
+  const videoUrl = data?.videoUrl || ""
+  const bgImage = data?.bgImage || ""
+  const watermark1 = data?.watermark1 || ""
+  const watermark2 = data?.watermark2 || ""
 
   useGSAP(() => {
     if (!containerRef.current) return

@@ -1,171 +1,153 @@
 'use client'
  
 import { useRef } from 'react'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
-import Image from 'next/image'
  
 interface AboutProps {
-  id?: string
-  tag?: string
-  title: string
-  description1: string
-  description2?: string
-  image?: string
-  badgeText?: string
-  badgeNumber?: string
-  reverse?: boolean
+  id?: string;
+  tag: string;
+  title: string;
+  description1: string;
+  description2?: string;
+  badgeNumber?: string;
+  badgeText?: string;
+  badgeStatusLabel?: string;
+  ctaLabel?: string;
+  reverse?: boolean;
+  image: string;
+  stats?: { id: string; label: string; value: string; detail: string }[];
 }
  
 export default function About({ 
-  id = "02", 
-  tag = "Manufacturing Core", 
+  id, 
+  tag, 
   title, 
   description1, 
   description2, 
-  image, 
-  badgeText = "Year Technical Warranty", 
-  badgeNumber = "10",
-  reverse = false 
+  badgeNumber, 
+  badgeText, 
+  badgeStatusLabel = "PHASE_VALIDATED",
+  ctaLabel = "TECHNICAL PORTFOLIO",
+  reverse = false,
+  image,
+  stats
 }: AboutProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const imageWrapperRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const statsRef = useRef<(HTMLDivElement | null)[]>([])
+  const imageRef = useRef<HTMLDivElement>(null)
  
   useGSAP(() => {
     if (!containerRef.current) return
  
     // Image Parallax
-    gsap.to(imageWrapperRef.current, {
-      y: -80,
-      ease: 'none',
+    gsap.to(imageRef.current, {
+      yPercent: 15,
+      ease: "none",
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top bottom',
-        end: 'bottom top',
+        start: "top bottom",
+        end: "bottom top",
         scrub: true
       }
     })
  
-    // Content Staggered Reveal
+    // Text Stagger
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 70%',
+        start: "top 70%",
       }
     })
  
-    tl.fromTo(contentRef.current, 
-      { x: reverse ? 50 : -50, opacity: 0 },
-      { x: 0, opacity: 1, duration: 1.2, ease: 'luxurious' }
-    )
- 
-    tl.fromTo(statsRef.current,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.1, duration: 1, ease: 'power4.out' },
-      "-=0.8"
-    )
+    tl.from(".about-animate", {
+      y: 40,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 1,
+      ease: "luxurious"
+    })
   }, { scope: containerRef })
  
   return (
-    <section 
-      ref={containerRef}
-      className="relative w-full min-h-screen bg-[var(--color-black)] py-32 md:py-48 px-6 md:px-16 overflow-hidden industrial-texture"
-      data-section-id={id}
-    >
-      <div className={`max-w-[1400px] 2xl:max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center`}>
+    <section id={id} ref={containerRef} className="relative py-24 md:py-48 overflow-hidden bg-[var(--color-black)]">
+      <div className="max-w-[1400px] 2xl:max-w-[1800px] mx-auto px-6 md:px-16 flex flex-col md:flex-row gap-20 items-start">
         
-        {/* Visual Column - Spans 7 cols */}
-        <div 
-          className={`lg:col-span-7 relative ${reverse ? 'lg:order-2' : ''}`}
-        >
-          <div 
-            ref={imageWrapperRef}
-            className="relative aspect-[16/10] w-full overflow-hidden border border-white/5 shadow-2xl"
-          >
-            <Image 
-              src={image || "/images/about-factory.png"} 
-              fill 
-              sizes="60vw" 
-              className="object-cover grayscale-[0.3] contrast-[1.1] hover:grayscale-0 transition-all duration-[2s]" 
-              alt={title} 
+        {/* Visual Engine */}
+        <div className={`relative w-full md:w-1/2 overflow-hidden aspect-[4/5] sm:aspect-square md:aspect-[4/5] ${reverse ? 'md:order-last' : ''}`}>
+          <div ref={imageRef} className="absolute inset-0 scale-110">
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-1000"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] via-transparent to-transparent opacity-60" />
           </div>
- 
-          {/* Technical Badge Overlay */}
-          <div className={`absolute -bottom-6 sm:-bottom-10 z-20 bg-[var(--color-black-soft)] border border-[var(--color-primary-muted)] p-6 md:p-14 shadow-3xl flex items-center gap-6 md:gap-10 backdrop-blur-2xl ${reverse ? 'left-4 sm:-left-10' : 'right-4 sm:-right-10'}`}>
-            <div className="flex flex-col">
-              <span className="font-display text-[48px] md:text-[96px] text-[var(--color-primary)] leading-none font-black italic tracking-tighter">{badgeNumber}</span>
-              <span className="font-mono text-[8px] uppercase text-[var(--color-silver)] tracking-[0.3em] font-bold opacity-30 mt-1 md:mt-2">Certified</span>
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-black)] via-transparent to-transparent opacity-40" />
+          
+          {/* Engineering Badge */}
+          {badgeNumber && (
+            <div className="absolute bottom-10 right-10 z-20 backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-12 min-w-[200px] sm:min-w-[280px]">
+              <span className="font-mono text-[10px] text-[var(--color-primary)] mb-4 block uppercase tracking-[0.3em] font-black">{badgeStatusLabel}</span>
+              <div className="flex items-baseline gap-4">
+                <span className="font-display text-[48px] md:text-[84px] text-white font-black leading-none italic">{badgeNumber}</span>
+                <span className="font-mono text-[11px] sm:text-[13px] text-[var(--color-silver)] uppercase tracking-widest leading-tight w-[100px] font-bold">{badgeText}</span>
+              </div>
             </div>
-            <div className="w-[1px] h-10 md:h-16 bg-white/10" />
-            <span className="font-mono uppercase text-[10px] md:text-[13px] tracking-[0.2em] md:tracking-[0.25em] text-[var(--color-white)] leading-relaxed max-w-[120px] md:max-w-[160px] font-black">
-              {badgeText}
-            </span>
-          </div>
+          )}
         </div>
  
-        {/* Content Column - Spans 5 cols */}
-        <div 
-          ref={contentRef}
-          className={`lg:col-span-5 flex flex-col opacity-0 ${reverse ? 'lg:order-1' : ''}`}
-        >
-          <div className="flex items-center gap-6 mb-12">
-            <div className="w-16 h-[1px] bg-[var(--color-primary)]" />
-            <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">{tag}</span>
-          </div>
+        {/* Narrative Engine */}
+        <div className="w-full md:w-1/2 pt-10">
+          <div className="flex flex-col gap-10 md:gap-14">
+            <div className="about-animate flex items-center gap-6">
+              <div className="w-12 h-[1px] bg-[var(--color-primary)]" />
+              <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">{tag}</span>
+            </div>
  
-          <h2 className="font-display font-black text-[42px] md:text-[64px] xl:text-[80px] 2xl:text-[100px] leading-[0.9] tracking-tighter text-[var(--color-white)] mb-12 uppercase italic">
-            {title.split(' ').map((word, i) => (
-               <span key={i} className={i === 1 ? 'text-[var(--color-primary)]' : ''}>{word} </span>
-            ))}
-          </h2>
+            <h2 className="about-animate font-display font-black text-[36px] md:text-[56px] lg:text-[84px] text-white leading-[0.9] uppercase italic tracking-tighter">
+              {title}
+            </h2>
  
-          <div className="space-y-10 mb-20">
-            <p className="font-sans font-medium text-[16px] md:text-[19px] leading-[1.8] text-[var(--color-silver)] opacity-80">
-              {description1}
-            </p>
-            {description2 && (
-              <div className="relative pl-10">
-                <div className="absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-[var(--color-primary)] to-transparent" />
-                <p className="font-sans font-medium text-[16px] md:text-[19px] leading-[1.8] text-[var(--color-silver)] italic opacity-60">
+            <div className="about-animate flex flex-col gap-8">
+              <p className="font-sans font-medium text-[16px] md:text-[18px] text-[var(--color-silver)] leading-relaxed max-w-[580px] opacity-80">
+                {description1}
+              </p>
+              {description2 && (
+                <p className="font-sans text-[14px] md:text-[15px] text-[var(--color-silver)]/60 leading-relaxed max-w-[500px] italic">
                   {description2}
                 </p>
+              )}
+            </div>
+ 
+            {/* Dynamic Stats Hub */}
+            {stats && (
+              <div className="about-animate grid grid-cols-2 gap-8 md:gap-16 pt-8 border-t border-white/5">
+                {stats.map((stat) => (
+                  <div key={stat.id} className="flex flex-col gap-3">
+                    <span className="font-mono text-[9px] text-[var(--color-primary)] opacity-40 uppercase tracking-[0.4em] font-black">{stat.label}</span>
+                    <div className="flex items-baseline gap-3">
+                       <span className="font-display text-[32px] md:text-[44px] text-white font-black italic">{stat.value}</span>
+                       <span className="font-mono text-[10px] text-[var(--color-silver)] uppercase">{stat.detail}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
-          </div>
- 
-          {/* Technical Specs Strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-10 border-t border-white/5 pt-10 md:pt-14 mb-16 md:mb-20">
-            {[
-              { label: 'Plant Area', val: '50k sqft' },
-              { label: 'Capacity', val: '5k units' },
-              { label: 'Standards', val: 'DIN-GER' }
-            ].map((m, i) => (
-              <div key={i} ref={el => { statsRef.current[i] = el }} className="flex flex-col gap-2 md:gap-3 opacity-0">
-                <span className="font-display text-[22px] md:text-[32px] font-black text-[var(--color-white)] tracking-tighter italic">{m.val}</span>
-                <span className="font-mono text-[8px] uppercase text-[var(--color-silver)] tracking-widest opacity-40 font-bold">{m.label}</span>
-              </div>
-            ))}
-          </div>
- 
-          <button 
-            className="group flex items-center gap-8 w-fit"
-            data-cursor-button="true"
-          >
-            <div className="w-12 h-12 border border-[var(--color-primary)] rounded-full flex items-center justify-center transition-all duration-500 group-hover:bg-[var(--color-primary)]">
-               <svg className="w-5 h-5 text-[var(--color-primary)] group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            
+            <div className="about-animate pt-8">
+               <button className="group relative pr-16 flex items-center gap-4 py-4 hover:pr-20 transition-all duration-500 overflow-hidden">
+                 <span className="font-mono text-[12px] uppercase text-white tracking-[0.3em] font-bold">{ctaLabel}</span>
+                 <div className="absolute right-0 w-8 h-[2px] bg-[var(--color-primary)] group-hover:w-full transition-all duration-700" />
+               </button>
             </div>
-            <span className="font-sans font-black uppercase text-[12px] tracking-[0.3em] text-white">Full Capabilities</span>
-          </button>
+          </div>
         </div>
- 
       </div>
  
-      {/* Decorative Technical Line */}
-      <div className={`absolute top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-white/5 to-transparent ${reverse ? 'right-20' : 'left-20'} hidden xl:block`} />
+      {/* Background Ambience */}
+      <div className="absolute top-0 right-0 w-[800px] h-full bg-[radial-gradient(circle_at_70%_30%,rgba(200,16,46,0.03)_0%,transparent_70%)] pointer-events-none" />
     </section>
   )
 }
