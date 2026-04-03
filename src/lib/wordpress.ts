@@ -245,40 +245,70 @@ export const FALLBACK_ABOUT_DATA: WPAboutPageData = {
   benefits: FALLBACK_HOME_DATA.benefits
 };
  
+let cachedWPData: any = null;
+
+async function fetchAllWPData() {
+  if (cachedWPData) return cachedWPData;
+  
+  const apiUrl = process.env.WORDPRESS_API_URL || 'http://localhost/wordpress/wp-json';
+  try {
+    const res = await fetch(`${apiUrl}/xindo/v1/data`, {
+      next: { revalidate: 30 } // Revalidate every 30 seconds
+    });
+    
+    if (res.ok) {
+      cachedWPData = await res.json();
+      return cachedWPData;
+    }
+  } catch (error) {
+    console.error('WP Headless Fetch Error:', error);
+  }
+  return null;
+}
+
 export async function getGlobalSettings(): Promise<WPGlobalSettings> {
-  return FALLBACK_GLOBAL_SETTINGS;
+  const data = await fetchAllWPData();
+  return data?.global || FALLBACK_GLOBAL_SETTINGS;
 }
  
 export async function getHomePageData(): Promise<WPHomePageData> {
-  return FALLBACK_HOME_DATA;
+  const data = await fetchAllWPData();
+  return data?.home || FALLBACK_HOME_DATA;
 }
  
 export async function getAboutPageData(): Promise<WPAboutPageData> {
-  return FALLBACK_ABOUT_DATA;
+  const data = await fetchAllWPData();
+  return data?.about || FALLBACK_ABOUT_DATA;
 }
  
 export async function getProductsPageData(): Promise<WPProductsPageData> {
-    return {
-      hero: {
-        chipText: "System Catalog",
-        headlineLine1: ["Elite"],
-        headlineLine2: ["Systems"],
-        subtext: "Explore our comprehensive range of high-performance uPVC and Aluminum fenestration protocols.",
-        ctaPrimaryText: "Consult Technical Hub",
-        ctaSecondaryText: "Quality Standards",
-        ctaSecondaryLink: "#quality-standards",
-        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4",
-        bgImage: "/images/hero-bg.png",
-        watermark1: "SYSTEMS",
-        watermark2: "ELITE"
-      },
-      products: FALLBACK_PRODUCTS,
-      registry: FALLBACK_HOME_DATA.registry,
-      benefits: FALLBACK_HOME_DATA.benefits
-    };
+  const data = await fetchAllWPData();
+  if (data?.productsPage) return data.productsPage;
+  
+  return {
+    hero: {
+      chipText: "System Catalog",
+      headlineLine1: ["Elite"],
+      headlineLine2: ["Systems"],
+      subtext: "Explore our comprehensive range of high-performance uPVC and Aluminum fenestration protocols.",
+      ctaPrimaryText: "Consult Technical Hub",
+      ctaSecondaryText: "Quality Standards",
+      ctaSecondaryLink: "#quality-standards",
+      videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4",
+      bgImage: "/images/hero-bg.png",
+      watermark1: "SYSTEMS",
+      watermark2: "ELITE"
+    },
+    products: FALLBACK_PRODUCTS,
+    registry: FALLBACK_HOME_DATA.registry,
+    benefits: FALLBACK_HOME_DATA.benefits
+  };
 }
  
 export async function getInfrastructurePageData(): Promise<WPInfrastructurePageData> {
+  const data = await fetchAllWPData();
+  if (data?.infrastructure) return data.infrastructure;
+  
   return {
     hero: {
       chipText: "Technical Foundation",
@@ -305,83 +335,92 @@ export async function getInfrastructurePageData(): Promise<WPInfrastructurePageD
 }
 
 export async function getGalleryPageData(): Promise<WPGalleryPageData> {
-    return {
-        hero: {
-            chipText: "Project Registry",
-            headlineLine1: ["Visual"],
-            headlineLine2: ["Portfolio"],
-            subtext: "A curated collection of architectural achievements powered by Xindo systems.",
-            ctaPrimaryText: "Consult Technical Hub",
-            ctaSecondaryText: "Quality Standards",
-            ctaSecondaryLink: "#quality-standards",
-            videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4",
-            bgImage: "/images/hero-bg.png",
-            watermark1: "VISUAL",
-            watermark2: "PROOF"
-        },
-        categories: [
-            { id: "residential", name: "Residential Elite" },
-            { id: "commercial", name: "Commercial Prime" }
-        ],
-        projects: [
-            { id: "01", name: "Lakeside Villa", categoryId: "residential", image: "/images/project-1.png", detail: "Custom Casement Deployment" }
-        ]
-    };
+  const data = await fetchAllWPData();
+  if (data?.gallery) return data.gallery;
+  
+  return {
+    hero: {
+        chipText: "Project Registry",
+        headlineLine1: ["Visual"],
+        headlineLine2: ["Portfolio"],
+        subtext: "A curated collection of architectural achievements powered by Xindo systems.",
+        ctaPrimaryText: "Consult Technical Hub",
+        ctaSecondaryText: "Quality Standards",
+        ctaSecondaryLink: "#quality-standards",
+        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4",
+        bgImage: "/images/hero-bg.png",
+        watermark1: "VISUAL",
+        watermark2: "PROOF"
+    },
+    categories: [
+        { id: "residential", name: "Residential Elite" },
+        { id: "commercial", name: "Commercial Prime" }
+    ],
+    projects: [
+        { id: "01", name: "Lakeside Villa", categoryId: "residential", image: "/images/project-1.png", detail: "Custom Casement Deployment" }
+    ]
+  };
 }
 
 export async function getContactPageData(): Promise<WPContactPageData> {
-    return {
-        hero: {
-            chipText: "Communication Hub",
-            headlineLine1: ["Direct"],
-            headlineLine2: ["Access"],
-            subtext: "Initialize a technical dialogue with our engineering desk for your upcoming project.",
-            ctaPrimaryText: "Consult Technical Hub",
-            ctaSecondaryText: "Quality Standards",
-            ctaSecondaryLink: "#quality-standards",
-            videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4",
-            bgImage: "/images/hero-bg.png",
-            watermark1: "CONNECT",
-            watermark2: "PROTOCOL"
-        },
-        about: FALLBACK_HOME_DATA.about,
-        documentation: {
-            title: "Technical Documentation",
-            desc: "For commercial technical specifications and bulk procurement protocols, please request the latest CAD/BIM library from our engineering hub."
-        },
-        quoteForm: FALLBACK_HOME_DATA.quoteForm
-    };
+  const data = await fetchAllWPData();
+  if (data?.contact) return data.contact;
+  
+  return {
+    hero: {
+        chipText: "Communication Hub",
+        headlineLine1: ["Direct"],
+        headlineLine2: ["Access"],
+        subtext: "Initialize a technical dialogue with our engineering desk for your upcoming project.",
+        ctaPrimaryText: "Consult Technical Hub",
+        ctaSecondaryText: "Quality Standards",
+        ctaSecondaryLink: "#quality-standards",
+        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4",
+        bgImage: "/images/hero-bg.png",
+        watermark1: "CONNECT",
+        watermark2: "PROTOCOL"
+    },
+    about: FALLBACK_HOME_DATA.about,
+    documentation: {
+        title: "Technical Documentation",
+        desc: "For commercial technical specifications and bulk procurement protocols, please request the latest CAD/BIM library from our engineering hub."
+    },
+    quoteForm: FALLBACK_HOME_DATA.quoteForm
+  };
 }
 
 export async function getClientsPageData(): Promise<WPClientsPageData> {
-    return {
-        hero: {
-            chipText: "Strategic Network",
-            headlineLine1: ["Our"],
-            headlineLine2: ["Partners"],
-            subtext: "A testament to excellence through high-value architectural partnerships.",
-            ctaPrimaryText: "Consult Technical Hub",
-            ctaSecondaryText: "Quality Standards",
-            ctaSecondaryLink: "#quality-standards",
-            videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4",
-            bgImage: "/images/hero-bg.png",
-            watermark1: "PARTNERS",
-            watermark2: "NETWORK"
-        },
-        about: {
-            tag: "Corporate Synergy",
-            title: "Scaling Engineering Excellence.",
-            description1: "We collaborate with the nation's leading architectural firms and infrastructure developers to redefine quality in Indian living spaces.",
-            description2: "Our partnership model is built on mutual precision and certified engineering protocols.",
-            badgeNumber: "150+",
-            badgeText: "High-Profile Deployments",
-            image: "/images/about-industrial.png",
-            badgeStatusLabel: "NETWORK_ACTIVE"
-        },
-        clientsMarquee: FALLBACK_HOME_DATA.clientsMarquee,
-        testimonials: FALLBACK_HOME_DATA.testimonials,
-        partners: [
-            { name: "Artha Infracon", logo: "/logos/artha.png", detail: "Elite Infrastructure" }
-        ]
-    };
+  const data = await fetchAllWPData();
+  if (data?.clients) return data.clients;
+  
+  return {
+    hero: {
+        chipText: "Strategic Network",
+        headlineLine1: ["Our"],
+        headlineLine2: ["Partners"],
+        subtext: "A testament to excellence through high-value architectural partnerships.",
+        ctaPrimaryText: "Consult Technical Hub",
+        ctaSecondaryText: "Quality Standards",
+        ctaSecondaryLink: "#quality-standards",
+        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4",
+        bgImage: "/images/hero-bg.png",
+        watermark1: "PARTNERS",
+        watermark2: "NETWORK"
+    },
+    about: {
+        tag: "Corporate Synergy",
+        title: "Scaling Engineering Excellence.",
+        description1: "We collaborate with the nation's leading architectural firms and infrastructure developers to redefine quality in Indian living spaces.",
+        description2: "Our partnership model is built on mutual precision and certified engineering protocols.",
+        badgeNumber: "150+",
+        badgeText: "High-Profile Deployments",
+        image: "/images/about-industrial.png",
+        badgeStatusLabel: "NETWORK_ACTIVE"
+    },
+    clientsMarquee: FALLBACK_HOME_DATA.clientsMarquee,
+    testimonials: FALLBACK_HOME_DATA.testimonials,
+    partners: [
+        { name: "Artha Infracon", logo: "/logos/artha.png", detail: "Elite Infrastructure" }
+    ]
+  };
 }
