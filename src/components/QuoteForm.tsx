@@ -6,6 +6,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
+import { WPQuoteFormData } from '@/lib/wp-types'
+
+interface QuoteFormProps {
+  data?: WPQuoteFormData;
+}
  
 const formSchema = z.object({
   name: z.string().min(2, 'Identification required.'),
@@ -15,10 +20,19 @@ const formSchema = z.object({
   message: z.string().optional(),
 })
  
-export default function QuoteForm() {
+export default function QuoteForm({ data }: QuoteFormProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+
+  // Fallbacks
+  const tag = data?.tag || "Channel 08"
+  const titleLine1 = data?.titleLine1 || "Initiate"
+  const titleLine2 = data?.titleLine2 || "Protocol."
+  const phone = data?.phone || "+91 94440 45544"
+  const address = data?.address || "No. 115/62, Canal Bank Road,\nCIT Nagar, Chennai — 600035"
+  const responseStatus = data?.responseStatus || "24H RESPONSE TIME"
+  const standardStatus = data?.standardStatus || "GLB STANDARDS"
  
   const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,36 +66,35 @@ export default function QuoteForm() {
           <div className="flex flex-col gap-4 sm:gap-6">
             <div className="flex items-center gap-4 sm:gap-6">
               <div className="w-8 sm:w-12 h-[1px] bg-[var(--color-primary)]" />
-              <span className="font-mono text-[9px] sm:text-[10px] uppercase text-[var(--color-primary)] tracking-[0.4em] sm:tracking-[0.6em] font-black italic">Channel 08</span>
+              <span className="font-mono text-[9px] sm:text-[10px] uppercase text-[var(--color-primary)] tracking-[0.4em] sm:tracking-[0.6em] font-black italic">{tag}</span>
             </div>
             <h2 className="font-display font-black text-[38px] sm:text-[54px] md:text-[88px] text-white leading-[0.9] sm:leading-[0.85] uppercase italic tracking-tighter">
-              Initiate <br className="hidden sm:block" />
-              <span className="text-[var(--color-primary)]">Protocol.</span>
+              {titleLine1} <br className="hidden sm:block" />
+              <span className="text-[var(--color-primary)]">{titleLine2}</span>
             </h2>
           </div>
  
           <div className="flex flex-col gap-12">
              <div className="flex flex-col gap-3 md:gap-4">
                 <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-30 font-black">Direct Line</span>
-                <a href="tel:+919444045544" className="font-display text-[26px] sm:text-[32px] md:text-[42px] text-white font-black italic tracking-tighter hover:text-[var(--color-primary)] transition-colors">+91 94440 45544</a>
+                <a href={`tel:${phone.replace(/\s+/g, '')}`} className="font-display text-[26px] sm:text-[32px] md:text-[42px] text-white font-black italic tracking-tighter hover:text-[var(--color-primary)] transition-colors">{phone}</a>
              </div>
              
              <div className="flex flex-col gap-4">
                 <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-30 font-black">Technical Hub</span>
-                <p className="font-sans text-[16px] md:text-[18px] text-[var(--color-silver)] font-medium leading-relaxed italic opacity-80 max-w-sm">
-                   No. 115/62, Canal Bank Road,<br />
-                   CIT Nagar, Chennai — 600035
+                <p className="font-sans text-[16px] md:text-[18px] text-[var(--color-silver)] font-medium leading-relaxed italic opacity-80 max-w-sm whitespace-pre-line">
+                   {address}
                 </p>
              </div>
- 
+  
              <div className="pt-12 border-t border-white/5 flex gap-10">
                 <div className="flex flex-col">
-                   <span className="font-display text-[24px] text-white font-black italic">24H</span>
-                   <span className="font-mono text-[8px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-1">RESPONSE TIME</span>
+                   <span className="font-display text-[24px] text-white font-black italic">{responseStatus.split(' ')[0]}</span>
+                   <span className="font-mono text-[8px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-1">{responseStatus.substring(responseStatus.indexOf(' ') + 1)}</span>
                 </div>
                 <div className="flex flex-col">
-                   <span className="font-display text-[24px] text-white font-black italic">GLB</span>
-                   <span className="font-mono text-[8px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-1">STANDARDS</span>
+                   <span className="font-display text-[24px] text-white font-black italic">{standardStatus.split(' ')[0]}</span>
+                   <span className="font-mono text-[8px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-1">{standardStatus.substring(standardStatus.indexOf(' ') + 1)}</span>
                 </div>
              </div>
           </div>
@@ -166,3 +179,4 @@ export default function QuoteForm() {
     </section>
   )
 }
+

@@ -1,24 +1,30 @@
 'use client'
 
-const CLIENTS = [
-  'Royal Splendour Developers',
-  'Pacifica Companies',
-  'KG Foundations Pvt. Ltd.',
-  'Janani Homes',
-  'Jain Housing',
-  'Endee Shelters',
-  'Elegant Constructions',
-  'Arun Excello',
-  'Pacifica Aurum'
-]
+interface ClientsMarqueeProps {
+  tag?: string;
+  clients?: string[];
+}
 
-export default function ClientsMarquee() {
+export default function ClientsMarquee({
+  tag = "Strategic Partners",
+  clients = [
+    'Royal Splendour Developers',
+    'Pacifica Companies',
+    'KG Foundations Pvt. Ltd.',
+    'Janani Homes',
+    'Jain Housing',
+    'Endee Shelters',
+    'Elegant Constructions',
+    'Arun Excello',
+    'Pacifica Aurum'
+  ]
+}: ClientsMarqueeProps) {
   return (
     <section className="bg-red-gradient py-[80px] w-full relative overflow-hidden flex flex-col items-center" data-section-id="07">
       
       <div className="flex items-center gap-4 mb-20">
         <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
-        <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">Strategic Partners</span>
+        <span className="font-mono text-[11px] uppercase text-[var(--color-silver)] tracking-[0.4em] font-medium">{tag}</span>
         <div className="w-[48px] h-[2px] bg-[var(--color-primary)]" />
       </div>
 
@@ -31,7 +37,7 @@ export default function ClientsMarquee() {
       >
         {/* Marquee Track 1 */}
         <div className="flex shrink-0 animate-marquee hover:[animation-play-state:paused] items-center">
-          {CLIENTS.map((client, i) => (
+          {clients.map((client, i) => (
             <div 
               key={`c1-${i}`}
               className="marquee-item px-8 py-4 border border-transparent hover:border-[var(--color-primary-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"
@@ -42,7 +48,7 @@ export default function ClientsMarquee() {
         </div>
         {/* Marquee Track 2 (Duplicate for infinite) */}
         <div className="flex shrink-0 animate-marquee hover:[animation-play-state:paused] items-center">
-          {CLIENTS.map((client, i) => (
+          {clients.map((client, i) => (
             <div 
               key={`c2-${i}`}
               className="marquee-item px-8 py-4 border border-transparent hover:border-[var(--color-primary-muted)] font-display text-[20px] sm:text-[24px] md:text-[28px] 2xl:text-[36px] font-bold text-[var(--color-white)] opacity-30 hover:opacity-100 transition-all duration-700 mx-6 2xl:mx-10 whitespace-nowrap cursor-default uppercase italic tracking-tighter"

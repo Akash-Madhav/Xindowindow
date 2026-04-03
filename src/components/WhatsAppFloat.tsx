@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { SiWhatsapp } from '@icons-pack/react-simple-icons'
+import { useWordPress } from '@/lib/WordPressProvider'
 
 export default function WhatsAppFloat() {
+  const { whatsappUrl, whatsappTooltip } = useWordPress()
   const [visible, setVisible] = useState(false)
   const [pulse, setPulse] = useState(false)
 
@@ -38,7 +40,7 @@ export default function WhatsAppFloat() {
           className="fixed z-[450] right-5 bottom-[calc(80px+env(safe-area-inset-bottom))] md:right-8 md:bottom-8"
         >
           <Link
-            href="https://wa.me/919444045544?text=Hi%2C%20I%27m%20interested%20in%20Xindo%20Windows%20and%20Doors.%20I%27d%20like%20to%20know%20more%20about%20your%20products."
+            href={whatsappUrl || "https://wa.me/919444045544?text=Hi%2C%20I%27m%20interested%20in%20Xindo%20Windows%20and%20Doors.%20I%27d%20like%20to%20know%20more%20about%20your%20products."}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat with us on WhatsApp"
@@ -47,7 +49,7 @@ export default function WhatsAppFloat() {
           >
             {/* Tooltip for desktop only */}
             <span className="hidden md:block opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 font-mono text-[10px] uppercase text-[var(--color-white)] mr-3 pointer-events-none">
-              Chat on WhatsApp
+              {whatsappTooltip || "Chat on WhatsApp"}
             </span>
 
             {/* Button */}

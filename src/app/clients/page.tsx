@@ -1,33 +1,38 @@
-'use client'
 import PageHero from '@/components/PageHero'
 import About from '@/components/About'
 import ClientsMarquee from '@/components/ClientsMarquee'
 import Testimonials from '@/components/Testimonials'
+import { getClientsPageData } from '@/lib/wordpress'
+ 
+export default async function ClientsPage() {
+  const data = await getClientsPageData();
 
-export default function ClientsPage() {
   return (
     <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <PageHero 
-        title="Our Strategic Partners" 
-        subtitle="Trusted by India&apos;s leading developers and visionary architects. Our client list is a reflection of our commitment to quality."
-        bgText="PARTNERSHIP"
+        title={data.hero.title}
+        subtitle={data.hero.subtitle}
+        bgText={data.hero.bgText}
       />
       
       <About 
         id="partnership-vision"
-        tag="Strategic Alliances"
-        title="We engineer solutions with India's leading visionaries."
-        description1="From complex commercial landmarks to exclusive high-end residences, Xindo Window is the definitive fenestration partner for developers who demand structural perfection."
-        description2="We offer an elite Indo-German technical standard that ensures every architectural vision is realized with absolute precision and climate resilience."
-        badgeNumber="Top-Tier"
-        badgeText="Industrial Partner"
+        tag={data.about.tag}
+        title={data.about.title}
+        description1={data.about.description1}
+        description2={data.about.description2}
+        badgeNumber={data.about.badgeNumber}
+        badgeText={data.about.badgeText}
         reverse={true}
-        image="/images/about-clients.png"
+        image={data.about.image}
       />
-
-      <ClientsMarquee />
-
-      <Testimonials />
+ 
+      <ClientsMarquee 
+        tag={data.clientsMarquee.tag}
+        clients={data.clientsMarquee.clients}
+      />
+ 
+      <Testimonials items={data.testimonials} />
     </main>
   )
 }

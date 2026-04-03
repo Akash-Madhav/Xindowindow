@@ -3,24 +3,34 @@
 import React, { useRef } from 'react'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
+import { WPTrustSectionData } from '@/lib/wp-types'
+
+interface TrustSectionProps {
+  data?: WPTrustSectionData;
+}
  
-const CLIENT_LOGOS = [
-  { name: 'Architectural Digest', detail: 'Feature Design' },
-  { name: 'Lumière Foundry', detail: 'Precision Partner' },
-  { name: 'De-Tech Systems', detail: 'Hardware Core' },
-  { name: 'Glaze Dynamics', detail: 'Surface Tech' },
-  { name: 'Form-X Group', detail: 'Structural Node' },
-  { name: 'Vantage Build', detail: 'Implementation' }
-]
- 
-const CERTIFICATIONS = [
-  { id: '01', name: 'ISO 9001:2015', detail: 'Global Quality Management Protocol' },
-  { id: '02', name: 'DIN EN 12608', detail: 'German Technical Profile Standard' },
-  { id: '03', name: 'GS CERTIFIED', detail: 'Safety & Material Validation' }
-]
- 
-export default function TrustSection() {
+export default function TrustSection({ data }: TrustSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+
+  // Fallbacks
+  const tag = data?.tag || "Strategic Nodes"
+  const title1 = data?.title1 || "Ecosystem"
+  const title2 = data?.title2 || "Collaboration."
+  const logos = data?.logos || [
+    { name: 'Architectural Digest', detail: 'Feature Design' },
+    { name: 'Lumière Foundry', detail: 'Precision Partner' },
+    { name: 'De-Tech Systems', detail: 'Hardware Core' },
+    { name: 'Glaze Dynamics', detail: 'Surface Tech' },
+    { name: 'Form-X Group', detail: 'Structural Node' },
+    { name: 'Vantage Build', detail: 'Implementation' }
+  ]
+  const certifications = data?.certifications || [
+    { id: '01', name: 'ISO 9001:2015', detail: 'Global Quality Management Protocol' },
+    { id: '02', name: 'DIN EN 12608', detail: 'German Technical Profile Standard' },
+    { id: '03', name: 'GS CERTIFIED', detail: 'Safety & Material Validation' }
+  ]
+  const efficiencyMetric = data?.efficiencyMetric || "99.8%"
+  const protocolMetric = data?.protocolMetric || "GER"
  
   useGSAP(() => {
     if (!containerRef.current) return
@@ -57,16 +67,16 @@ export default function TrustSection() {
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-6">
                 <div className="w-12 h-[1px] bg-[var(--color-primary)]" />
-                <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">Strategic Nodes</span>
+                <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">{tag}</span>
               </div>
               <h2 className="font-display font-black text-[32px] md:text-[44px] lg:text-[52px] xl:text-[64px] text-white leading-[0.95] uppercase italic tracking-tight">
-                Ecosystem <br />
-                <span className="text-[var(--color-primary)]">Collaboration.</span>
+                {title1} <br />
+                <span className="text-[var(--color-primary)]">{title2}</span>
               </h2>
             </div>
  
             <div className="grid grid-cols-2 md:grid-cols-3 gap-[1px] bg-white/5 border border-white/5">
-              {CLIENT_LOGOS.map((client, i) => (
+              {logos.map((client, i) => (
                 <div 
                   key={i} 
                   className="partner-box group relative aspect-video flex flex-col items-center justify-center bg-[var(--color-black)] hover:bg-[var(--color-black-soft)] transition-all duration-700 p-8 overflow-hidden"
@@ -87,7 +97,7 @@ export default function TrustSection() {
             </div>
  
             <div className="flex flex-col gap-8">
-              {CERTIFICATIONS.map((cert, i) => (
+              {certifications.map((cert, i) => (
                 <div
                   key={i}
                   className="cert-item group relative p-10 bg-[var(--color-black-soft)] border-l-2 border-[var(--color-primary)] transition-all duration-500 hover:pl-14"
@@ -95,7 +105,7 @@ export default function TrustSection() {
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-[11px] text-[var(--color-primary)] font-black opacity-40">PRTCL-{cert.id}</span>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" className="text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
                     </div>
                     <h3 className="font-display font-black text-[24px] md:text-[32px] text-white leading-none uppercase italic tracking-tighter group-hover:text-[var(--color-primary)] transition-colors">{cert.name}</h3>
                     <p className="font-sans font-medium text-[13px] md:text-[15px] text-[var(--color-silver)] uppercase tracking-widest opacity-40 group-hover:opacity-80 transition-opacity">{cert.detail}</p>
@@ -108,12 +118,12 @@ export default function TrustSection() {
             {/* Efficiency Mark */}
             <div className="mt-auto pt-16 border-t border-white/5 flex items-center justify-between">
                <div className="flex flex-col">
-                  <span className="font-display text-[48px] font-black text-white italic leading-none">99.8%</span>
+                  <span className="font-display text-[48px] font-black text-white italic leading-none">{efficiencyMetric}</span>
                   <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-2">TECHNICAL UPTIME</span>
                </div>
                <div className="w-[1px] h-12 bg-white/10" />
                <div className="flex flex-col text-right">
-                  <span className="font-display text-[48px] font-black text-white italic leading-none">GER</span>
+                  <span className="font-display text-[48px] font-black text-white italic leading-none">{protocolMetric}</span>
                   <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--color-silver)] opacity-30 mt-2">CORE PROTOCOL</span>
                </div>
             </div>

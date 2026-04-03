@@ -1,39 +1,48 @@
-'use client'
-import PageHero from '@/components/PageHero'
+import Hero from '@/components/Hero'
 import About from '@/components/About'
-import Benefits from '@/components/Benefits'
 import Process from '@/components/Process'
+import Benefits from '@/components/Benefits'
+import QuoteForm from '@/components/QuoteForm'
+import { getAboutPageData } from '@/lib/wordpress'
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const aboutData = await getAboutPageData();
+
   return (
-    <main className="min-h-screen bg-red-gradient selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
-      <PageHero 
-        title="Our Heritage" 
-        subtitle="Bridging Indo-German architectural excellence since inception. We don't just build windows; we engineer views and secure legacies."
-        bgText="LEGACY"
+    <main className="min-h-[100svh] bg-[var(--color-black)] w-full overflow-x-hidden selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
+      {/* Dynamic Hero Section */}
+      <Hero 
+        data={{
+          chipText: "Technical Heritage",
+          headlineLine1: [aboutData.hero.title],
+          headlineLine2: [""],
+          subtext: aboutData.hero.subtitle,
+          ctaPrimaryText: "Consult Technical Hub",
+          ctaSecondaryText: "Quality Standards",
+          ctaSecondaryLink: "#benefits",
+          videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-4475-large.mp4",
+          bgImage: "/images/hero-bg.png",
+          watermark1: "LEGACY",
+          watermark2: "PRECISION"
+        }}
       />
-      
+
+      {/* Brand Narrative */}
       <About 
-        id="vision-manifesto"
-        tag="The Engineering Vision"
-        title="We don't manufacture windows — We engineer thresholds."
-        description1="Guided by German precision and fueled by Indian architectural ambition, Xindo represents a paradigm shift in fenestration. Every profile we produce is a technical asset, designed for structural supremacy and aesthetic purity."
-        description2="Our strategic Indo-German technical alliance ensures every profile meets the most stringent global standards for thermal insulation, security, and extreme climate durability."
-        badgeNumber="ISO-9001"
-        badgeText="Certified Plant"
-        reverse={true}
-        image="/images/about-vision.png"
+        id="about-narrative"
+        tag={aboutData.about.tag}
+        title={aboutData.about.title}
+        description1={aboutData.about.description1}
+        description2={aboutData.about.description2}
+        badgeNumber={aboutData.about.badgeNumber}
+        badgeText={aboutData.about.badgeText}
+        image={aboutData.about.image}
       />
 
       <Process 
-        id="03"
-        tag="The Masterclass"
-        steps={[
-          { num: '01', title: 'Consultation', desc: 'Analyzing the specific wind-loads and acoustic requirements of your architectural site.' },
-          { num: '02', title: 'Specification', desc: 'Selecting the precise uPVC blend and steel reinforcement for maximum stability.' },
-          { num: '03', title: 'Craftsmanship', desc: 'Indo-German fabrication using precision-automated machinery.' },
-          { num: '04', title: 'Integration', desc: 'Seamless structural installation within 4 working days.' }
-        ]}
+        id="workflow"
+        tag={aboutData.process.tag}
+        steps={aboutData.process.steps}
       />
 
       <Benefits 

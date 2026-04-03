@@ -5,17 +5,10 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
 import Link from 'next/link'
- 
-const NAV_LINKS = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Collections', href: '/products' },
-  { name: 'Facility', href: '/infrastructure' },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'Contact', href: '/contact' },
-]
+import { useWordPress } from '@/lib/WordPressProvider'
  
 export default function Navbar() {
+  const { navLinks, brandName, brandSubtitle, navCtaText, navMobilePhone, navMobileCtaText } = useWordPress()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
@@ -70,20 +63,20 @@ export default function Navbar() {
         >
  
           {/* Logo Group */}
-          <Link href="/" className="flex items-center gap-4 group" aria-label="Xindo Window Home" data-cursor="link">
+          <Link href="/" className="flex items-center gap-4 group" aria-label={`${brandName} Home`} data-cursor="link">
             <div className="relative w-[40px] h-[40px] border-[1.5px] border-[var(--color-primary)] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
-              <span className="font-display font-bold text-[20px] text-[var(--color-white)] italic relative z-10">X</span>
+              <span className="font-display font-bold text-[20px] text-[var(--color-white)] italic relative z-10">{brandName.charAt(0)}</span>
               <div className="absolute inset-0 bg-[var(--color-primary)] opacity-0 group-hover:opacity-10 transition-opacity" />
             </div>
             <div className="flex flex-col text-left">
-              <span className="font-display font-black text-[18px] md:text-[20px] text-[var(--color-white)] leading-none mb-0.5 uppercase italic tracking-tight group-hover:text-[var(--color-primary)] transition-colors">Xindo Window</span>
-              <span className="font-mono text-[9px] text-[var(--color-silver)] uppercase tracking-[0.4em] leading-none font-bold opacity-40">Industrial Excellence</span>
+              <span className="font-display font-black text-[18px] md:text-[20px] text-[var(--color-white)] leading-none mb-0.5 uppercase italic tracking-tight group-hover:text-[var(--color-primary)] transition-colors">{brandName}</span>
+              <span className="font-mono text-[9px] text-[var(--color-silver)] uppercase tracking-[0.4em] leading-none font-bold opacity-40">{brandSubtitle}</span>
             </div>
           </Link>
  
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-10 h-full">
-            {NAV_LINKS.map((link) => {
+            {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
               return (
                 <div key={link.name} className="relative h-full flex items-center group">
@@ -115,7 +108,7 @@ export default function Navbar() {
               className="hidden sm:block px-6 md:px-10 py-3 bg-[var(--color-primary)] text-[10px] md:text-[11px] font-sans uppercase tracking-[0.25em] text-white transition-all hover:scale-[1.05] shadow-primary font-black border border-white/5 active:scale-95"
               data-cursor-button="true"
             >
-              Inquire
+              {navCtaText}
             </Link>
  
             {/* Minimal Technical Hamburger — mobile/tablet only */}
@@ -151,7 +144,7 @@ export default function Navbar() {
               <span className="font-mono text-[10px] text-[var(--color-primary)] uppercase tracking-[0.6em] mb-12 opacity-60">Directory</span>
               
               <nav className="flex flex-col gap-6">
-                {NAV_LINKS.map((link, i) => (
+                {navLinks.map((link, i) => (
                   <div 
                     key={link.name} 
                     ref={el => { navItemsRef.current[i] = el }}
@@ -173,7 +166,7 @@ export default function Navbar() {
               <div className="mt-auto pt-10 border-t border-white/5 flex flex-col gap-10">
                 <div className="flex flex-col gap-3">
                   <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--color-silver)] opacity-30">Technical Desk</span>
-                  <a href="tel:+919444045544" className="font-display font-bold text-[24px] text-white">94440 45544</a>
+                  <a href={`tel:+91${navMobilePhone.replace(/\s/g, '')}`} className="font-display font-bold text-[24px] text-white">{navMobilePhone}</a>
                 </div>
                 
                 <Link
@@ -181,14 +174,14 @@ export default function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full py-6 bg-[var(--color-primary)] text-[12px] font-sans font-black uppercase tracking-[0.3em] text-center text-white shadow-primary"
                 >
-                  Consult Engineering
+                  {navMobileCtaText}
                 </Link>
               </div>
             </div>
  
             {/* Watermark */}
             <div className="absolute -bottom-10 -right-10 opacity-[0.03] select-none pointer-events-none">
-              <span className="font-display text-[50vw] leading-none font-bold rotate-12">XINDO</span>
+              <span className="font-display text-[50vw] leading-none font-bold rotate-12">{brandName.split(' ')[0].toUpperCase()}</span>
             </div>
           </motion.div>
         )}

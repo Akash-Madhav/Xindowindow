@@ -4,13 +4,36 @@ import React, { useRef } from 'react'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
+import { WPExperienceCenterData } from '@/lib/wp-types'
+
+interface ExperienceCenterProps {
+  id?: string;
+  data?: WPExperienceCenterData;
+}
  
-export default function ExperienceCenter({ id = "experience-center" }: { id?: string }) {
+export default function ExperienceCenter({ 
+  id = "experience-center",
+  data
+}: ExperienceCenterProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const flareRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<(HTMLDivElement | null)[]>([])
+
+  // Fallbacks
+  const tag = data?.tag || "The Showcase"
+  const title1 = data?.title1 || "Architectural"
+  const title2 = data?.title2 || "Symphony."
+  const description = data?.description || "Step into 1:1 scale precision. Our Experience Center isn't just a showroom; it's a laboratory of acoustic and thermal performance, where the future of high-value infrastructure is felt."
+  const stats = data?.stats || [
+    { label: 'Acoustic Seal', value: '-48.2dB' },
+    { label: 'System Class', value: 'LUMI-01' },
+    { label: 'Interaction', value: 'Full-Scale' }
+  ]
+  const ctaText = data?.ctaText || "Private Tour"
+  const bgImage = data?.image || "/images/experience-center.png"
+  const watermark = data?.watermark || "X-CENTER"
  
   useGSAP(() => {
     if (!containerRef.current) return
@@ -74,10 +97,9 @@ export default function ExperienceCenter({ id = "experience-center" }: { id?: st
       <div className="absolute inset-0 z-0">
         <div ref={imageRef} className="relative w-full h-full">
            <Image 
-            src="/images/experience-center.png"
+            src={bgImage}
             alt="Xindo Experience Center"
             fill
-            priority
             className="object-cover grayscale-[0.4] contrast-[1.2] brightness-[0.7]"
           />
         </div>
@@ -97,31 +119,27 @@ export default function ExperienceCenter({ id = "experience-center" }: { id?: st
           
           <div className="flex items-center gap-6 mb-12 opacity-80">
             <div className="w-16 h-[1.5px] bg-[var(--color-primary)]" />
-            <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">The Showcase</span>
+            <span className="font-mono text-[10px] uppercase text-[var(--color-primary)] tracking-[0.6em] font-black italic">{tag}</span>
           </div>
  
           <h2 className="font-display font-black text-[48px] md:text-[88px] xl:text-[112px] 2xl:text-[144px] text-white leading-[0.85] uppercase italic mb-12 tracking-tighter">
-            Architectural <br />
-            <span className="text-[var(--color-primary)]">Symphony.</span>
+            {title1} <br />
+            <span className="text-[var(--color-primary)]">{title2}</span>
           </h2>
  
           <p className="font-sans text-[17px] md:text-[22px] 2xl:text-[28px] text-[var(--color-silver)] leading-relaxed mb-16 max-w-2xl border-l-[3px] border-[var(--color-primary)] pl-12 opacity-70 italic font-medium">
-            Step into 1:1 scale precision. Our Experience Center isn&apos;t just a showroom; it&apos;s a laboratory of acoustic and thermal performance, where the future of high-value infrastructure is felt.
+            {description}
           </p>
  
           {/* Tech Spec Grid */}
           <div className="flex flex-wrap gap-12 md:gap-24 mb-20">
-            {[
-              { label: 'Acoustic Seal', value: '-48.2dB' },
-              { label: 'System Class', val: 'LUMI-01' },
-              { label: 'Interaction', val: 'Full-Scale' }
-            ].map((f, i) => (
+            {stats.map((f, i) => (
               <div 
                 key={i} 
                 ref={el => { statsRef.current[i] = el }}
                 className="flex flex-col gap-3 group opacity-0"
               >
-                <span className="text-[var(--color-primary)] font-display text-[28px] md:text-[36px] 2xl:text-[48px] font-black italic tracking-tighter transition-all group-hover:translate-x-3">{f.value || f.val}</span>
+                <span className="text-[var(--color-primary)] font-display text-[28px] md:text-[36px] 2xl:text-[48px] font-black italic tracking-tighter transition-all group-hover:translate-x-3">{f.value}</span>
                 <span className="text-[var(--color-silver)] font-mono text-[9px] 2xl:text-[11px] uppercase tracking-[0.4em] opacity-40 font-bold">{f.label}</span>
               </div>
             ))}
@@ -132,7 +150,7 @@ export default function ExperienceCenter({ id = "experience-center" }: { id?: st
             data-cursor-button="true"
           >
             <span className="relative z-10 flex items-center gap-6">
-              Private Tour
+              {ctaText}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" className="group-hover:translate-x-4 transition-transform duration-500"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
             <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:left-full transition-all duration-[1.2s] ease-in-out" />
@@ -144,7 +162,7 @@ export default function ExperienceCenter({ id = "experience-center" }: { id?: st
       {/* Absolute Geometric Watermark */}
       <div className="absolute bottom-20 right-20 hidden xl:block opacity-[0.05] pointer-events-none select-none">
         <div className="flex flex-col items-end">
-           <span className="font-display text-[120px] leading-none font-black italic">X-CENTER</span>
+           <span className="font-display text-[120px] leading-none font-black italic">{watermark}</span>
            <span className="font-mono text-[14px] tracking-[1em] mr-[-1em]">AUTHENTICITY REGISTERED</span>
         </div>
       </div>
