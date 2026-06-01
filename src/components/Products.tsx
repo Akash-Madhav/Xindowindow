@@ -6,50 +6,11 @@ import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLenis } from 'lenis/react'
-import { WPProductItem } from '@/lib/wp-types'
-
-const DEFAULT_PRODUCTS: WPProductItem[] = [
-  { 
-    id: 'veka', 
-    title: 'VEKA (UPVC)', 
-    type: 'German Precision Vinyl', 
-    watermark: 'VEKA', 
-    specs: ['Multi-Chambered', 'Acoustic I-50', 'Tropical Grade'], 
-    description: 'Uncompromising German-engineered uPVC profiles. Designed for hyper-durability and extreme tropical resistance, featuring advanced multi-chambered technology for ultimate insulation.', 
-    image: '/images/sliding.png' 
-  },
-  { 
-    id: 'aluk', 
-    title: 'ALUK / ALUMINIUM', 
-    type: 'Architectural System Aluminium', 
-    watermark: 'ALUK', 
-    specs: ['Infineo Series', 'SC95 Minimalist', 'Structural Glazing'], 
-    description: 'High-performance architectural aluminum systems. Combining sleek, ultra-slim aesthetics with unyielding structural integrity for expansive modern focal points.', 
-    image: '/images/casement.png' 
-  },
-  { 
-    id: 'totalis', 
-    title: 'TOTALIS', 
-    type: 'Elite Performance Fenestration', 
-    watermark: 'TOTALIS', 
-    specs: ['Zero-Threshold', 'Max Security', 'Weather-Tight'], 
-    description: 'Bespoke high-end fenestration solutions for unique architectural requirements. Engineered for zero-threshold transitions and maximum security architectural deployment.', 
-    image: '/images/tilt_turn.png' 
-  },
-  { 
-    id: 'xindo', 
-    title: 'XINDO (SLEEK)', 
-    type: 'Ultra-Slim Luxury Series', 
-    watermark: 'SLEEK', 
-    specs: ['Invisible Frame', 'X12 Partition', 'Grand Panoramic'], 
-    description: 'The pinnacle of minimalist engineering. Ultra-slim profile systems designed for maximum transparency and zero-sightline luxury residential and commercial spaces.', 
-    image: '/images/hardware.png' 
-  }
-]
+import { ProductItem, DEFAULT_PRODUCTS } from '@/data/site-content'
 
 interface ProductsProps {
   id?: string
-  products?: WPProductItem[]
+  products?: ProductItem[]
   registry?: Record<string, string[]>
 }
 
@@ -136,7 +97,7 @@ export default function Products({
     return '/images/sliding.png'
   }
 
-  const getProductSpecs = (name: string) => {
+  const getProductSpecs = () => {
     return {
       acoustic: "-48.2 dB Reduct",
       thermal: "U-Val 1.1 W/m²K",

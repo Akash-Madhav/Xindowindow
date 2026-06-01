@@ -4,10 +4,10 @@ import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
 import { useReveal } from './RevealProvider'
-import { useWordPress } from '@/lib/WordPressProvider'
+import { GLOBAL_SETTINGS } from '@/data/site-content'
  
 export default function Preloader() {
-  const { preloaderSteps, preloaderSystemLabel, preloaderGridLabel } = useWordPress()
+  const { preloaderSteps, preloaderSystemLabel, preloaderGridLabel } = GLOBAL_SETTINGS
   const [isLoading, setIsLoading] = useState(true)
   const [loadingStep, setLoadingStep] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)

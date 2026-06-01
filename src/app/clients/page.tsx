@@ -2,11 +2,11 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import ClientsMarquee from '@/components/ClientsMarquee'
 import Testimonials from '@/components/Testimonials'
-import { getClientsPageData } from '@/lib/wordpress'
+import { CLIENTS_PAGE_DATA } from '@/data/site-content'
  
-export default async function ClientsPage() {
-  const data = await getClientsPageData();
- 
+export default function ClientsPage() {
+  const data = CLIENTS_PAGE_DATA;
+
   return (
     <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <Hero data={data.hero} />

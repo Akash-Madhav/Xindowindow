@@ -3,10 +3,10 @@
 import React, { useRef } from 'react'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
-import { WPTrustSectionData } from '@/lib/wp-types'
+import { TrustContent } from '@/data/site-content'
 
 interface TrustSectionProps {
-  data?: WPTrustSectionData;
+  data?: TrustContent;
 }
  
 export default function TrustSection({ data }: TrustSectionProps) {
@@ -68,7 +68,7 @@ export default function TrustSection({ data }: TrustSectionProps) {
             </div>
  
             <div className="grid grid-cols-2 md:grid-cols-3 gap-[1px] bg-white/5 border border-white/5">
-              {logos.map((client: any, i: number) => (
+              {logos.map((client: TrustContent['logos'][number], i: number) => (
                 <div 
                   key={i} 
                   className="partner-box group relative aspect-video flex flex-col items-center justify-center bg-[var(--color-black)] hover:bg-[var(--color-black-soft)] transition-all duration-700 p-8 overflow-hidden"
@@ -89,7 +89,7 @@ export default function TrustSection({ data }: TrustSectionProps) {
             </div>
  
             <div className="flex flex-col gap-8">
-              {certifications.map((cert: any, i: number) => (
+              {certifications.map((cert: TrustContent['certifications'][number], i: number) => (
                 <div
                   key={i}
                   className="cert-item group relative p-10 bg-[var(--color-black-soft)] border-l-2 border-[var(--color-primary)] transition-all duration-500 hover:pl-14"

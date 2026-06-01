@@ -4,11 +4,11 @@ import React, { useRef } from 'react'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
-import { WPExperienceCenterData } from '@/lib/wp-types'
+import { ExperienceCenterContent } from '@/data/site-content'
 
 interface ExperienceCenterProps {
   id?: string;
-  data?: WPExperienceCenterData;
+  data?: ExperienceCenterContent;
 }
  
 export default function ExperienceCenter({ 

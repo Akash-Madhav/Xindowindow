@@ -2,7 +2,6 @@
  
 import { useRef } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
  

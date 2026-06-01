@@ -5,10 +5,10 @@ import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { WPHeroData } from '@/lib/wp-types'
+import { HeroContent } from '@/data/site-content'
 
 interface HeroProps {
-  data?: WPHeroData;
+  data?: HeroContent;
 }
  
 export default function Hero({ data }: HeroProps) {

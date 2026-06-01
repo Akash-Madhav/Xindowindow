@@ -9,8 +9,7 @@ import SmoothScroller from "@/components/SmoothScroller";
 import Footer from "@/components/Footer";
 import { RevealProvider } from "@/components/RevealProvider";
 import { RevealWrapper } from "@/components/RevealWrapper";
-import { getGlobalSettings } from "@/lib/wordpress";
-import { WordPressProvider } from "@/lib/WordPressProvider";
+import { GLOBAL_SETTINGS } from "@/data/site-content";
  
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -33,9 +32,9 @@ const spaceMono = Space_Mono({
   display: "swap",
 });
  
-export async function generateMetadata(): Promise<Metadata> {
-  const settings = await getGlobalSettings();
-  
+export function generateMetadata(): Metadata {
+  const settings = GLOBAL_SETTINGS;
+
   return {
     metadataBase: new URL("https://xindowindow.com"),
     title: {
@@ -59,13 +58,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
  
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const globalSettings = await getGlobalSettings();
- 
   return (
     <html lang="en" className="dark">
       <body
@@ -80,19 +77,17 @@ export default async function RootLayout({
           </svg>
         </div>
         <CustomCursor />
-        <WordPressProvider settings={globalSettings}>
-          <RevealProvider>
-            <SmoothScroller>
-              <Preloader />
-              <RevealWrapper>
-                <Navbar />
-                {children}
-                <Footer />
-              </RevealWrapper>
-              <WhatsAppFloat />
-            </SmoothScroller>
-          </RevealProvider>
-        </WordPressProvider>
+        <RevealProvider>
+          <SmoothScroller>
+            <Preloader />
+            <RevealWrapper>
+              <Navbar />
+              {children}
+              <Footer />
+            </RevealWrapper>
+            <WhatsAppFloat />
+          </SmoothScroller>
+        </RevealProvider>
       </body>
     </html>
   );

@@ -3,11 +3,11 @@
 import { useRef } from 'react'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
-import { WPBenefitsData } from '@/lib/wp-types'
+import { BenefitsContent } from '@/data/site-content'
  
 interface BenefitsProps {
   id?: string;
-  data: WPBenefitsData;
+  data: BenefitsContent;
 }
  
 export default function Benefits({ id, data }: BenefitsProps) {

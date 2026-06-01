@@ -6,10 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { gsap } from '@/lib/gsap-config'
 import { useGSAP } from '@gsap/react'
-import { WPQuoteFormData } from '@/lib/wp-types'
+import { QuoteFormContent } from '@/data/site-content'
 
 interface QuoteFormProps {
-  data?: WPQuoteFormData;
+  data?: QuoteFormContent;
 }
  
 const formSchema = z.object({
@@ -50,7 +50,7 @@ export default function QuoteForm({ data }: QuoteFormProps) {
     )
   }, { scope: containerRef })
  
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async () => {
     setIsSubmitting(true)
     await new Promise(resolve => setTimeout(resolve, 2000))
     setIsSubmitting(false)

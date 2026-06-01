@@ -1,11 +1,11 @@
 import Hero from '@/components/Hero'
 import About from '@/components/About'
 import QuoteForm from '@/components/QuoteForm'
-import { getContactPageData } from '@/lib/wordpress'
+import { CONTACT_PAGE_DATA } from '@/data/site-content'
  
-export default async function ContactPage() {
-  const data = await getContactPageData();
- 
+export default function ContactPage() {
+  const data = CONTACT_PAGE_DATA;
+
   return (
     <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <Hero data={data.hero} />

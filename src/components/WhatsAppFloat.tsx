@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { SiWhatsapp } from '@icons-pack/react-simple-icons'
-import { useWordPress } from '@/lib/WordPressProvider'
+import { GLOBAL_SETTINGS } from '@/data/site-content'
 
 export default function WhatsAppFloat() {
-  const { whatsappUrl, whatsappTooltip, whatsappAriaLabel, whatsappDefaultMessage } = useWordPress()
+  const { whatsappUrl, whatsappTooltip, whatsappAriaLabel, whatsappDefaultMessage } = GLOBAL_SETTINGS
   const [visible, setVisible] = useState(false)
   const [pulse, setPulse] = useState(false)
 

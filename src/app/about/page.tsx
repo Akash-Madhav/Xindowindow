@@ -2,11 +2,11 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Process from '@/components/Process'
 import Benefits from '@/components/Benefits'
-import { getAboutPageData } from '@/lib/wordpress'
+import { ABOUT_PAGE_DATA } from '@/data/site-content'
  
-export default async function AboutPage() {
-  const aboutData = await getAboutPageData();
- 
+export default function AboutPage() {
+  const aboutData = ABOUT_PAGE_DATA;
+
   return (
     <main className="min-h-[100svh] bg-[var(--color-black)] w-full overflow-x-hidden selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <Hero data={aboutData.hero} />

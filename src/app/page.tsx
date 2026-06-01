@@ -7,11 +7,11 @@ import TrustSection from '@/components/TrustSection'
 import Testimonials from '@/components/Testimonials'
 import QuoteForm from '@/components/QuoteForm'
 import ClientsMarquee from '@/components/ClientsMarquee'
-import { getHomePageData } from '@/lib/wordpress'
+import { HOME_DATA } from '@/data/site-content'
  
-export default async function Home() {
-  const homeData = await getHomePageData();
- 
+export default function Home() {
+  const homeData = HOME_DATA;
+
   return (
     <main className="min-h-[100svh] bg-[var(--color-black)] w-full overflow-x-hidden selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <Hero data={homeData.hero} />

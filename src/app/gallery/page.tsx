@@ -1,10 +1,10 @@
 import Hero from '@/components/Hero'
 import Gallery from '@/components/Gallery'
-import { getGalleryPageData } from '@/lib/wordpress'
+import { GALLERY_PAGE_DATA } from '@/data/site-content'
  
-export default async function GalleryPage() {
-  const data = await getGalleryPageData();
- 
+export default function GalleryPage() {
+  const data = GALLERY_PAGE_DATA;
+
   return (
     <main className="min-h-screen bg-[var(--color-black)] selection:bg-[var(--color-primary)] selection:text-[var(--color-white)]">
       <Hero data={data.hero} />

@@ -5,10 +5,10 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from '@/lib/gsap-config'
 import Link from 'next/link'
-import { useWordPress } from '@/lib/WordPressProvider'
+import { GLOBAL_SETTINGS } from '@/data/site-content'
  
 export default function Navbar() {
-  const { 
+  const {
     navLinks, 
     brandName, 
     brandSubtitle, 
@@ -18,7 +18,7 @@ export default function Navbar() {
     navDirectoryLabel,
     navTechnicalDeskLabel,
     brandWatermark
-  } = useWordPress()
+  } = GLOBAL_SETTINGS
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()

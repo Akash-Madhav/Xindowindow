@@ -1,10 +1,10 @@
 'use client'
  
 import Link from 'next/link'
-import { useWordPress } from '@/lib/WordPressProvider'
+import { GLOBAL_SETTINGS } from '@/data/site-content'
  
 export default function Footer() {
-  const { 
+  const {
     brandName, 
     footerBrandDescription, 
     footerSystemStatus, 
@@ -23,7 +23,7 @@ export default function Footer() {
     footerOperationsLabel,
     footerHqLabel,
     brandWatermark
-  } = useWordPress()
+  } = GLOBAL_SETTINGS
  
   return (
     <footer className="relative bg-[var(--color-black)] pt-20 sm:pt-32 pb-16 w-full z-20 border-t border-white/5 overflow-x-hidden" data-section-id="09">
